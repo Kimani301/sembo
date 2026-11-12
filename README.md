@@ -17,17 +17,20 @@ Upload the new `app.html` (replace the old one). Phones pick it up automatically
 Keep the previous `app.html` under another name (for example `app-old.html`). To roll back, rename it to `app.html` and upload.
 
 
-## Owner console (updated)
-- Open it by tapping the Osembo title or the maintenance photo 5 times, then enter your owner code. It is NOT stored in the app.
-- Tabs: Status, Keys, Licence, Access, Data, Activity. It locks itself after 10 minutes.
-- Switch app OFF shows the maintenance screen on every phone connected to the school database. A phone that is not connected (see Data tab) is only affected itself.
-- Revoke admin access and staff suspension now apply to all connected phones.
-- Licence keys are digitally signed, long, and pasted (not typed). Keys made by the old version no longer work.
+## Owner console
+- Open it by tapping the Osembo title or the maintenance photo 5 times (or Ctrl+Shift+K on a computer).
+- **First time:** you are asked to set your own owner password (at least 8 characters). Do this on your own phone before giving the app to a school. You are then shown a **recovery code** once: write it on paper.
+- **Next times:** enter your owner password. After 3 wrong tries you must wait. If you forget the password, tap "Forgot password?" and use the recovery code.
+- Tabs (bottom bar): Overview, Accounts, Data, Activity, Security. It locks itself after 10 minutes.
+- Overview: switch the app OFF/ON (maintenance screen on every connected phone).
+- Accounts: reset the admin password (asks for your owner password), revoke admin access, suspend or restore staff.
+- Data: download a backup and connect phones to the school database.
+- Security: change your password, make a new recovery code.
+- Licensing has been removed completely. There are no licence keys, payments or expiry.
 
 ## Updating
-Replace `app.html` and `sw.js` in GitHub (cache version is now osembo-pwa-4). `maintenance-owner.jpg` is no longer needed: the photo is inside app.html.
+Replace `app.html` and `sw.js` in GitHub (cache version is now osembo-pwa-5). `maintenance-owner.jpg` is no longer needed: the photo is inside app.html.
 
 ## Security notes
 - Still open: the Firebase rules allow anyone who knows the School ID to read and write. Add Firebase sign-in before storing real student data.
 - Default seed passwords (admin, secretary) are still in the source; change them after first login.
-- Licence checking is currently switched off in the code (`licActive` always returns true).
