@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Osembo Comprehensive School</title>
-<meta name="theme-color" content="#1B2A4A"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/favicon-64.png"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Osembo">
+<meta name="theme-color" content="#14243D"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="icon" href="icons/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="icons/icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Osembo">
 <style>
 :root{--on:#E3B94F;--lk:#1B2A4A;--bg:#F6F1E4;--card:#FFFDF8;--tx:#1F2A37;--mut:#6B6559;--pri:#1B2A4A;--acc:#B8892B;--line:#E3DAC4;--ok:#15803D;--okb:#DCFCE7;--no:#B91C1C;--nob:#FEE2E2;--pa:#A16207;--pab:#FEF3C7;--sf:Georgia,"Times New Roman",serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
@@ -58,7 +58,7 @@ h3{margin:0 0 8px;font-family:var(--sf)}
 
 .hm{background:none;border:1.5px solid var(--acc);color:var(--acc);border-radius:6px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;flex:none}
 .pill.nc{background:var(--line);color:var(--mut)}
-.tk{width:46px;height:46px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--mut);font:700 22px system-ui;cursor:pointer;padding:0;flex:none}.tk.y.on{background:var(--ok);border-color:var(--ok);color:#fff}.tk.n.on{background:var(--no);border-color:var(--no);color:#fff}
+.btk{width:46px;height:46px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--mut);font:700 22px system-ui;cursor:pointer;padding:0;flex:none}.btk.y.on{background:var(--ok);border-color:var(--ok);color:#fff}.btk.n.on{background:var(--no);border-color:var(--no);color:#fff}
 @media print{.hd,.tabs,.fab,#toast,#modal,.chips,.btn,.back{display:none!important}body{background:#fff}}
 .row{display:flex;align-items:center;gap:10px;padding:11px 12px;border-left:6px solid var(--c);margin-bottom:8px}
 .bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;background:var(--c,var(--pri))}
@@ -309,8 +309,405 @@ body.kmo #syncpill{bottom:calc(76px + env(safe-area-inset-bottom,0px))!important
 .owner-status{display:inline-block;padding:4px 9px;border-radius:20px;font-size:12px;font-weight:700;background:var(--okb);color:var(--ok)}
 .owner-status.off{background:var(--nob);color:var(--no)}
 @media(max-width:380px){.owner-grid{grid-template-columns:1fr}.maintenance-photo{width:min(82vw,350px)}}
+
+/* ===== Neat layout polish (all tabs) ===== */
+.pghd{margin:2px 0 12px}.pghd .sec{margin:0 0 2px}.pghd>.m{font-size:13px}
+.wrap>.sec{margin:2px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--line);position:relative}
+.wrap>.sec::after{content:"";position:absolute;left:0;bottom:-2px;width:56px;height:2px;background:var(--acc)}
+.pghd .sec{border:0;padding:0}.pghd .sec::after{display:none}
+.wrap>.sec+.m{margin:-4px 0 14px}
+/* sub-tabs: one tidy segmented bar */
+.seg{display:grid;gap:4px;padding:4px;background:#EBE3CD;border:1px solid var(--line);border-radius:12px;margin:0 0 14px}
+.seg button{border:0;background:transparent;color:var(--mut);padding:9px 6px;min-height:42px;border-radius:9px;font:700 13.5px var(--sf);line-height:1.2;text-align:center;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+.seg button.on{background:var(--pri);color:#fff;box-shadow:0 2px 6px #1b2a4a40}
+/* exam / class selector */
+.fg label,.mg label{display:block;margin:0;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.fg select,.mg select,.fg input,.mg input{margin:5px 0 4px;min-height:44px}
+.fg{gap:6px 10px}
+/* grouped action buttons */
+.card>h3:first-child{font-size:17px;margin:0 0 12px}
+.bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.bgrid .btn{width:100%;margin:0;min-height:46px;padding:10px 8px;font-size:13.5px;line-height:1.25;display:flex;align-items:center;justify-content:center;text-align:center}
+.bgrid .btn:last-child:nth-child(odd){grid-column:1/-1}
+@media(min-width:900px){.bgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.bgrid .btn:last-child:nth-child(odd){grid-column:auto}.seg{max-width:720px}}
+.wrap div[style*="flex-wrap:wrap"]{gap:8px!important}
+.wrap div[style*="flex-wrap:wrap"]>.btn.sm{flex:1 1 150px;width:auto;min-height:42px;padding:10px 12px;text-align:center;display:flex;align-items:center;justify-content:center}
+/* headings above lists */
+.lhd{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:16px 2px 8px}.lhd h3{margin:0;font-size:17px}
+.wrap>h3{font-size:17px;margin:18px 2px 8px}
+/* stats, lists, chips, pills */
+.st>div{padding:4px 2px;min-width:0}.st>div+div{border-left:1px solid var(--line)}.st b{font-size:20px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lr{min-height:56px}.lr .pill{min-width:34px;text-align:center;flex:none}.ix{flex:none;text-align:center}
+.led .lr:hover{background:#f8f2e0}
+.chips{gap:8px}.chip{min-height:40px}
+.chips.sc{margin-left:-14px;margin-right:-14px;padding:2px 14px 8px;scroll-snap-type:x proximity;scrollbar-width:none}.chips.sc::-webkit-scrollbar{display:none}.chips.sc .chip{scroll-snap-align:start}
+.cgrid{gap:12px 14px}.cgrid .pick{margin-bottom:0}
+.card,.adsec,.led,.rkw{box-shadow:0 1px 2px #1b2a4a0d}
+select{min-height:44px}
+details.card>summary{display:flex;align-items:center;gap:8px;min-height:30px}
+@media(min-width:900px){.seg button{font-size:15px}}
+
+/* ===== Top tabs: only four, so they can be bigger and easier to read ===== */
+.tabs button{font-size:clamp(11.5px,3.4vw,14px)!important;padding:10px 2px!important;gap:3px}
+.tabs .ti{font-size:clamp(18px,5.4vw,22px)!important}
+.dz{margin:22px 0 6px;padding-top:14px;border-top:1px dashed var(--line);text-align:center}.dz .m{margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;font-size:11px;font-weight:700}
+.dz .dzb{width:auto;color:var(--no);border-color:var(--no);font-size:13px;padding:9px 16px}
 :root{color-scheme:light only}
-</style></head><body>
+
+/* ===== OSEMBO PREMIUM IDENTITY: Royal Navy / Champagne / Ivory / Emerald ===== */
+:root{
+  --pri:#14243D; --lk:#14243D; --on:#E6C985; --acc:#C6A15B;
+  --bg:#F6F3EB; --card:#FFFEFA; --tx:#202B3C; --mut:#707989;
+  --line:#E5E0D4; --ok:#176B52; --okb:#E1F1EA;
+  --no:#A83A42; --nob:#F8E7E7; --pa:#956A22; --pab:#F8EFD9;
+  --sf:Georgia,"Times New Roman",serif;
+}
+body{background:var(--bg);color:var(--tx)}
+body::before{background:var(--pri)}
+.hero,.hd,.welcome{
+  background:linear-gradient(118deg,#101D32 0%,#1B3554 68%,#24445A 100%);
+  color:#fff;border-bottom:3px solid var(--acc)
+}
+.hd{box-shadow:0 5px 18px #14243d20}
+.hd .mono,.hero .mono,.welcome .mono{
+  color:var(--on);border-color:var(--acc);background:#ffffff0d
+}
+.hd .hm{color:var(--on);border-color:#C6A15B;background:#ffffff0d}
+.ttl{letter-spacing:.2px}
+.tabs{background:#FFFEFA;border-bottom:1px solid var(--line);box-shadow:0 3px 12px #14243d08}
+.tabs button{color:#697486}
+.tabs button.on{color:var(--pri);border-color:var(--acc)}
+.wrap>.sec{color:var(--pri)}
+.card,.adsec,.led,.rkw,.tile,.tcard,.pick,.role-btn{
+  border-color:var(--line);box-shadow:0 5px 18px #14243d0a
+}
+.card,.adsec,.led{border-radius:14px}
+.card{padding:16px}
+.adsec{border-left:4px solid var(--acc)}
+.adsec .adb{background:#F1EEE5}
+.btn{background:var(--pri);border-radius:10px;box-shadow:0 3px 8px #14243d18}
+.btn:hover{filter:brightness(1.08)}
+.btn.g{background:linear-gradient(135deg,#D9B66F,#B88C43);color:#211A10}
+.btn.s{border-color:var(--acc);color:var(--pri);background:#fffefa}
+input,select,textarea{
+  background:#FFFEFA;border-color:#DCD6C8;border-radius:10px
+}
+input:focus,select:focus,textarea:focus{
+  outline:2px solid #C6A15B55;border-color:var(--acc)
+}
+.chip{border-radius:999px;background:#FFFEFA}
+.chip.on,.seg button.on,.ltab.on,.side button.si.on{
+  background:var(--pri);border-color:var(--acc);color:#fff
+}
+.seg{background:#ECE8DE;border-color:#DED7C8;border-radius:13px}
+.seg button{border-radius:10px}
+.tile{
+  background:linear-gradient(155deg,#FFFEFA,#F5F0E5);
+  border-bottom:3px solid var(--acc);border-radius:15px
+}
+.tile span{color:var(--pri)}
+.tcard{border-radius:14px;border-left-color:var(--acc)}
+.pick{border-radius:13px;background:#FFFEFA}
+.big,.av{border-color:var(--acc)}
+.fab{background:linear-gradient(145deg,#E6C985,#BD914A);color:#17243A}
+.side{background:#FFFEFA}
+.side button.si{border-radius:10px}
+.pill{background:var(--okb);color:var(--ok)}
+.pill.pa{background:var(--pab);color:var(--pa)}
+.pill.no{background:var(--nob);color:var(--no)}
+.warn,.info,.km-note{border-radius:10px}
+.tth{
+  background:linear-gradient(120deg,#14243D,#176B52);
+  border-bottom:3px solid var(--acc);border-radius:15px
+}
+.tnow{border-radius:12px}
+.tdayl>div{border-radius:9px}
+.ttb th{background:#14243D}
+.ttb th.tdy{background:#C6A15B;color:#1D2635}
+.ttb td.tm{background:#F0EDE5}
+.tk{border-radius:10px}
+.rxd button.on{background:var(--pri);border-color:var(--acc)}
+.rxa{background:var(--pri)}
+.rxh{background:linear-gradient(120deg,#14243D,#176B52);border-radius:16px}
+.rxbar i{background:var(--ok)}
+.km-top{background:#101D32}
+.km-nav{background:#101D32;border-top:1px solid #31435A}
+.km-tab.on{background:#263B56;color:#E6C985}
+.km-code{background:#F9F6EF}
+#ft{color:#778092}
+.rcpage{border-color:#14243D;outline-color:#C6A15B}
+.rcpage::before{color:#14243D}
+.rc-crest{background:#14243D;border-color:#C6A15B;color:#E6C985}
+.rc-t h2,.rc-ch h5,.rc-cm b{color:#14243D}
+.rc-h{border-color:#C6A15B}
+.rc-ban,.rt th,table.reg thead th{background:#14243D}
+.rc-sum>div{border-top-color:#C6A15B}
+table.reg thead th.wkh{background:#C6A15B;color:#202B3C}
+@media(hover:hover){
+  .tile:hover,.tcard:hover,.pick:hover{transform:translateY(-2px);box-shadow:0 9px 22px #14243d16}
+  .tile,.tcard,.pick{transition:transform .18s ease,box-shadow .18s ease}
+  .tabs button:hover{background:#F6F3EB}
+}
+@media(prefers-reduced-motion:reduce){
+  .tile,.tcard,.pick{transition:none}
+}
+@media print{
+  .rcpage{border-color:#14243D;outline-color:#C6A15B}
+}
+
+
+
+/* =========================================================
+   OSEMBO PREMIUM UI FINISH — responsive, calm, accessible
+   Keeps the existing school workflows and data logic intact.
+   ========================================================= */
+:root{--radius-card:16px;--shadow-soft:0 8px 26px rgba(20,36,61,.065);--shadow-lift:0 14px 34px rgba(20,36,61,.12)}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font-family:inherit}
+button{ -webkit-tap-highlight-color:transparent }
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #C6A15B;outline-offset:2px}
+#app{min-height:100vh}
+#ft{padding:12px 16px 22px;text-align:center;font-size:11px;letter-spacing:.04em}
+.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 12% 0%,#34506e 0,transparent 38%),linear-gradient(125deg,#101D32,#1B3554 70%,#24445A);padding:38px 20px 34px}
+.hero:after{content:"";position:absolute;width:190px;height:190px;border:1px solid #C6A15B55;border-radius:50%;right:-78px;top:-95px;box-shadow:0 0 0 16px #C6A15B0c,0 0 0 34px #C6A15B08;pointer-events:none}
+.hero>div:first-child{position:relative;z-index:1;text-shadow:0 2px 14px #0003}
+.hero>div:nth-child(2){position:relative;z-index:1;letter-spacing:.08em;font-size:12px}
+.hd{min-height:72px;padding:12px clamp(14px,3vw,28px);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.logo{min-width:0}.logo>div:last-child{min-width:0}.ttl{font-size:clamp(17px,2vw,25px);overflow-wrap:anywhere}
+.mono{box-shadow:inset 0 0 0 3px #C6A15B18,0 3px 12px #0002;flex:none}
+.hm{border:1px solid #ffffff30;border-radius:10px;background:#ffffff10;color:#fff;min-width:40px;min-height:40px;cursor:pointer}
+.tabs{position:sticky;top:72px;z-index:8;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.tabs button{min-height:54px;transition:color .18s,background .18s,border-color .18s}
+.tabs button.on{background:linear-gradient(180deg,#C6A15B0b,transparent);font-weight:800}
+.wrap{max-width:1180px;width:100%;padding:24px clamp(14px,2.4vw,30px) 100px}
+.wrap>.sec{font-size:clamp(23px,2.5vw,30px);letter-spacing:-.025em;margin:5px 0 18px}
+.card,.adsec,.led,.rkw,.tile,.tcard,.pick,.role-btn{box-shadow:var(--shadow-soft);border-radius:var(--radius-card)}
+.card{padding:clamp(15px,2vw,21px);margin-bottom:16px}
+.adsec{margin-bottom:16px}.adsec>summary{padding:16px 18px}.adsec .adb{padding:15px}
+.btn{min-height:44px;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease}
+.btn:active,.chip:active,.pick:active{transform:scale(.985)}
+.btn.g{box-shadow:0 4px 12px #bd914a35}
+input,select,textarea{min-height:44px;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px #C6A15B18}
+.chip{transition:background .16s,border-color .16s,transform .16s}
+.pill{letter-spacing:.015em}
+.lr{transition:background .15s}
+.lhd{margin-top:22px}
+.side{border-right:1px solid #E5E0D4;box-shadow:8px 0 28px #14243d0a}
+.side h5{color:var(--pri);line-height:1.25}
+.side .si{transition:background .15s,color .15s,transform .15s}
+.scrim{backdrop-filter:blur(2px)}
+.fab{box-shadow:0 8px 22px #14243d35;border:2px solid #fff8}
+.ov .sheet,.sheet{border-radius:20px;box-shadow:0 22px 70px #101d3240}
+#toast{border-radius:12px;box-shadow:0 8px 24px #101d3230}
+/* Larger screens: turn the existing drawer into a permanent navigation rail. */
+@media(min-width:1000px){
+  .side{transform:none!important;left:0;width:258px;padding:22px 15px;box-shadow:5px 0 24px #14243d0a}
+  .side.open{box-shadow:5px 0 24px #14243d0a}
+  .scrim{display:none!important}
+  .has-side{margin-left:258px;min-height:100vh}
+  .has-side .hd{padding-left:28px}
+  .has-side .hd .mnu{display:none!important}
+  .has-side .tabs{top:72px;justify-content:flex-start;padding-left:22px}
+  .has-side .tabs button{flex:0 0 auto;min-width:112px;padding:12px 20px!important}
+  .has-side .wrap{max-width:1500px;padding:28px clamp(24px,3vw,48px) 100px}
+  .side h5{font-size:19px!important;margin:8px 8px 14px}
+  .side .m{margin:12px 8px 8px}
+  .side .si{width:100%;text-align:left;display:flex;align-items:center;gap:12px;padding:12px 13px;margin:3px 0;border:0;background:transparent;color:var(--tx);font:600 14px system-ui;cursor:pointer}
+  .side .si.on{background:var(--pri);color:#fff;border-left:3px solid var(--acc)}
+  .side .si:hover:not(.on){background:#F3F0E8}
+  .has-side .wrap .st{max-width:900px}
+  .has-side .wrap .cgrid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+}
+/* Comfortable tablet and phone layouts. */
+@media(max-width:999px){
+  .side{max-width:min(86vw,320px)}
+  .tabs{top:68px}
+  .wrap{padding-top:18px}
+}
+@media(max-width:600px){
+  .hd{min-height:64px;padding:9px 11px}
+  .hd .logo{gap:8px}.hd .mono{width:38px!important;height:38px!important;font-size:21px!important}
+  .ttl{font-size:clamp(15px,4.2vw,19px);line-height:1.15}
+  .tabs{top:64px}
+  .tabs button{min-height:52px;padding:8px 2px!important}
+  .wrap{padding:16px 12px calc(86px + env(safe-area-inset-bottom,0px))}
+  .card{padding:14px;margin-bottom:12px}
+  .hero{padding:28px 14px}
+  .hero>div:first-child{font-size:clamp(25px,7vw,34px)!important}
+  .sec{font-size:23px}
+  .st{gap:3px}.st b{font-size:18px}
+  .side{padding-top:calc(env(safe-area-inset-top,0px) + 12px)}
+}
+/* Respect reduced-motion settings and avoid unnecessary movement. */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
+@media print{
+  body{background:#fff!important;color:#111!important}
+  .hd,.tabs,.side,.scrim,.fab,#toast,#ft{display:none!important}
+  .has-side{margin:0!important}
+  .wrap{max-width:none!important;padding:0!important}
+  .card,.led,.adsec{box-shadow:none!important;break-inside:avoid}
+}
+
+</style>
+
+<style id="crimson-editorial-theme">
+/* Osembo Booklists — Crimson, charcoal and warm ivory */
+:root{
+  --pri:#8F1D2C !important;       /* signature crimson */
+  --lk:#29252A !important;       /* charcoal */
+  --bg:#F7F4F0 !important;       /* warm ivory */
+  --card:#FFFEFC !important;
+  --tx:#29252A !important;
+  --mut:#746B6A !important;
+  --acc:#C69A55 !important;       /* restrained antique gold */
+  --on:#F4D9D9 !important;
+  --line:#E8DCDD !important;
+  --ok:#28745B !important;
+  --okb:#E4F1EA !important;
+  --no:#B42336 !important;
+  --nob:#FCE8EA !important;
+  --pa:#A56A24 !important;
+  --pab:#F8EEDB !important;
+}
+html,body{background:var(--bg)!important;color:var(--tx)!important}
+body::before{background:#651522!important}
+.hero{
+  background:linear-gradient(118deg,#641421 0%,#8F1D2C 56%,#B63845 100%)!important;
+  color:#FFFDFC!important;
+  border-bottom:3px solid var(--acc)!important;
+  box-shadow:0 8px 24px rgba(75,17,29,.15)!important;
+}
+.hd{
+  background:linear-gradient(105deg,#651522 0%,#8F1D2C 72%,#A72B3B 100%)!important;
+  color:#FFFDFC!important;
+  border-bottom:2px solid #C69A55!important;
+  box-shadow:0 4px 16px rgba(57,15,24,.16)!important;
+}
+.ttl,.hero h1,.hero h2{color:#FFFDFC!important}
+.mono{
+  background:rgba(255,255,255,.08)!important;
+  border:2px solid #D7B477!important;
+  color:#F4D9A8!important;
+  box-shadow:0 0 0 4px rgba(255,255,255,.06)!important;
+}
+.tabs{
+  background:#FFFEFC!important;
+  border-bottom:1px solid #E8DCDD!important;
+  box-shadow:0 3px 12px rgba(41,37,42,.045)!important;
+}
+.tabs button{
+  background:transparent!important;
+  color:#746B6A!important;
+  border-bottom:3px solid transparent!important;
+}
+.tabs button.on{
+  color:#8F1D2C!important;
+  border-bottom:3px solid #C69A55!important;
+  background:linear-gradient(180deg,rgba(143,29,44,.035),rgba(143,29,44,.01))!important;
+}
+.btn,button.btn,.primary,.primary-btn{
+  background:linear-gradient(135deg,#9D2434,#7D1828)!important;
+  color:#FFFEFC!important;
+  border:1px solid #7D1828!important;
+  box-shadow:0 3px 9px rgba(115,20,37,.16)!important;
+}
+.btn:hover,button.btn:hover,.primary:hover,.primary-btn:hover{
+  background:linear-gradient(135deg,#7D1828,#641421)!important;
+}
+.card,.panel,.tile,.side,.modal,.dialog,.sheet{
+  background:#FFFEFC!important;
+  border-color:#E8DCDD!important;
+}
+.card,.panel{
+  box-shadow:0 5px 18px rgba(41,37,42,.055)!important;
+}
+.tile{
+  color:#29252A!important;
+  border:1px solid #E8DCDD!important;
+  border-bottom:3px solid #C69A55!important;
+  box-shadow:0 4px 13px rgba(41,37,42,.06)!important;
+}
+.tile:hover{background:#FFF8F7!important;border-color:#D7B5BA!important}
+.side{background:#FFFEFC!important}
+.side h5,.side .active{color:#8F1D2C!important}
+h1,h2,h3,h4,.section-title,.card-title{color:#65202C}
+a{color:#9D2434}
+input,select,textarea{
+  background:#FFFEFC!important;
+  color:#29252A!important;
+  border:1px solid #DCCBCD!important;
+  border-radius:8px!important;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:#B63845!important;
+  box-shadow:0 0 0 3px rgba(182,56,69,.13)!important;
+  outline:none!important;
+}
+.badge,.pill,.tag{
+  background:#F5E7E8!important;
+  color:#8F1D2C!important;
+  border:1px solid #EBD4D7!important;
+}
+table th,thead th{
+  background:#76202E!important;
+  color:#FFFEFC!important;
+}
+table tr:nth-child(even){background:#FAF0F0!important}
+hr{border-color:#E8DCDD!important}
+:focus-visible{outline:3px solid rgba(198,154,85,.55)!important;outline-offset:2px}
+@media(hover:hover){
+  .tabs button:hover{color:#8F1D2C!important}
+}
+@media print{
+  body{background:#fff!important}
+  .hero,.hd,table th,thead th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+
+
+<style id="welcome-crimson-fix">
+/* Match the home welcome banner to the crimson identity */
+.welcome{
+  background:linear-gradient(118deg,#641421 0%,#8F1D2C 58%,#B63845 100%) !important;
+  color:#FFFEFC !important;
+  border-bottom:3px solid #C69A55 !important;
+  box-shadow:0 8px 22px rgba(100,20,33,.16) !important;
+}
+.welcome .mono{
+  color:#F4D9A8 !important;
+  border:2px solid #D2AD68 !important;
+  background:rgba(255,255,255,.08) !important;
+}
+.welcome div{color:inherit}
+.welcome div[style*="font-style:italic"]{color:#F4D9A8 !important}
+</style>
+
+
+<style id="crimson-brand-mark">
+/* Signature Osembo monogram: ivory face, crimson O, champagne rim */
+.mono{
+  width:48px!important;height:48px!important;min-width:48px!important;
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  border:2.5px solid #D2AD68!important;border-radius:50%!important;
+  background:radial-gradient(circle at 32% 25%,#FFFFFF 0%,#FFF7F0 62%,#F0E2D9 100%)!important;
+  color:#8F1D2C!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:29px!important;font-weight:800!important;line-height:1!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.9)!important;
+  box-shadow:0 0 0 3px rgba(210,173,104,.18),0 3px 10px rgba(35,10,15,.22)!important;
+}
+.hd .mono,.hero .mono,.welcome .mono{
+  background:radial-gradient(circle at 32% 25%,#FFFFFF 0%,#FFF7F0 62%,#F0E2D9 100%)!important;
+  color:#8F1D2C!important;border-color:#D2AD68!important;
+}
+</style>
+
+</head><body>
 <div id="app"></div><div id="modal"></div><div id="toast"></div><div id="pa"></div><div id="ft">developed by key_money</div>
 <script>
 let WK=50;const W=13,PREVIEW=false,NOLOGIN=false;
@@ -412,7 +809,7 @@ function vLogin(){
   pwBox=ph=>`<label for="pw">Password</label><div class="pwrow"><input id="pw" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="${ph}" onkeydown="if(event.key==='Enter')login()">${eye}</div>`;
   let body="";
   if(t==="tch")body=`<label for="uid">Your name or phone number</label><input id="uid" autocomplete="username" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="e.g. Mr Kamau or 0712345678" value="${esc((()=>{try{return localStorage.getItem("os_last")||""}catch(e){return""}})())}">${pwBox("Your password")}<label class="keep"><input id="keep" type="checkbox"> Keep me signed in on this device</label><button class="btn" onclick="loginTeacher()">Teacher log in</button><div class="m" style="margin-top:10px">First time? Use the password the school gave you, then set your own from the menu (Change password). Forgot it? Ask the administrator.</div>`;
-  else if(t==="res")body=`<label for="pn">Child's first two names</label><input id="pn" autocomplete="off" autocapitalize="words" autocorrect="off" spellcheck="false" placeholder="e.g. Mary Wanjiku" onkeydown="if(event.key==='Enter')loginParent()"><label for="uid">Child's admission number</label><input id="uid" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="e.g. OS100" onkeydown="if(event.key==='Enter')loginParent()"><button class="btn" style="margin-top:12px" onclick="loginParent()">Open parent portal</button><div class="m" style="margin-top:10px">Enter your child's first two names exactly as they appear on the school records, then the admission number. You will see fees, attendance and report cards.</div>`;
+  else if(t==="res")body=`<label for="uid">Child's admission number</label><input id="uid" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="e.g. OS100" onkeydown="if(event.key==='Enter')loginParent()"><button class="btn" style="margin-top:12px" onclick="loginParent()">Open parent portal</button><div class="m" style="margin-top:10px">Enter your child's admission number only. You will see fees, attendance and report cards.</div>`;
   else if(t==="sec")body=`${pwBox("Secretary password")}<button class="btn" style="margin-top:12px" onclick="loginSecretary()">Secretary log in</button><div class="m" style="margin-top:10px">Forgot the password? Ask the administrator to set a new one.</div>`;
   else body=`${pwBox("Enter password")}<button class="btn" style="margin-top:12px" onclick="login()">Admin log in</button>`;
   return `<div class="hero" onclick="ownerTap()"><div style="font-size:36px;font-weight:800;line-height:1.2">Osembo Comprehensive School</div></div><div class="wrap lgn"><div class="ltabs" style="margin-top:14px">${tab("adm","🛡️","Admin")}${tab("sec","🗂️","Secretary")}${tab("tch","👩‍🏫","Teacher")}${tab("res","👪","Parent")}</div><div class="card">${body}</div>${thmBar()}</div>`}
@@ -426,15 +823,13 @@ function failLogin(k,L,msg){L.n++;if(L.n>=5){L.t=Date.now()+600000;L.n=0}ui.lk[k
 function okLogin(k,L){L.n=0;ui.lk[k]=L;lkSave()}
 function login(){return ui.lt==="sec"?loginSecretary():loginAdmin()}
 /* Parent portal: admission number only */
-const parNm=v=>String(v||"").toLowerCase().replace(/[^a-z0-9\s]/g,"").split(/\s+/).filter(Boolean).slice(0,2).join(" ");
 function loginParent(){
-  const adm=admIn(($("#uid")||{}).value),nm=parNm(($("#pn")||{}).value);
-  if(!nm)return T("Enter your child's first two names");
+  const adm=admIn(($("#uid")||{}).value);
   if(!adm)return T("Enter your child's admission number");
   const k="L:par",L=lockOf(k);if(Date.now()<L.t)return T("Too many wrong attempts. Try again in 10 minutes.");
   const s=parentStudent(adm);
-  if(s&&parOk(s,adm)&&parNm(s.name)===nm){okLogin(k,L);ui.par=s.id;ui.pl=0;R();return}
-  failLogin(k,L,"The name and admission number do not match. Check them and try again.")}
+  if(s&&parOk(s,adm)){okLogin(k,L);ui.par=s.id;ui.pl=0;R();return}
+  failLogin(k,L,"Admission number not found. Check it and try again.")}
 /* Teachers tab: name or phone number + password */
 function loginTeacher(){
   const raw=($("#uid")||{}).value||"",secret=($("#pw")||{}).value||"",id=loNorm(raw);
@@ -466,21 +861,21 @@ const ICON='<svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
 const tg=()=>{$(".side").classList.toggle("open");$(".scrim").classList.toggle("show")};
 const si=(k,l,i)=>`<button class="si ${grpTop(ui.tab)===k?"on":""}" onclick="go('${k}')"><span>${i}</span>${l}</button>`;
 const GRP={academics:["academics","marks","rank"],tt:["tt","rx"],adm:["adm","place","rights","log","erase"]},grpTop=t=>{for(const k in GRP)if(GRP[k].includes(t))return k;return t};
-const TI={tt:"\uD83D\uDDD3\uFE0F",home:"🏠",classes:"🏫",academics:"🎓",marks:"📝",rank:"🏆",fees:"💰",coll:"💵",scl:"🏫",ann:"📢"},tab=(k,l)=>`<button class="${grpTop(ui.tab)===k?"on":""}" onclick="go('${k}')"><span class="ti">${TI[k]||""}</span><span>${l}</span></button>`;
+const TI={tt:"\uD83D\uDDD3\uFE0F",home:"🏠",classes:"🏫",academics:"🎓",marks:"📝",rank:"🏆",fees:"💰",coll:"💵",scl:"📋",ann:"📢"},tab=(k,l)=>`<button class="${grpTop(ui.tab)===k?"on":""}" onclick="go('${k}')"><span class="ti">${TI[k]||""}</span><span>${l}</span></button>`;
 const HOUSE='<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z"/></svg>';
 function go(k){cm();if(k==="coll")ui.ocId=null;if(k==="scl")ui.scc=null;if(ui.tab!==k)ui.c2=null;ui.tab=k;ui.q="";ui.hq="";ui.cq="";ui.ctq="";if(k==="classes"&&seeAll())ui.cp=null;if(k==="class"&&seeAll()){ui.grade=null;ui.cls=null}R();window.scrollTo(0,0)}
 function home(){go("home")}
 function grpBar(){const g=grpTop(ui.tab);if(g===ui.tab&&!GRP[g])return"";const ad=adm(),own=!!me()&&me().role==="admin";let it=[];
-  if(g==="academics")it=[["academics","Class results"],["marks","Enter marks"],...(ad?[["rank","Rank an uploaded list"]]:[])];
+  if(g==="academics")it=[["academics","Class results"],["marks","Enter marks"],...(ad?[["rank","Rank a list"]]:[])];
   else if(g==="tt")it=[["tt",ad?"School timetable":"My timetable"],["rx","Remedial timetable"]];
-  else if(g==="adm"&&ad)it=[["adm","Settings"],["place","Place students"],...(own?[["rights","Teacher rights"]]:[]),["log","Activity log"],["erase","Erase everything"]];
+  else if(g==="adm"&&ad)it=[["adm","Settings"],["place","Place students"],...(own?[["rights","Teacher rights"]]:[]),["log","Activity log"]];
   if(it.length<2)return"";
-  return `<div class="chips">${it.map(x=>`<button class="chip ${ui.tab===x[0]?"on":""}" onclick="go('${x[0]}')">${x[1]}</button>`).join("")}</div>`}
+  return `<div class="seg" style="grid-template-columns:${it.length<=3?"repeat("+it.length+",minmax(0,1fr))":"repeat(auto-fit,minmax(112px,1fr))"}">${it.map(x=>`<button class="${ui.tab===x[0]?"on":""}" onclick="go('${x[0]}')">${x[1]}</button>`).join("")}</div>`}
 function vMain(){const u=me(),ad=adm(u),vw=isVw();if(vw){if(!["home","classes","attendance","class","fees","academics","marks","teachers","prof","leaders","sync","tt","rx","books","ann"].includes(ui.tab)&&!ctOk(ui.tab))ui.tab="home"}else if(!ad){ui.cls=u.cls||null;ui.grade=u.cls?u.cls.split(" ")[0]:null;if(!["home","classes","attendance","class","fees","academics","marks","prof","leaders","sms","sync","tt","rx","books","ann"].includes(ui.tab)&&!ctOk(ui.tab))ui.tab="home"}
-  const who=NOLOGIN?`<select onchange="handleWho(this.value)" style="width:auto;margin:0;padding:7px">${(ui.kmOwner?opts():opts().replace('value="'+ui.sess+'"','value="'+ui.sess+'" selected'))}</select>`:`<button class="btn g sm" onclick="logout()">Log out</button>`;
+  const who=NOLOGIN?`<select onchange="handleWho(this.value)" style="width:auto;margin:0;padding:7px">${(ui.kmOwner?opts():opts().replace('value="'+ui.sess+'"','value="'+ui.sess+'" selected'))}</select>`:"";
   return `<div class="has-side"><div class="hd"><div style="display:flex;align-items:center;gap:10px">${ui.tab!=="home"?'<button class="hm mnu" onclick="history.back()" aria-label="Back" style="font-size:26px;line-height:1">‹</button>':""}<button class="hm mnu" onclick="tg()" aria-label="Menu" style="font-size:22px">☰</button><div class="logo" onclick="home()" style="cursor:pointer"><div class="mono">O</div><div><div class="ttl">Osembo Comprehensive School</div><div style="font-size:12px;opacity:.9">${u.role==="admin"?"Administrator":ad?"Teacher · full access":u.cls?"Class teacher, "+u.cls:"Teacher · view only"}</div></div></div></div><div style="display:flex;gap:8px;align-items:center"><button class="hm" onclick="openSearch()" aria-label="Search students">${SRCH}</button></div></div>
-<div class="tabs">${tab("home","Home")+tab("classes",ad||vw?"Classes":"My Class")+tab("academics","Results")+tab("tt","Timetable")+tab("fees","Fees")+tab("ann","Announcements")+ctBar()}</div>
-<div class="wrap">${pwBanner()}${fsBanner()}${vNotes()}${grpBar()}${ui.tab==="home"?vHome():ctOk(ui.tab)?vCT():ui.tab==="class"?vClassTab():ui.tab==="attendance"?vAttendance():ui.tab==="fees"?vFees():ui.tab==="academics"?vAcad():ui.tab==="marks"?vMarks():ui.tab==="rank"?vRank():ui.tab==="classes"?vClasses():ui.tab==="place"&&ad?vPlace():ui.tab==="rights"&&u.role==="admin"?vRights():ui.tab==="adm"&&ad?vAdm():ui.tab==="teachers"&&(ad||vw)?vTeachers():ui.tab==="log"&&ad?vLog():ui.tab==="prof"?vProf():ui.tab==="leaders"?vLeaders():ui.tab==="sms"?vSms():ui.tab==="sync"?vSyncF():ui.tab==="tt"?vTT():ui.tab==="rx"?vRX():ui.tab==="books"?vBooks():ui.tab==="ann"?vAnn():ui.tab==="coll"&&isOwnerAdm()?vColl():ui.tab==="erase"&&ad?vErase():vHome()}</div>${ui.tab==="classes"&&ui.cp&&canEdit(ui.cp)?`<button class="fab" onclick="addSt('${ui.cp}')" aria-label="Add student">+</button>`:""}</div><div class="scrim" onclick="tg()"></div><div class="side"><h5>Osembo Comprehensive School</h5><div class="m">Signed in as</div>${who}${si("attendance","Register","✓")+si("tt",ad?"Timetable":"My timetable","🗓️")+si("class","Remedial","💰")+(ad||vw?si("teachers","Teachers","👩‍🏫"):"")+(ad?"":si("prof","My profile","🪪"))+si("leaders","Student leaders","🎖️")+si("books","Books","📚")+si("ann","Announcements","📢")+(isOwnerAdm()?si("coll","Other money","💵"):"")+si("sync","Sync devices","🔄")+(ad?si("sms","Broadcast SMS","✉️"):"")}${ad?si("adm","Admin","⚙️"):""}<div class="m">Account</div><button class="si" onclick="pwM()"><span>🔑</span>Change password</button><button class="si" onclick="logout()"><span>↩</span>Log out</button></div>${vPhoneGate()}`}
+<div class="tabs">${tab("home","Home")+tab("classes",ad||vw?"Classes":"My Class")+tab("academics","Results")+tab("fees","Fees")+ctBar()}</div>
+<div class="wrap">${pwBanner()}${fsBanner()}${vNotes()}${grpBar()}${ui.tab==="home"?vHome():ctOk(ui.tab)?vCT():ui.tab==="class"?vClassTab():ui.tab==="attendance"?vAttendance():ui.tab==="fees"?vFees():ui.tab==="academics"?vAcad():ui.tab==="marks"?vMarks():ui.tab==="rank"?vRank():ui.tab==="classes"?vClasses():ui.tab==="place"&&ad?vPlace():ui.tab==="rights"&&u.role==="admin"?vRights():ui.tab==="adm"&&ad?vAdm():ui.tab==="teachers"&&(ad||vw)?vTeachers():ui.tab==="log"&&ad?vLog():ui.tab==="prof"?vProf():ui.tab==="leaders"?vLeaders():ui.tab==="sms"?vSms():ui.tab==="sync"?vSyncF():ui.tab==="tt"?vTT():ui.tab==="rx"?vRX():ui.tab==="books"?vBooks():ui.tab==="ann"?vAnn():ui.tab==="coll"&&isOwnerAdm()?vColl():ui.tab==="erase"&&ad?vErase():vHome()}</div>${ui.tab==="classes"&&ui.cp&&canEdit(ui.cp)?`<button class="fab" onclick="addSt('${ui.cp}')" aria-label="Add student">+</button>`:""}</div><div class="scrim" onclick="tg()"></div><div class="side"><h5>Osembo Comprehensive School</h5><div class="m">Signed in as</div>${who}${si("attendance","Register","✓")+si("tt",ad?"Timetable":"My timetable","🗓️")+si("class","Remedial","🧾")+(ad||vw?si("teachers","Teachers","👩‍🏫"):"")+(ad?"":si("prof","My profile","🪪"))+si("leaders","Student leaders","🎖️")+si("books","Books","📚")+si("ann","Announcements","📢")+(isOwnerAdm()?si("coll","Other money","💵"):"")+si("sync","Sync devices","🔄")+(ad?si("sms","Broadcast SMS","✉️"):"")}${ad?si("adm","Admin","⚙️"):""}<div class="m">Account</div><button class="si" onclick="pwM()"><span>🔑</span>Change password</button><button class="si" onclick="logout()"><span>↩</span>Log out</button></div>${vPhoneGate()}`}
 function remChips(){return `<div class="chips sc"><button class="chip ${!ui.cls?"on":""}" onclick="setC(null)">All classes</button>${CL.map(c=>`<button class="chip ${ui.cls===c?"on":""}" onclick="setC('${c}')">${c}</button>`).join("")}</div>`}
 function vClassTab(){const ad=seeAll();return `<h2 class="sec">Remedial</h2>`+(ad?remChips():"")+(ad&&!ui.cls?vRemAll():vView())}
 function recentReceipts(){const u=me(),R=(S.receipts||[]).filter(r=>seeAll()||r.class===u.cls).slice(-5).reverse();if(!R.length)return"";
@@ -778,12 +1173,12 @@ function vAcad(){const u=me(),ad=seeAll();ui.ac=ad?(ui.ac||CL[0]):u.cls;ui.ay=ui
   cmean=done.length?done.reduce((a,o)=>a+o.m,0)/done.length:0,
   sa=SUBJ.map(x=>{const v=done.map(o=>o.r[x[0]]).filter(v=>v!=null);return[x[1],v.length?v.reduce((a,b)=>a+b,0)/v.length:null]}).filter(x=>x[1]!=null),
   row=o=>{const p=o.n&&ad?done.findIndex(x=>x.m===o.m)+1:"–";return `<div class="lr" onclick="det('${o.s.id}')"><span class="ix">${p}</span><div style="flex:1;min-width:0"><b>${esc(o.s.name)}</b><div class="m">Adm. ${esc(o.s.adm||"—")}${o.n?" · Total "+rtot(o.r)+"/"+MAXT+" · "+o.n+"/"+SUBJ.length+" subjects":" · No results yet"}</div></div>${o.n?`<div style="text-align:right"><b>${r1(o.m)}%</b><div><span class="pill ${gk(gr(o.m))}">${gr(o.m)}</span></div></div>`:""}</div>`};
-  return `<h2 class="sec">Academic performance</h2>${examBar()}
+  return `<div class="pghd"><h2 class="sec">Class results</h2><div class="m">${esc(c)} · ${esc(e)} · Term ${t}, ${y}</div></div>${examBar()}
 <div class="card" style="border-top:3px solid var(--acc)"><div class="st"><div><b>${done.length?r1(cmean)+"%":"–"}</b><span>Class mean</span></div><div><b>${done.length}/${rows.length}</b><span>Results in</span></div>${ad?`<div><b>${done.length?esc(done[0].s.name.split(" ")[0]):"–"}</b><span>Top student</span></div>`:""}</div></div>
-${ad?bestCard(c):""}${can?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">${canMarks(c)?`<button class="btn sm" onclick="go('marks')">Enter marks</button>`:""}${ad?`<button class="btn sm" onclick="insM()">🏆 Rank &amp; insights</button><button class="btn s sm" onclick="printAllRC(ui.ac)">Print all report cards</button><button class="btn g sm" onclick="ui.bc=ui.ac;bcM()">📲 Send to parents</button><button class="btn s sm" onclick="pubExam(ui.ac)">📤 Publish to parent portal</button>`:""}</div>`:isVw()?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">${canMarks(c)?`<button class="btn sm" onclick="go('marks')">Enter marks</button>`:""}<button class="btn sm" onclick="insM()">🏆 Rank &amp; insights</button></div>`:""}
-<div class="card"><h3>Class tools</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" onclick="dlRes('${c}')">⬇ Download ${esc(c)} results (PDF)</button>${ad?`<button class="btn s sm" onclick="dlRes('')">⬇ PDF for every class</button>`:""}<button class="btn s sm" onclick="dlResCsv('${c}')">CSV</button><button class="btn s sm" onclick="top3M()">🥇 Top 3 per class</button>${adm()?`<button class="btn s sm" onclick="go('place')">📋 Place students</button>`:""}</div><div class="m" style="margin-top:8px">Each class gets its own PDF (for example 7Athi). Downloads use the year, term and exam selected above.</div></div>
+${ad?bestCard(c):""}${(()=>{const b=[];if(canMarks(c)&&(can||isVw()))b.push(`<button class="btn" onclick="go('marks')">📝 Enter marks</button>`);if(ad&&can||isVw()){b.push(`<button class="btn s" onclick="insM()">🏆 Rank &amp; insights</button>`)}if(ad&&can){b.push(`<button class="btn s" onclick="printAllRC(ui.ac)">🖨 Print report cards</button>`,`<button class="btn g" onclick="ui.bc=ui.ac;bcM()">📲 Send to parents</button>`,`<button class="btn s" onclick="pubExam(ui.ac)">📤 Publish to parents</button>`)}return b.length?`<div class="card"><h3>Actions</h3><div class="bgrid">${b.join("")}</div></div>`:""})()}
+<div class="card"><h3>Downloads</h3><div class="bgrid"><button class="btn" onclick="dlRes('${c}')">⬇ ${esc(c)} results (PDF)</button><button class="btn s" onclick="dlResCsv('${c}')">⬇ ${esc(c)} (CSV)</button>${ad?`<button class="btn s" onclick="dlRes('')">⬇ All classes (PDF)</button>`:""}<button class="btn s" onclick="top3M()">🥇 Top 3 per class</button>${adm()?`<button class="btn s" onclick="go('place')">📋 Place students</button>`:""}</div><div class="m" style="margin-top:10px">Each class gets its own PDF (for example 7Athi). Downloads use the year, term and exam selected above.</div></div>
 ${sa.length?`<div class="card"><h3>Subject averages</h3><div class="sg">${sa.map(x=>`<div><div style="display:flex;justify-content:space-between"><span>${esc(x[0])}</span><b>${r1(x[1])}</b></div><div class="bar" style="margin:4px 0 12px;--c:${COL[c]}"><i style="width:${x[1]}%"></i></div></div>`).join("")}</div></div>`:""}
-${rows.length?`<div class="led">${done.concat(rest).map(row).join("")}</div>`:`<div class="card m">No students in this class yet.</div>`}`}
+${rows.length?`<div class="lhd"><h3>Students</h3><span class="m">${done.length} of ${rows.length} with results</span></div><div class="led">${done.concat(rest).map(row).join("")}</div>`:`<div class="card m">No students in this class yet.</div>`}`}
 function marksM(id){const s=S.st.find(x=>x.id===id);if(!s||!canMarks(s.cls))return;const r=rget(s,ui.ay,ui.at,ui.ae)||{};
   M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet" style="max-height:90vh;overflow:auto"><h3>${esc(s.name)}</h3><p class="m">${ui.ae} · Term ${ui.at}, ${ui.ay} · marks out of 100. Leave blank if not sat.</p><div class="mg">${SUBJ.filter(x=>canSj(s.cls,x[0])).map(x=>`<div><label>${esc(x[1])}</label><input id="mk_${x[0]}" type="number" min="0" max="100" inputmode="decimal" value="${r[x[0]]??""}"></div>`).join("")}</div><button class="btn" onclick="saveMarks('${id}')">Save results</button><button class="btn s" style="margin-top:8px" onclick="cm()">Cancel</button></div></div>`)}
 function saveMarks(id){const s=S.st.find(x=>x.id===id);if(!s||!canMarks(s.cls))return;const r=Object.assign({},rget(s,ui.ay,ui.at,ui.ae)||{});let bad=0;
@@ -804,13 +1199,55 @@ function parseRes(txt,cls){const rows=txt.replace(/^\uFEFF/,"").split(/\r?\n/).f
     if(any){S.res[rkey(s,ui.ay,ui.at,ui.ae)]=r;a++}});
   return{a,bad,miss,ign}}
 const resMsg=o=>{const m=(o.err||"Updated "+o.a+" student"+(o.a===1?"":"s")+(o.miss.length?", "+o.miss.length+" not found in this class ("+o.miss.slice(0,8).join(", ")+")":"")+(o.bad?", "+o.bad+" invalid marks skipped":"")+(o.ign&&o.ign.length?" · WARNING: these columns were NOT imported: "+o.ign.join(", ")+". Rename the header to the subject name (e.g. Social Studies, Creative Arts)":""));return o.err?m:m+" · tap 🏆 to rank them"};
-function upRes(i){const f=i.files[0];if(!f||!canMarks(ui.ac))return;const r=new FileReader();
-  r.onload=()=>{const o=parseRes(r.result,ui.ac);i.value="";if(!o.err){LOG("Uploaded results: "+ui.ac+", "+ui.ae+" T"+ui.at+" "+ui.ay);save()}R();T(resMsg(o))};r.onerror=()=>T("Could not read that file");r.readAsText(f)}
+/* Read the school's original class-sheet layout: title rows, a SNO/NAME header,
+   subject columns, then one student per row. Sheet names identify the class. */
+function schoolMarkRows(rows,defCls){
+  rows=(rows||[]).filter(r=>Array.isArray(r));
+  const norm=v=>String(v==null?"":v).toLowerCase().replace(/[^a-z0-9]/g,"");
+  const hi=rows.findIndex(r=>{const h=r.map(norm);return h.some(v=>/^(sno|sn|serialno|number|no)$/.test(v))&&h.some(v=>/^(name|names|studentname|pupilname)$/.test(v))});
+  if(hi<0)return null;
+  const H=rows[hi].map(v=>String(v==null?"":v).trim()),h=H.map(norm),
+    ni=h.findIndex(v=>/^(name|names|studentname|pupilname)$/.test(v)),
+    ai=h.findIndex(v=>/^adm/.test(v)),si=h.findIndex(v=>/^(sno|sn|serialno|number|no)$/.test(v)),
+    cols=[];
+  h.forEach((v,i)=>{if(i===ni||i===ai||i===si||!v||rkSkip.test(v))return;
+    const x=SUBJ.find(o=>o[2].test(v)||v===o[1].toLowerCase().replace(/[^a-z0-9]/g,""));
+    if(x)cols.push({i,n:x[1]});
+  });
+  if(ni<0||!cols.length)return{err:"Could not identify the student-name and subject columns in this sheet."};
+  const cls=rkCls(defCls);
+  if(!CL.includes(cls))return{err:"Sheet name '"+String(defCls||"")+"' does not match a class in Osembo."};
+  const out=[["Class","Adm","Name",...cols.map(x=>x.n)]];
+  rows.slice(hi+1).forEach(r=>{
+    const name=String(r[ni]||"").trim();
+    if(!name||/^(average|avearge|mean|total|class average|maximum|minimum)$/i.test(name))return;
+    const marks=cols.map(x=>String(r[x.i]==null?"":r[x.i]).trim());
+    if(!marks.some(v=>v!==""&&v!=="-"))return;
+    out.push([cls,ai>=0?String(r[ai]||"").trim():"",name,...marks]);
+  });
+  return out.length>1?out:{err:"No student marks were found under the detected headings."};
+}
+function upRes(i){const f=i.files[0];if(!f||!canMarks(ui.ac))return;
+  (async()=>{try{let txt;
+    if(/\\.(xlsx|xlsm)$/i.test(f.name)){
+      if(typeof DecompressionStream==="undefined")throw new Error("This browser cannot open Excel files. Save it as CSV first.");
+      const parts=await rkXlsx(await f.arrayBuffer()),want=ui.ac.toLowerCase().replace(/[^a-z0-9]/g,"");
+      const p=parts.find(x=>x.name.toLowerCase().replace(/[^a-z0-9]/g,"")===want)|| (parts.length===1?parts[0]:null);
+      if(!p)throw new Error("No worksheet for "+ui.ac+" was found. Upload the whole-school file in the whole-school results section.");
+      const rows=schoolMarkRows(p.rows,ui.ac);
+      if(!rows||rows.err)throw new Error(rows&&rows.err||"This Excel sheet does not use the Osembo class marks layout.");
+      txt=CSVX(rows.slice(1).map(r=>r.slice(1)).length?[["Adm","Name",...rows[0].slice(3)],...rows.slice(1).map(r=>[r[1],r[2],...r.slice(3)])]:[]);
+    }else txt=await f.text();
+    const o=parseRes(txt,ui.ac);i.value="";
+    if(!o.err){LOG("Uploaded results: "+ui.ac+", "+ui.ae+" T"+ui.at+" "+ui.ay);save()}
+    R();T(resMsg(o));
+  }catch(e){i.value="";T(e.message||"Could not read that file. Try saving it as CSV.")}})()
+}
 function pasteRes(){if(!canMarks(ui.ac))return;M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet"><h3>Paste results</h3><p class="m">${ui.ac} · ${ui.ae}, Term ${ui.at} ${ui.ay}. First line is the header (Adm, Name, English, Kiswahili…), then one student per line. You can paste straight from a spreadsheet.</p><textarea id="rt" rows="8" style="font:13px monospace"></textarea><button class="btn" style="margin-top:8px" onclick="savePasteRes()">Save results</button><button class="btn s" style="margin-top:8px" onclick="cm()">Cancel</button></div></div>`)}
 function savePasteRes(){if(!canMarks(ui.ac))return;const o=parseRes($("#rt").value,ui.ac);if(!o.err){LOG("Pasted results: "+ui.ac+", "+ui.ae+" T"+ui.at+" "+ui.ay);save()}cm();R();T(resMsg(o))}
 /* ---------- upload results for the WHOLE school (admin): one file, every class ---------- */
 function resAllCard(){const y=ui.ay,t=ui.at,e=ui.ae;
-  return `<div class="card" style="border-top:3px solid var(--acc)"><h3>\uD83D\uDCE4 Upload results for the whole school</h3><div class="m" style="margin-bottom:8px">One file for every class. Columns: <b>Class, Adm, Name</b>, then one column per subject (CSV or Excel). Marks are saved for <b>${esc(e)}, Term ${t} ${y}</b>, so set Year, Term and Exam above first. Blank cells are left alone.</div>
+  return `<div class="card" style="border-top:3px solid var(--acc)"><h3>\uD83D\uDCE4 Upload results for the whole school</h3><div class="m" style="margin-bottom:8px">Upload one whole-school workbook with a separate sheet for each class (e.g. 9 TANA, 9 ATHI), using the school marks layout, or a single CSV/Excel table with <b>Class, Adm, Name</b> and subject columns. Marks are saved for <b>${esc(e)}, Term ${t} ${y}</b>, so set Year, Term and Exam above first. Blank cells are left alone.</div>
 <input type="file" accept=".csv,.tsv,.txt,.xlsx,.xlsm" onchange="resAllUp(this)" style="display:block;width:100%;padding:14px;border:2px dashed var(--pri);border-radius:12px;background:transparent;font-size:14px;box-sizing:border-box">
 <div class="acts"><button class="btn s" onclick="resAllSheet()">Download template (all classes)</button><button class="btn s" onclick="resAllPaste()">Paste from spreadsheet</button></div></div>`}
 function resAllSheet(){if(!adm())return;const rows=[["Class","Adm","Name",...SUBJ.map(x=>x[1])]];
@@ -821,7 +1258,17 @@ function resAllPaste(){if(!adm())return;M(`<div class="ov" onclick="if(event.tar
 function resAllPasteGo(){if(!adm())return;const v=($("#rat")||{}).value||"";cm();resAllLoad([{name:"",rows:rkCsv(v)}])}
 async function resAllUp(i){const f=i.files[0];if(!f||!adm())return;
   try{let parts;
-    if(/\.(xlsx|xlsm)$/i.test(f.name)){if(typeof DecompressionStream==="undefined"){i.value="";return T("This browser cannot open Excel files. Save the list as CSV and upload that.")}parts=await rkXlsx(await f.arrayBuffer())}
+    if(/\.(xlsx|xlsm)$/i.test(f.name)){
+      if(typeof DecompressionStream==="undefined"){i.value="";return T("This browser cannot open Excel files. Save the list as CSV and upload that.")}
+      parts=await rkXlsx(await f.arrayBuffer());
+      const adapted=[];
+      parts.forEach(p=>{
+        const cls=rkCls(p.name),isSchool=CL.includes(cls)&&p.rows.some(r=>r.some(v=>/^(sno|s\/n|sn|serial\s*no)$/i.test(String(v||"").trim()))&&r.some(v=>/^names?$/i.test(String(v||"").trim())));
+        if(isSchool){const rows=schoolMarkRows(p.rows,cls);if(rows&&!rows.err)adapted.push({name:"",rows});else adapted.push(p)}
+        else adapted.push(p);
+      });
+      parts=adapted;
+    }
     else if(/\.(xls|doc|docx|pdf|ods)$/i.test(f.name)){i.value="";return T("Save the file as .xlsx or CSV first, then upload it")}
     else parts=[{name:"",rows:rkCsv(await f.text())}];
     i.value="";resAllLoad(parts)}catch(e){i.value="";T("Could not read that file. Try saving it as CSV.")}}
@@ -1424,7 +1871,7 @@ function vMarks(){const u=me(),ad=seeAll(),MC=ad?CL:CL.filter(x=>mySj(x).length)
 ${L.length?`<div class="led one">${L.map((s,i)=>{const v=(rget(s,y,t,e)||{})[sj];return `<div class="lr" style="cursor:default;padding:8px 12px"><span class="ix">${i+1}</span><div style="flex:1;min-width:0"><b>${esc(s.name)}</b><div class="m">Adm. ${esc(s.adm||"—")}</div></div><span id="gd_${s.id}" class="pill ${v!=null?gk(gr(v)):"nc"}" style="min-width:38px;text-align:center">${v!=null?gr(v):"–"}</span><input class="mi" id="bg_${s.id}" data-i="${i}" type="text" inputmode="decimal" enterkeyhint="next" autocomplete="off" placeholder="–" value="${v??""}" onfocus="this.select()" onkeydown="mkey(event,${i})" onchange="mchg(this)"${ed?"":" readonly"}></div>`}).join("")}</div>
 ${ed?`<div class="m" style="margin:10px 2px">Type a mark (0 to 100) and press <b>Enter</b> to go to the next student. After the last student, Enter opens the next subject. Marks save as you go. Leave a box empty if the student did not sit.</div>
 <button class="btn" onclick="mNext()">Next subject ›</button><button id="msv" class="fab msv" onclick="msave()" aria-label="Save marks" title="Save marks"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M5 3h11l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/></svg></button>`:`<div class="m" style="margin:10px 2px">View only. ${tOf(sj,c)?"Taught by <b>"+esc(tOf(sj,c))+"</b>. ":"No teacher is set for this subject. "}Only the subject teacher or the admin can change these marks.</div>`}`:`<div class="card m">No students in this class yet. Add them in the Classes tab.</div>`}
-${canMarks(c)?`<details class="card" style="margin-top:12px"><summary><b>Upload from a file instead</b></summary><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><div style="flex:1 0 100%"><div class="m"><b>📁 Upload results (CSV)</b></div><input type="file" onchange="upRes(this)" style="display:block;width:100%;margin-top:6px;padding:12px;border:2px dashed var(--pri);border-radius:12px;background:transparent;font-size:14px;box-sizing:border-box"></div><button class="btn s sm" onclick="pasteRes()">Paste from spreadsheet</button><button class="btn s sm" onclick="resSheet()">Download template</button></div><div class="m" style="margin-top:8px">The template has your class list. Fill in marks, then upload it. Blank cells are left alone.</div></details>`:""}`}
+${canMarks(c)?`<details class="card" style="margin-top:12px"><summary><b>Upload from a file instead</b></summary><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><div style="flex:1 0 100%"><div class="m"><b>📁 Upload results (Excel or CSV)</b></div><input type="file" accept=".xlsx,.xlsm,.csv,.tsv,.txt" onchange="upRes(this)" style="display:block;width:100%;margin-top:6px;padding:12px;border:2px dashed var(--pri);border-radius:12px;background:transparent;font-size:14px;box-sizing:border-box"></div><button class="btn s sm" onclick="pasteRes()">Paste from spreadsheet</button><button class="btn s sm" onclick="resSheet()">Download template</button></div><div class="m" style="margin-top:8px">The template has your class list. Fill in marks, then upload it. You can also upload the school Excel workbook with one class per sheet. Blank cells are left alone.</div></details>`:""}`}
 function mStats(){const c=ui.ac,y=ui.ay,t=ui.at,e=ui.ae,sj=ui.ms,L=inCls(c),V=L.map(s=>(rget(s,y,t,e)||{})[sj]).filter(v=>v!=null),el=document.getElementById("mst"),bar=document.getElementById("mbar");
   if(el)el.textContent=V.length+" of "+L.length+" entered"+(V.length?" · mean "+r1(V.reduce((a,b)=>a+b,0)/V.length):"");if(bar)bar.style.width=(L.length?Math.round(V.length/L.length*100):0)+"%";
   const sv=document.getElementById("msv");if(sv){sv.style.display=V.length?"flex":"none";sv.classList.toggle("done",L.length>0&&V.length===L.length)}
@@ -1460,7 +1907,8 @@ function vAdm(){
   +sec("tch","👩‍🏫","Teachers &amp; subjects","Class teachers, subject names, extra tabs",TR+subjCard()+ctCard())
   +(isOwnerAdm()?sec("secr","🗂️","Secretary","Set the secretary's login password",P_secpw):"")
   +sec("par","👪","Parents &amp; school details","Parent portal link, school phone, report card details",P_guide+P_rc+P_phone)
-  +sec("dat","🗄️","Backup &amp; new year","Download a backup, promote grades, clear demo data",P_bak+P_newY+P_demo)}
+  +sec("dat","🗄️","Backup &amp; new year","Download a backup, promote grades, clear demo data",P_bak+P_newY+P_demo)
+  +`<div class="dz"><div class="m">Danger zone</div><button class="btn s dzb" onclick="go('erase')">⚠️ Erase everything…</button></div>`}
 function rcUseHere(){const u=location.href.split(/[?#]/)[0],i=$("#rc_url");if(!/^https?:\/\//i.test(u)||/^https?:\/\/(localhost|127\.|capacitor)/i.test(u))return T("Open the app from its web address (not the installed app) and try again, or paste the link yourself");if(i)i.value=u;T("Link filled in. Tap Save report card details")}
 function vLog(){if(!adm())return vHome();return `<h2 class="sec">Activity log</h2><div class="card"><div class="m">${S.log.length} entries. Clearing removes the history for good; it does not touch students, fees or marks.</div><button class="btn dn sm" style="margin-top:8px" onclick="clearLog()">Clear activity log</button></div><div class="led">${S.log.slice(0,100).map(x=>`<div class="lr" style="cursor:default;display:block"><b>${esc(x.m)}</b><div class="m">${esc(x.u)} · ${new Date(x.t).toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</div></div>`).join("")||`<div class="lr m">Nothing yet.</div>`}</div>${S.log.length>100?`<div class="m" style="margin:8px">Showing the latest 100.</div>`:""}`}
 function ask2(k,m){if(ui.c2!==k){ui.c2=k;setTimeout(()=>{if(ui.c2===k)ui.c2=null},6000);T(m);return false}ui.c2=null;return true}
@@ -1634,9 +2082,9 @@ function pAtt(s){const v=Object.keys(S.attendance||{}).filter(k=>k.endsWith("|"+
   return `<div class="card"><h3>📅 Attendance</h3><div class="st"><div><b>${pc==null?"–":pc+"%"}</b><span>Attendance</span></div><div><b>${pr}</b><span>Days present</span></div><div><b>${ab}</b><span>Days absent</span></div></div><div class="sc" style="overflow-x:auto;margin-top:12px"><table class="reg ro"><thead><tr><th></th>${WDS.map(d=>`<th>${d}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div><div class="m" style="margin-top:8px">Last 4 weeks · ✓ present · ✗ absent · – not marked${v.length?"":" · The register has not been filled for this child yet."}</div></div>`}
 function pKid(s){const H=[];for(const k in S.res){const p=k.split('|');if(p[3]===s.id&&rcnt(S.res[k])&&(S.pub||{})[p[0]+'|'+p[1]+'|'+p[2]+'|'+s.cls])H.push({y:+p[0],t:+p[1],e:p[2],r:S.res[k]})}H.sort((a,b)=>ord(b.y,b.t,b.e)-ord(a.y,a.t,a.e));const fb=TF-fPaid(s,S.fy,S.ft),ar=arrears(s),L=H[0];const rows=H.map(h=>{const m=rmean(h.r),p=rpos(s,h.y,h.t,h.e),a=`'${s.id}',${h.y},${h.t},'${h.e}'`;return `<div class="lr" style="cursor:default;flex-wrap:wrap"><div style="flex:1;min-width:150px"><b>${esc(h.e)}, Term ${h.t} ${h.y}</b><div class="m">Mean ${r1(m)}% · ${gr(m)} · Position ${p[0]}/${p[1]}</div></div><button class="btn s sm" onclick="pRC(${a})">View report</button><button class="btn sm" onclick="pRC(${a},1)">Download PDF</button></div>`}).join('');return `<div class="card" style="border-top:4px solid ${COL[s.cls]}"><div style="display:flex;gap:12px;align-items:center"><span style="font-size:32px">🎓</span><div><div style="font:700 22px var(--sf)">${esc(s.name)}</div><div class="m">Admission: ${esc(s.adm)} · ${esc(s.cls)}</div></div></div><div class="st" style="margin-top:14px"><div><b>${fmt(fb)}</b><span>School fees balance</span></div><div><b>${fmt(ar)}</b><span>Remedial balance</span></div><div><b>${fmt(fPaid(s,S.fy,S.ft))}</b><span>Fees paid this term</span></div></div><div class="m" style="margin-top:10px">School fees term: ${S.ft}, ${S.fy} · Required: ${fmt(TF)}</div></div>${pAtt(s)}${pBooks(s)}<div class="card"><h3>📄 Report cards</h3>${rows?`<div class="led one">${rows}</div>`:`<div class="m">Report cards appear here once the school publishes them.</div>`}</div><div class="card"><div class="m">Information shown is as last updated by the school.${schPh()}</div><div class="acts"><button class="btn s" onclick="pKid(S.st.find(x=>x.id===ui.par));R();T(\'Refreshed\')">↻ Refresh</button></div></div>`}
 function pRC(id,y,t,e,dl){const s=S.st.find(x=>x.id===id);if(!pOwn(s))return;if(dl)return printRC(rcHtml(s,y,t,e));M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet" style="max-height:92vh;overflow:auto;max-width:780px"><div style="overflow-x:auto">${rcHtml(s,y,t,e)}</div><button class="btn" style="margin-top:12px" onclick="pRC('${id}',${y},${t},'${e}',1)">Download / Save as PDF</button><button class="btn s" style="margin-top:8px" onclick="cm()">Close</button></div></div>`)}
-function parM(id){const s=S.st.find(x=>x.id===id);if(!s||!canEdit(s.cls))return;M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet"><h3>🔐 Parent portal login</h3><p class="m">The parent logs in with the child's first two names and the admission number, so both must be correct.</p><div class="card"><div class="m">Student</div><b>${esc(s.name)}</b><div class="m" style="margin-top:10px">Login name (first two names)</div><b style="font-size:18px">${esc(String(s.name).trim().split(/\s+/).slice(0,2).join(" "))}</b><div class="m" style="margin-top:10px">Login admission number</div><b style="font-size:22px">${esc(s.adm)}</b></div><button class="btn" onclick="parInvite('${id}')">Send login details on WhatsApp</button><button class="btn s" style="margin-top:8px" onclick="cm()">Close</button></div></div>`)}
+function parM(id){const s=S.st.find(x=>x.id===id);if(!s||!canEdit(s.cls))return;M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet"><h3>🔐 Parent portal login</h3><p class="m">The parent opens this student's portal by entering only the admission number.</p><div class="card"><div class="m">Student</div><b>${esc(s.name)}</b><div class="m" style="margin-top:10px">Login admission number</div><b style="font-size:22px">${esc(s.adm)}</b></div><button class="btn" onclick="parInvite('${id}')">Send login details on WhatsApp</button><button class="btn s" style="margin-top:8px" onclick="cm()">Close</button></div></div>`)}
 function resetParentPin(id){const s=S.st.find(x=>x.id===id);if(!s||!canEdit(s.cls))return;s.pinSet=0;s.parentPin=code6();save();parM(id);T('PIN reset to the admission number')}
-function parInvite(id){const s=S.st.find(x=>x.id===id);if(!s||!canEdit(s.cls))return;const p=phoneWA(s.phone);if(p.length!==12)return T('Add a valid parent phone number first');const u=(S.rc||{}).url;const msg=`Dear ${s.parent||'Parent/Guardian'}, your Osembo parent portal is ready for ${s.name}. To log in, open the app, tap Parent and enter the first two names ${String(s.name).trim().split(/\s+/).slice(0,2).join(' ')} and the admission number ${s.adm}. You can view report cards and see school fees, remedial balances and attendance.${u?' Portal: '+u:''}`;window.open('https://wa.me/'+p+'?text='+encodeURIComponent(msg),'_blank','noopener');LOG('Prepared parent portal login for '+s.name);save()}
+function parInvite(id){const s=S.st.find(x=>x.id===id);if(!s||!canEdit(s.cls))return;const p=phoneWA(s.phone);if(p.length!==12)return T('Add a valid parent phone number first');const u=(S.rc||{}).url;const msg=`Dear ${s.parent||'Parent/Guardian'}, your Osembo parent portal is ready for ${s.name}. To log in, open the app, tap Parent and enter the admission number ${s.adm}. You can view report cards and see school fees, remedial balances and attendance.${u?' Portal: '+u:''}`;window.open('https://wa.me/'+p+'?text='+encodeURIComponent(msg),'_blank','noopener');LOG('Prepared parent portal login for '+s.name);save()}
 
 /* ---------- subject names (admin) ---------- */
 const abbrOf=n=>{n=String(n).trim();if(n.length<=6)return n;const w=n.split(/[\s&-]+/).filter(x=>x&&!/^(and|of|the)$/i.test(x));return w.length>1?w.map(x=>x[0]).join("").toUpperCase().slice(0,4):n.slice(0,4)};
@@ -1763,7 +2211,7 @@ function bkListLoad(parts){const day=today(),who=me().name,skip=[],nk=v=>String(
   M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet" style="max-height:90vh;overflow:auto"><h3>${iss||ret||nx?"✅ List uploaded":"Nothing was saved"}</h3><div style="margin-bottom:10px"><div><b>${iss}</b> book${iss===1?"":"s"} issued</div>${ret||nx?`<div><b>${ret}</b> marked returned, <b>${nx}</b> marked not returned</div>`:""}${blank?`<div class="m">${blank} row${blank===1?"":"s"} had no book number and ${blank===1?"was":"were"} left out</div>`:""}</div>${skip.length?`<div class="warn" style="margin-bottom:10px"><b>${skip.length} row${skip.length===1?"":"s"} skipped</b><div class="m" style="color:inherit">${skip.slice(0,15).map(esc).join("<br>")}${skip.length>15?"<br>…":""}</div></div>`:""}<button class="btn" onclick="cm()">Done</button></div></div>`)}
 /* ----- one student's books ----- */
 function bkStuM(sid){const s=bkSt(sid);if(!s)return;const L=(S.bkl||[]).filter(l=>l.sid===sid).sort((a,b)=>String(b.out).localeCompare(String(a.out))),can=SUBJ.some(x=>bkCanC(x[0],s.cls));
-  M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet" style="max-height:90vh;overflow:auto"><h3>📚 ${esc(s.name)}</h3><p class="m">${esc(s.cls)} · ${esc(s.adm)} · ${bkHeld(sid).length} not returned</p>${L.length?L.map(l=>`<div class="lr" style="cursor:default;flex-wrap:wrap"><div style="flex:1;min-width:150px"><b>${esc(bkTitle(l))}</b><div class="m">${bkNo(l)?"No. "+esc(bkNo(l))+" · ":""}Issued ${bkDate(l.out)}${l.ret?" · Returned "+bkDate(l.ret):""}</div></div>${bkCanL(l)?`<div style="display:flex;gap:8px"><button class="tk y ${bkStat(l)==="ok"?"on":""}" onclick="bkTick('${l.id}','y','${sid}')" aria-label="Returned">✓</button><button class="tk n ${bkStat(l)==="no"?"on":""}" onclick="bkTick('${l.id}','n','${sid}')" aria-label="Not returned">✗</button></div>`:bkPill(l)}</div>`).join(""):`<div class="m">No books recorded for this student yet.</div>`}${can?`<button class="btn" style="margin-top:12px" onclick="bkIssueM('${sid}')">Issue a book</button>`:""}<button class="btn s" style="margin-top:8px" onclick="cm()">Close</button></div></div>`)}
+  M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet" style="max-height:90vh;overflow:auto"><h3>📚 ${esc(s.name)}</h3><p class="m">${esc(s.cls)} · ${esc(s.adm)} · ${bkHeld(sid).length} not returned</p>${L.length?L.map(l=>`<div class="lr" style="cursor:default;flex-wrap:wrap"><div style="flex:1;min-width:150px"><b>${esc(bkTitle(l))}</b><div class="m">${bkNo(l)?"No. "+esc(bkNo(l))+" · ":""}Issued ${bkDate(l.out)}${l.ret?" · Returned "+bkDate(l.ret):""}</div></div>${bkCanL(l)?`<div style="display:flex;gap:8px"><button class="btk y ${bkStat(l)==="ok"?"on":""}" onclick="bkTick('${l.id}','y','${sid}')" aria-label="Returned">✓</button><button class="btk n ${bkStat(l)==="no"?"on":""}" onclick="bkTick('${l.id}','n','${sid}')" aria-label="Not returned">✗</button></div>`:bkPill(l)}</div>`).join(""):`<div class="m">No books recorded for this student yet.</div>`}${can?`<button class="btn" style="margin-top:12px" onclick="bkIssueM('${sid}')">Issue a book</button>`:""}<button class="btn s" style="margin-top:8px" onclick="cm()">Close</button></div></div>`)}
 /* ----- clearance: ✓ returned, ✗ not returned; a student is cleared when every book has a ✓ ----- */
 function bkClrData(){const c=bkCls(),H={};(S.bkl||[]).forEach(l=>{const s=bkSt(l.sid);if(!s||(c&&s.cls!==c))return;(H[s.id]=H[s.id]||{s,L:[]}).L.push(l)});
   return Object.values(H).sort((a,b)=>a.s.cls.localeCompare(b.s.cls)||a.s.name.localeCompare(b.s.name))}
@@ -1771,7 +2219,7 @@ const bkOk=x=>x.L.every(l=>bkStat(l)==="ok");
 function bkClearRows(){const f=ui.bkf||"out",q=(ui.bkq3||"").trim().toLowerCase(),A=bkClrData(),V=A.filter(x=>(f==="all"||(f==="ok"?bkOk(x):!bkOk(x)))&&(!q||(x.s.name+" "+x.s.adm).toLowerCase().includes(q)));
   if(!V.length)return `<div class="m">${!A.length?"No books have been issued yet.":q?"No student found.":f==="ok"?"No cleared students yet.":f==="out"?"Everyone is cleared.":"Nothing to show."}</div>`;
   return V.slice(0,150).map(x=>{const okAll=bkOk(x),mine=x.L.filter(bkCanL),todo=mine.some(l=>bkStat(l)!=="ok");
-    return `<div class="card" style="padding:12px"><div style="display:flex;gap:8px;align-items:center;justify-content:space-between"><div style="min-width:0"><b>${esc(x.s.name)}</b> <span class="m">${esc(x.s.cls)} · ${esc(x.s.adm)}</span></div>${okAll?`<span class="pill">Cleared</span>`:`<span class="pill pa">Not cleared</span>`}</div>${x.L.slice().sort((a,b)=>String(a.out).localeCompare(String(b.out))).map(l=>`<div style="display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)"><div style="min-width:0"><div>${esc(bkTitle(l))}${bkNo(l)?` <span class="pill nc">No. ${esc(bkNo(l))}</span>`:""}</div><div class="m">${l.cond==="Lost"?"Lost · ":""}Issued ${bkDate(l.out)}</div></div>${bkCanL(l)?`<div style="display:flex;gap:8px"><button class="tk y ${bkStat(l)==="ok"?"on":""}" onclick="bkTick('${l.id}','y')" aria-label="Returned">✓</button><button class="tk n ${bkStat(l)==="no"?"on":""}" onclick="bkTick('${l.id}','n')" aria-label="Not returned">✗</button></div>`:bkPill(l)}</div>`).join("")}${mine.length&&(todo||!okAll)?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${todo?`<button class="btn s sm" style="width:auto" onclick="bkTickAll('${x.s.id}')">✓ All returned</button>`:""}${!okAll?`<button class="btn s sm" style="width:auto" onclick="bkRemind('${x.s.id}')">Remind parent</button>`:""}</div>`:""}</div>`}).join("")+(V.length>150?`<div class="m">Showing the first 150 of ${V.length}. Use search or pick a class.</div>`:"")}
+    return `<div class="card" style="padding:12px"><div style="display:flex;gap:8px;align-items:center;justify-content:space-between"><div style="min-width:0"><b>${esc(x.s.name)}</b> <span class="m">${esc(x.s.cls)} · ${esc(x.s.adm)}</span></div>${okAll?`<span class="pill">Cleared</span>`:`<span class="pill pa">Not cleared</span>`}</div>${x.L.slice().sort((a,b)=>String(a.out).localeCompare(String(b.out))).map(l=>`<div style="display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)"><div style="min-width:0"><div>${esc(bkTitle(l))}${bkNo(l)?` <span class="pill nc">No. ${esc(bkNo(l))}</span>`:""}</div><div class="m">${l.cond==="Lost"?"Lost · ":""}Issued ${bkDate(l.out)}</div></div>${bkCanL(l)?`<div style="display:flex;gap:8px"><button class="btk y ${bkStat(l)==="ok"?"on":""}" onclick="bkTick('${l.id}','y')" aria-label="Returned">✓</button><button class="btk n ${bkStat(l)==="no"?"on":""}" onclick="bkTick('${l.id}','n')" aria-label="Not returned">✗</button></div>`:bkPill(l)}</div>`).join("")}${mine.length&&(todo||!okAll)?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${todo?`<button class="btn s sm" style="width:auto" onclick="bkTickAll('${x.s.id}')">✓ All returned</button>`:""}${!okAll?`<button class="btn s sm" style="width:auto" onclick="bkRemind('${x.s.id}')">Remind parent</button>`:""}</div>`:""}</div>`}).join("")+(V.length>150?`<div class="m">Showing the first 150 of ${V.length}. Use search or pick a class.</div>`:"")}
 function bkClear(){const f=ui.bkf||"out",A=bkClrData(),nN=A.filter(x=>!bkOk(x)).length,nO=A.length-nN,c=bkCls();
   return bkChips()+`<div class="card"><div><b>${nN}</b> student${nN===1?"":"s"} not cleared${c&&c!=="__none__"?" in "+esc(c):""}.</div><div class="m">Tap ✓ when the book is back, ✗ when it is not. A student is cleared when every book has a ✓.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button class="btn s sm" style="width:auto" onclick="bkCsv()">Download list (CSV)</button></div></div><input type="search" placeholder="Search name or admission number" value="${esc(ui.bkq3||"")}" oninput="ui.bkq3=this.value;$('#bkcl').innerHTML=bkClearRows()" style="margin-top:10px"><div class="chips" style="margin:10px 0">${[["out","Not cleared ("+nN+")"],["ok","Cleared ("+nO+")"],["all","All"]].map(x=>`<button class="chip ${f===x[0]?"on":""}" onclick="ui.bkf='${x[0]}';R()">${x[1]}</button>`).join("")}</div><div id="bkcl">${bkClearRows()}</div>`}
 function bkRemind(sid){const s=bkSt(sid);if(!s)return;const L=bkHeld(sid).filter(bkCanL);if(!L.length)return T("This student has no books to return");const p=phoneWA(s.phone);if(p.length!==12)return T("Add a valid parent phone number first");
@@ -1807,10 +2255,10 @@ function secResetPw(){if(!isOwnerAdm())return T("Only the admin can do this");co
 function vSecMain(){const T4=["fees","coll","scl","ann"];if(!T4.includes(ui.tab))ui.tab="fees";
   return `<div class="has-side"><div class="hd"><div style="display:flex;align-items:center;gap:10px">${ui.tab!=="home"?'<button class="hm mnu" onclick="history.back()" aria-label="Back" style="font-size:26px;line-height:1">‹</button>':""}<button class="hm mnu" onclick="tg()" aria-label="Menu" style="font-size:22px">☰</button><div class="logo"><div class="mono">O</div><div><div class="ttl">Osembo Comprehensive School</div><div style="font-size:12px;opacity:.9">Secretary</div></div></div></div><div style="display:flex;gap:8px;align-items:center"><button class="btn g sm" onclick="logout()">Log out</button></div></div>
 <div class="tabs">${tab("fees","Fees")+tab("coll","Other money")+tab("scl","Class lists")+tab("ann","Announcements")}</div>
-<div class="wrap">${ui.tab==="fees"?vFees():ui.tab==="coll"?vColl():ui.tab==="scl"?vSecClasses():vAnn()}</div></div><div class="scrim" onclick="tg()"></div><div class="side"><h5>Osembo Comprehensive School</h5><div class="m">Signed in as Secretary</div>${si("fees","Fees","💰")+si("coll","Other money","💵")+si("scl","Class lists","🏫")+si("ann","Announcements","📢")}<div class="m">Account</div><button class="si" onclick="pwM()"><span>🔑</span>Change password</button><button class="si" onclick="logout()"><span>↩</span>Log out</button></div>`}
+<div class="wrap">${ui.tab==="fees"?vFees():ui.tab==="coll"?vColl():ui.tab==="scl"?vSecClasses():vAnn()}</div></div><div class="scrim" onclick="tg()"></div><div class="side"><h5>Osembo Comprehensive School</h5><div class="m">Signed in as Secretary</div><div class="m">Account</div><button class="si" onclick="pwM()"><span>🔑</span>Change password</button><button class="si" onclick="logout()"><span>↩</span>Log out</button></div>`}
 /* ----- class lists (read only) and empty class list downloads ----- */
 function vSecClasses(){if(ui.scc&&CL.includes(ui.scc))return vSecCP(ui.scc);
-  return `<h2 class="sec">🏫 Class lists</h2><div class="m" style="margin-bottom:10px">Tap a class to see its students. You can download an empty class list (names with blank columns) to print or fill in.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn s sm" onclick="blankList('')">⬇ All classes, empty lists (Excel)</button></div><div class="cgrid">`+CL.map(c=>`<button class="pick" style="--c:${COL[c]}" onclick="ui.scc='${c}';ui.cq='';R()"><div class="av">${ICON}</div><div style="min-width:0"><h4>${c}</h4><div class="m">Class teacher: <b>${esc(clsT(c).name)}</b></div><div class="m">${inCls(c).length} students</div></div><span class="go">›</span></button>`).join("")+`</div>`}
+  return `<h2 class="sec">📋 Class lists</h2><div class="m" style="margin-bottom:10px">Tap a class to see its students. You can download an empty class list (names with blank columns) to print or fill in.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn s sm" onclick="blankList('')">⬇ All classes, empty lists (Excel)</button></div><div class="cgrid">`+CL.map(c=>`<button class="pick" style="--c:${COL[c]}" onclick="ui.scc='${c}';ui.cq='';R()"><div class="av">${ICON}</div><div style="min-width:0"><h4>${c}</h4><div class="m">Class teacher: <b>${esc(clsT(c).name)}</b></div><div class="m">${inCls(c).length} students</div></div><span class="go">›</span></button>`).join("")+`</div>`}
 function secList(c){const q=(ui.cq||"").trim().toLowerCase(),A=inCls(c),L=A.filter(s=>!q||s.name.toLowerCase().includes(q)||String(s.adm||"").toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
   if(!L.length)return `<div class="card m">${A.length?"No student matches.":"No students in this class yet."}</div>`;
   return `<div class="m" style="margin-bottom:6px">${L.length} students</div><div class="led">`+L.map((s,i)=>`<div class="lr" style="cursor:default"><span class="ix">${i+1}</span><div style="flex:1;min-width:0"><b>${esc(s.name)}</b><div class="m">Adm. ${esc(s.adm||"—")} · ${esc(s.parent||"No parent")}${s.phone?" · "+esc(s.phone):""}</div></div></div>`).join("")+`</div>`}
@@ -2757,4 +3205,26 @@ window.addEventListener("popstate",e=>{if(!nav.on)return;const s=e.state||{},mo=
   if(JSON.stringify(v)===nSig()){history.back();return}
   ui.tab=v.tab;ui.cls=v.cls;ui.grade=v.grade;ui.cp=v.cp;ui.q="";nav.skip=1;try{R()}finally{nav.skip=0}nav.sig=nSig()});
 (async()=>{await dbBoot();load();try{let n=0;S.users.forEach(u=>{if(u.role==="teacher"&&!hasPw(u)){u.pass=pw6();n++}});if(n)save()}catch(e){}try{let x=sessionStorage.getItem("os_sess"),u=x&&U(x);if(!u){x=localStorage.getItem("os_keep");u=x&&U(x);if(u&&(u.role!=="teacher"||adm(u))){u=null;localStorage.removeItem("os_keep")}}if(u&&(u.role==="admin"||u.role==="teacher"||u.role==="secretary")&&hasPw(u)&&!u.suspended){ui.sess=x;ui.week=S.week;pwFill();if(u.role==="teacher"&&!adm(u))ui.cls=u.cls}}catch(e){}R();navInit();setInterval(purgePub,36e5);})();
-</script><script>if("serviceWorker" in navigator&&location.protocol!=="file:")addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script></body></html>
+</script><style>
+#osInst{position:fixed;left:14px;bottom:max(14px,env(safe-area-inset-bottom));z-index:9998;display:none;align-items:center;gap:8px;padding:10px 14px 10px 10px;border:0;border-radius:999px;background:#14243D;color:#fff;font:600 14px system-ui,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.3);cursor:pointer}
+#osInst img{width:26px;height:26px;border-radius:7px}
+#osInst.show{display:flex}
+#osIosTip{position:fixed;inset:0;z-index:9999;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.45)}
+#osIosTip.show{display:flex}
+#osIosTip div{background:#fff;color:#14243D;max-width:420px;width:100%;margin:12px;padding:18px;border-radius:16px;font:15px/1.5 system-ui,sans-serif}
+#osIosTip button{margin-top:12px;width:100%;padding:11px;border:0;border-radius:10px;background:#14243D;color:#fff;font:600 15px system-ui,sans-serif}
+@media print{#osInst{display:none!important}}
+</style>
+<button id="osInst" type="button" aria-label="Install the Osembo app"><img src="icons/icon-192.png" alt="">Install app</button>
+<div id="osIosTip" role="dialog" aria-modal="true"><div><b>Install on iPhone or iPad</b><br>Tap the <b>Share</b> button in Safari, then choose <b>Add to Home Screen</b>.<button type="button" id="osIosOk">Got it</button></div></div>
+<script>(function(){var b=document.getElementById("osInst"),t=document.getElementById("osIosTip"),dp=null;
+var done=function(){return matchMedia("(display-mode: standalone)").matches||navigator.standalone===true};
+var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+if(done())return;
+addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;b.classList.add("show")});
+addEventListener("appinstalled",function(){dp=null;b.classList.remove("show")});
+if(ios&&!done())b.classList.add("show");
+b.onclick=function(){if(dp){dp.prompt();dp.userChoice.finally(function(){dp=null;b.classList.remove("show")})}else if(ios){t.classList.add("show")}};
+document.getElementById("osIosOk").onclick=function(){t.classList.remove("show")};
+})()</script>
+<script>if("serviceWorker" in navigator&&location.protocol!=="file:")addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script></body></html>

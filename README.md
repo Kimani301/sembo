@@ -1,36 +1,57 @@
-# Osembo – install page and app
+<p align="center">
+  <img src="icons/icon-512.png" alt="Osembo app icon" width="128">
+</p>
 
-Files: `index.html` (install page with Windows / Android tabs), `app.html` (the Osembo app), `manifest.webmanifest`, `sw.js` (offline), `icons/`, `firebase-rules.json`.
+<h1 align="center">Osembo Comprehensive School</h1>
 
-## Publish on GitHub (free)
-1. Create a repository on GitHub and upload ALL files in this folder (keep the `icons` folder).
-2. Repository **Settings → Pages → Build and deployment**: Source "Deploy from a branch", Branch `main`, folder `/ (root)`, Save.
-3. After a minute your link is `https://<your-username>.github.io/<repository-name>/`. Share that link: it opens the install page.
+<p align="center">
+  Marks, fees, remedial, register and timetable in one installable app.<br>
+  Works on Windows, Android and iPhone, and offline after the first visit.
+</p>
 
-## Firebase
-Paste the contents of `firebase-rules.json` into Realtime Database → Rules → Publish. The app already points at your database.
+<p align="center">
+  <a href="https://YOUR-USERNAME.github.io/YOUR-REPO/"><b>Open the app and install it</b></a>
+</p>
 
-## Updating later
-Upload the new `app.html` (replace the old one). Phones pick it up automatically the next time they open the app online. If you ever change other files, also change `V="osembo-pwa-1"` in `sw.js` to `osembo-pwa-2`, and so on.
+---
 
-## Going back to an older version
-Keep the previous `app.html` under another name (for example `app-old.html`). To roll back, rename it to `app.html` and upload.
+## Install
 
+| Device | Steps |
+|---|---|
+| **Windows laptop** | Open the link above in Chrome or Edge, press **Install app**, confirm. |
+| **Android phone** | Open the link in Chrome, press **Install app** (or menu ⋮ then **Install app**). |
+| **iPhone / iPad** | Open the link in Safari, tap **Share**, then **Add to Home Screen**. |
 
-## Owner console
-- Open it by tapping the Osembo title or the maintenance photo 5 times (or Ctrl+Shift+K on a computer).
-- **First time:** you are asked to set your own owner password (at least 8 characters). Do this on your own phone before giving the app to a school. You are then shown a **recovery code** once: write it on paper.
-- **Next times:** enter your owner password. After 3 wrong tries you must wait. If you forget the password, tap "Forgot password?" and use the recovery code.
-- Tabs (bottom bar): Overview, Accounts, Data, Activity, Security. It locks itself after 10 minutes.
-- Overview: switch the app OFF/ON (maintenance screen on every connected phone).
-- Accounts: reset the admin password (asks for your owner password), revoke admin access, suspend or restore staff.
-- Data: download a backup and connect phones to the school database.
-- Security: change your password, make a new recovery code.
-- Licensing has been removed completely. There are no licence keys, payments or expiry.
+## What is inside
 
-## Updating
-Replace `app.html` and `sw.js` in GitHub (cache version is now osembo-pwa-5). `maintenance-owner.jpg` is no longer needed: the photo is inside app.html.
+- Marks and results, rankings, report cards
+- School fees and other money
+- Remedial collections and defaulters
+- Class register, timetables, teachers, books, announcements
+- Parents portal
 
-## Security notes
-- Still open: the Firebase rules allow anyone who knows the School ID to read and write. Add Firebase sign-in before storing real student data.
-- Default seed passwords (admin, secretary) are still in the source; change them after first login.
+## Files
+
+| File | Purpose |
+|---|---|
+| `index.html` | Landing page with the Install button |
+| `app.html` | The school app |
+| `manifest.webmanifest` | Install details (name, colours, icons) |
+| `sw.js` | Offline support |
+| `icons/` | App icons for Windows, Android and iPhone |
+
+## Publish on GitHub Pages
+
+1. Upload all files in this folder to the **root** of your repository (keep the `icons` folder).
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**, branch **main**, folder **/ (root)**, then **Save**.
+4. After a minute your app is live at `https://YOUR-USERNAME.github.io/YOUR-REPO/`. Put that link in the repository's **About → Website** box and replace the link at the top of this README.
+
+Installing only works over `https://`, which GitHub Pages provides.
+
+## Releasing an update
+
+Edit `app.html`, then change `VERSION` in `sw.js` (for example `osembo-v4`) so installed copies refresh.
+
+Developed by key_money.
