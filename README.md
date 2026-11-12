@@ -17,12 +17,17 @@ Upload the new `app.html` (replace the old one). Phones pick it up automatically
 Keep the previous `app.html` under another name (for example `app-old.html`). To roll back, rename it to `app.html` and upload.
 
 
-## Owner maintenance mode update
-- The Owner Console now has a shared maintenance-mode switch.
-- When enabled, the app displays the supplied owner portrait and the message “SYSTEM IS UNDER MAINTENANCE”.
-- The maintenance portrait is embedded in `app.html`, so no separate image upload is needed.
-- Replace `app.html` and `sw.js` in the GitHub Pages repository with the versions in this package. The service-worker cache version has been incremented.
-- The maintenance flag is stored in the school's shared app data and is distributed through the existing sync process. Devices that are offline will not receive the change until they reconnect.
+## Owner console (updated)
+- Open it by tapping the Osembo title or the maintenance photo 5 times, then enter your owner code. It is NOT stored in the app.
+- Tabs: Status, Keys, Licence, Access, Data, Activity. It locks itself after 10 minutes.
+- Switch app OFF shows the maintenance screen on every phone connected to the school database. A phone that is not connected (see Data tab) is only affected itself.
+- Revoke admin access and staff suspension now apply to all connected phones.
+- Licence keys are digitally signed, long, and pasted (not typed). Keys made by the old version no longer work.
 
-## Security note
-The Owner Console additions are still client-side controls. The current Firebase rules in this project permit broad reads and writes for anyone who knows the school ID. This package does not claim to solve that backend security issue. Before storing real student data, deploy Firebase Authentication, role-based server-enforced rules, and trusted server-side audit/backup functions.
+## Updating
+Replace `app.html` and `sw.js` in GitHub (cache version is now osembo-pwa-3). `maintenance-owner.jpg` is no longer needed: the photo is inside app.html.
+
+## Security notes
+- Still open: the Firebase rules allow anyone who knows the School ID to read and write. Add Firebase sign-in before storing real student data.
+- Default seed passwords (admin, secretary) are still in the source; change them after first login.
+- Licence checking is currently switched off in the code (`licActive` always returns true).
