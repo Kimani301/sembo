@@ -1,8 +1,9 @@
-const V="osembo-pwa-5",SHELL=["./","index.html","app.html","manifest.webmanifest","icons/icon-192.png","icons/icon-512.png"];
-self.addEventListener("install",e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
-self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
-self.addEventListener("fetch",e=>{const r=e.request,u=new URL(r.url);
-  if(r.method!=="GET"||u.origin!==location.origin)return; /* Firebase and other sites go straight to the network */
-  e.respondWith((async()=>{const net=fetch(r).then(x=>{if(x.ok){const c=x.clone();caches.open(V).then(k=>k.put(r,c))}return x});
-    const hit=await caches.match(r,{ignoreSearch:true});if(!hit)return net.catch(()=>caches.match("app.html"));
-    return Promise.race([net,new Promise(ok=>setTimeout(()=>ok(hit),3000))]).catch(()=>hit)})())});
+/* Osembo service worker. Change VERSION whenever you upload a new app.html so every device refreshes. */
+const VERSION="osembo-v2";
+const CORE=["./","index.html","app.html","manifest.webmanifest"];
+self.addEventListener("install",e=>{e.waitUntil(caches.open(VERSION).then(c=>Promise.all(CORE.map(u=>c.add(u).catch(()=>{})))).then(()=>self.skipWaiting()))});
+self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==VERSION).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
+self.addEventListener("fetch",e=>{const r=e.request;if(r.method!=="GET")return;const u=new URL(r.url);if(u.origin!==location.origin)return;
+  const page=r.mode==="navigate"||/\.html?$/.test(u.pathname);
+  if(page){e.respondWith(fetch(r).then(res=>{const c=res.clone();caches.open(VERSION).then(x=>x.put(r,c));return res}).catch(()=>caches.match(r).then(m=>m||caches.match("app.html"))));return}
+  e.respondWith(caches.match(r).then(m=>{const n=fetch(r).then(res=>{if(res.ok){const c=res.clone();caches.open(VERSION).then(x=>x.put(r,c))}return res}).catch(()=>m);return m||n}))});
