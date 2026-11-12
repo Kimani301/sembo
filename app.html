@@ -1907,13 +1907,14 @@ const admRevoked=()=>!!(typeof S!=="undefined"&&S&&S.ownerControl&&S.ownerContro
 /* Owner entry is hidden: tap the "Osembo" title 5 times (or Ctrl+Shift+K), then enter the owner code. */
 let _ot=[];
 function ownerTap(){const n=Date.now();_ot=_ot.filter(x=>n-x<2500);_ot.push(n);if(_ot.length>=5){_ot=[];ownerPin()}}
-function ownerPin(){M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet"><h3>Owner access</h3><p class="m">Enter your owner code.</p><input id="opin" type="password" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" onkeydown="if(event.key==='Enter')kmOpen()"><button id="opinb" class="btn" onclick="kmOpen()">Continue</button><button class="btn s" style="margin-top:8px" onclick="cm()">Cancel</button></div></div>`);setTimeout(()=>{const i=$("#opin");if(i)i.focus()},60)}
+function ownerPin(){M(`<div class="ov" onclick="if(event.target===this)cm()"><div class="sheet"><h3>Owner access</h3><p class="m">Enter your owner code. <span style="opacity:.6">(v2.1)</span></p><input id="opin" type="password" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" onkeydown="if(event.key==='Enter')kmOpen()"><label style="display:flex;gap:8px;align-items:center;margin:8px 0;font-size:13px"><input type="checkbox" style="width:auto;margin:0" onchange="$('#opin').type=this.checked?'text':'password'"> Show code</label><button id="opinb" class="btn" onclick="kmOpen()">Continue</button><button class="btn s" style="margin-top:8px" onclick="cm()">Cancel</button></div></div>`);setTimeout(()=>{const i=$("#opin");if(i)i.focus()},60)}
 async function kmOpen(){const i=$("#opin");if(!i)return ownerPin();
   if(!kmOk()){cm();return T("Owner sign-in needs the secure https version of the app")}
   const now=Date.now(),blk=+localStorage.getItem("km_block")||0;if(now<blk)return T("Too many attempts. Try again in "+Math.max(1,Math.ceil((blk-now)/60000))+" min");
   const v=i.value;if(!v.trim())return;
   const b=$("#opinb");if(b){b.disabled=true;b.textContent="Checking…"}
-  let key=null;try{key=await kmUnlock(v)}catch(e){key=null}
+  let key=null,ferr=null;try{key=await kmUnlock(v)}catch(e){key=null;ferr=e}
+  if(!key&&ferr&&ferr.name!=="OperationError"){const i3=$("#opin"),b3=$("#opinb");if(b3){b3.disabled=false;b3.textContent="Continue"}return T("Browser error: "+(ferr.name||"")+" "+(ferr.message||"")+" (not a wrong code)")}
   if(!key){const n=(+localStorage.getItem("km_fail")||0)+1;localStorage.setItem("km_fail",String(n));if(n>=3)localStorage.setItem("km_block",String(Date.now()+Math.min(60,Math.pow(2,n-3))*60000));kmAudit("Failed owner sign-in");const i2=$("#opin"),b2=$("#opinb");if(i2)i2.value="";if(b2){b2.disabled=false;b2.textContent="Continue"}return T("Incorrect code")}
   localStorage.setItem("km_fail","0");localStorage.removeItem("km_block");cm();ui.kmKey=key;ui.kmOwner=true;ui.ot=(function(){try{return sessionStorage.getItem("km_tab")}catch(e){return null}})()||"status";_kmAct=Date.now();kmAudit("Owner signed in");R()}
 let _kmAct=Date.now();["click","keydown","touchstart"].forEach(ev=>document.addEventListener(ev,()=>{_kmAct=Date.now()},{passive:true,capture:true}));

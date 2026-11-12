@@ -25,7 +25,7 @@ Keep the previous `app.html` under another name (for example `app-old.html`). To
 - Licence keys are digitally signed, long, and pasted (not typed). Keys made by the old version no longer work.
 
 ## Updating
-Replace `app.html` and `sw.js` in GitHub (cache version is now osembo-pwa-3). `maintenance-owner.jpg` is no longer needed: the photo is inside app.html.
+Replace `app.html` and `sw.js` in GitHub (cache version is now osembo-pwa-4). `maintenance-owner.jpg` is no longer needed: the photo is inside app.html.
 
 ## Security notes
 - Still open: the Firebase rules allow anyone who knows the School ID to read and write. Add Firebase sign-in before storing real student data.
