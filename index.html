@@ -1,76 +1,112 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Install Osembo Comprehensive School</title>
 <meta name="theme-color" content="#1B2A4A">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/favicon-64.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/osembo-192.png">
+<link rel="apple-touch-icon" href="icons/osembo-180.png">
 <style>
-:root{--pri:#1B2A4A;--acc:#B8892B;--bg:#f4f1ea;--card:#fff;--tx:#1d2433;--mu:#5f6877;--bd:#e4dfd3;color-scheme:light}
-@media(prefers-color-scheme:dark){:root{--bg:#10151f;--card:#182030;--tx:#eef1f6;--mu:#a3adbf;--bd:#2a3550;color-scheme:dark}}
-*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx)}
-.hero{background:var(--pri);color:#fff;text-align:center;padding:34px 18px 56px}
-.hero img{width:84px;height:84px;border-radius:20px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
-.hero h1{margin:14px 0 4px;font-size:26px;line-height:1.2}.hero p{margin:0;opacity:.85}
-.wrap{max-width:560px;margin:-32px auto 40px;padding:0 14px}
-.tabs{display:flex;gap:6px;background:var(--card);padding:6px;border-radius:14px;border:1px solid var(--bd);box-shadow:0 4px 14px rgba(0,0,0,.08)}
-.tabs button{flex:1;border:0;background:transparent;color:var(--mu);padding:12px 8px;border-radius:10px;font-weight:600;font-size:16px;font-family:inherit;cursor:pointer}
-.tabs button[aria-selected=true]{background:var(--pri);color:#fff}
-.panel{display:none;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-top:12px}
+:root{--pri:#1B2A4A;--pri2:#2a4068;--acc:#B8892B;--acc2:#e2be6e;--bg:#f5f2ea;--card:#fff;--tx:#1d2433;--mu:#617085;--bd:#e6e0d2;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#0e131d;--card:#172033;--tx:#eef1f6;--mu:#a5afc2;--bd:#27334d;color-scheme:dark}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh}
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--pri) 0%,var(--pri2) 100%);color:#fff;text-align:center;padding:calc(40px + env(safe-area-inset-top,0px)) 20px 84px}
+.hero:before{content:"";position:absolute;width:520px;height:520px;left:50%;top:-260px;margin-left:-260px;background:radial-gradient(circle,rgba(226,190,110,.35),transparent 65%)}
+.hero>*{position:relative}
+.logo{width:104px;height:104px;border-radius:26px;box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 0 4px rgba(255,255,255,.12)}
+.hero h1{margin:18px 0 6px;font:700 28px/1.2 Georgia,"Times New Roman",serif;letter-spacing:.2px}
+.hero p{margin:0;opacity:.88;font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.chips span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:5px 12px;border-radius:99px;font-size:13px}
+.wrap{max-width:520px;margin:-52px auto 0;padding:0 14px 30px;position:relative}
+.alert{display:none;background:#fff7e0;color:#4a3a10;border:1px solid #ecd48a;border-radius:14px;padding:14px;margin-bottom:12px;font-size:15px}
+.alert a{display:block;margin-top:10px;text-align:center;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;padding:12px;border-radius:10px}
+.tabs{position:relative;display:grid;grid-template-columns:1fr 1fr;background:var(--card);padding:5px;border-radius:16px;border:1px solid var(--bd);box-shadow:0 8px 24px rgba(15,25,50,.14)}
+.tabs i{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);background:var(--pri);border-radius:12px;transition:transform .25s ease}
+.tabs[data-a=android] i{transform:translateX(100%)}
+.tabs button{position:relative;z-index:1;border:0;background:transparent;color:var(--mu);padding:13px 6px;font-weight:700;font-size:16px;font-family:inherit;cursor:pointer;transition:color .2s}
+.tabs button[aria-selected=true]{color:#fff}
+.panel{display:none;background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:24px 20px 20px;margin-top:14px;text-align:center;box-shadow:0 8px 24px rgba(15,25,50,.08);animation:up .3s ease}
 .panel.on{display:block}
-.panel h2{margin:0 0 4px;font-size:20px}.sub{color:var(--mu);margin:0 0 16px}
-.go{display:block;width:100%;border:0;border-radius:12px;background:var(--acc);color:#fff;font-weight:700;font-size:18px;font-family:inherit;padding:15px;cursor:pointer}
-.go[disabled]{opacity:.55;cursor:default}
-.ok{display:none;margin-top:12px;padding:12px;border-radius:10px;background:rgba(46,125,50,.14);color:var(--tx);text-align:center}
-h3{font-size:15px;margin:20px 0 8px;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
-ol{margin:0;padding-left:0;list-style:none;counter-reset:s}
-li{counter-increment:s;position:relative;padding:0 0 12px 38px}
-li:before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--pri);color:#fff;font:700 14px/26px system-ui;text-align:center}
-.note{font-size:14px;color:var(--mu);margin-top:6px}
-.open{display:block;text-align:center;margin-top:16px;color:var(--pri);font-weight:600}
-@media(prefers-color-scheme:dark){.open{color:#e3c27a}}
-footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:30px}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.dev{height:130px;display:block;margin:0 auto 6px}
+.panel h2{margin:6px 0 4px;font:700 22px Georgia,serif}
+.sub{color:var(--mu);margin:0 0 20px;font-size:15px}
+.go{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:16px;background:linear-gradient(135deg,var(--acc),#d9a63c);color:#fff;font-weight:800;font-size:19px;font-family:inherit;padding:18px;cursor:pointer;box-shadow:0 8px 20px rgba(184,137,43,.4);transition:transform .15s}
+.go:active{transform:scale(.98)}
+.go:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:sh 3s infinite}
+@keyframes sh{0%,60%{left:-60%}100%{left:130%}}
+.go svg{width:24px;height:24px;flex:none}
+.trust{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 16px;margin:14px 0 4px;font-size:13px;color:var(--mu)}
+.ok{display:none;margin-top:6px;padding:16px;border-radius:14px;background:rgba(46,125,50,.14);font-weight:600}
+.ok a{color:var(--acc);display:block;margin-top:6px}
+details{margin-top:16px;border-top:1px solid var(--bd);padding-top:12px;text-align:left}
+summary{cursor:pointer;font-weight:600;color:var(--mu);text-align:center;list-style:none}
+summary::-webkit-details-marker{display:none}
+details[open] summary{margin-bottom:12px}
+details.flash{animation:fl 1.2s}
+@keyframes fl{0%,100%{background:transparent}30%{background:rgba(184,137,43,.18)}}
+ol{margin:0;padding:0;list-style:none;counter-reset:s}
+li{counter-increment:s;position:relative;padding:2px 0 14px 40px;font-size:15px}
+li:before{content:counter(s);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--pri);color:#fff;font:700 14px/28px system-ui;text-align:center}
+.open{display:block;text-align:center;margin:18px 0 0;color:var(--mu);text-decoration:none;font-size:15px}
+.open b{color:var(--acc)}
+footer{text-align:center;color:var(--mu);font-size:13px;padding:6px 20px 30px}
 </style></head><body>
-<div class="hero"><img src="icons/apple-touch-icon.png" alt="Osembo logo"><h1>Osembo Comprehensive School</h1><p>Install the school app on your device</p></div>
-<div class="wrap">
-<div class="tabs" role="tablist">
-<button role="tab" id="t-windows" aria-selected="true" aria-controls="p-windows" data-t="windows">🖥️ Windows</button>
-<button role="tab" id="t-android" aria-selected="false" aria-controls="p-android" data-t="android">📱 Android</button></div>
+<header class="hero"><img class="logo" src="icons/osembo-512.png" alt="Osembo logo"><h1>Osembo Comprehensive School</h1><p>Get the school app on your device</p>
+<div class="chips"><span>💰 Fees</span><span>📅 Attendance</span><span>📄 Report cards</span><span>📚 Books</span></div></header>
+<main class="wrap">
+<div class="alert" id="inapp"><b>One more step:</b> this link opened inside another app (like WhatsApp), which cannot install apps. Open it in your browser first.<a id="chrome" href="#">Open in Chrome</a></div>
+<div class="tabs" role="tablist" data-a="windows"><i></i>
+<button role="tab" id="t-windows" aria-selected="true" aria-controls="p-windows" data-t="windows">🖥️&nbsp; Windows</button>
+<button role="tab" id="t-android" aria-selected="false" aria-controls="p-android" data-t="android">📱&nbsp; Android</button></div>
 
 <section class="panel on" id="p-windows" role="tabpanel" aria-labelledby="t-windows">
-<h2>Install on Windows</h2><p class="sub">Works on a laptop or computer with Microsoft Edge or Google Chrome.</p>
-<button class="go" data-install>Install on Windows</button><div class="ok" data-done>✅ Installed. Open Osembo from your Start menu or desktop.</div>
-<h3>If the button does not work</h3>
-<ol><li>Open this page in <b>Microsoft Edge</b> or <b>Google Chrome</b>.</li>
-<li>Click the <b>install icon</b> at the right end of the address bar (a small screen with a down arrow), or open the <b>⋯ menu</b> and choose <b>Apps → Install this site as an app</b> (Edge) or <b>Cast, save and share → Install page as app</b> (Chrome).</li>
-<li>Click <b>Install</b>. Osembo opens in its own window and is added to your Start menu.</li>
-<li>Optional: right-click the Osembo icon on the taskbar and choose <b>Pin to taskbar</b>.</li></ol></section>
+<svg class="dev" viewBox="0 0 220 130" aria-hidden="true"><rect x="38" y="8" width="144" height="92" rx="8" fill="#2a3550"/><rect x="45" y="15" width="130" height="78" rx="3" fill="#1B2A4A"/><image href="icons/osembo-192.png" x="90" y="26" width="40" height="40"/><rect x="72" y="74" width="76" height="6" rx="3" fill="#B8892B"/><path d="M18 104h184l-10 14H28z" fill="#b9c0cf"/></svg>
+<h2>Install on Windows</h2><p class="sub">For laptops and computers using Edge or Chrome</p>
+<button class="go" data-install><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>Install Osembo</button>
+<div class="ok" data-done>✅ Installed! Open <b>Osembo</b> from your Start menu or desktop.<a href="app.html">Open the app now →</a></div>
+<div class="trust"><span>✓ Free</span><span>✓ No sign-up</span><span>✓ Works offline</span></div>
+<details><summary>Button not working? Try these quick steps</summary><ol>
+<li>Open this page in <b>Microsoft Edge</b> or <b>Google Chrome</b>.</li>
+<li>Click the <b>install icon</b> at the right end of the address bar (a small screen with a down arrow).</li>
+<li>Click <b>Install</b>. Osembo opens in its own window and is added to your Start menu.</li></ol></details></section>
 
 <section class="panel" id="p-android" role="tabpanel" aria-labelledby="t-android">
-<h2>Install on Android</h2><p class="sub">Works on any Android phone or tablet with Google Chrome.</p>
-<button class="go" data-install>Install on Android</button><div class="ok" data-done>✅ Installed. Find Osembo on your home screen or app list.</div>
-<h3>If the button does not work</h3>
-<ol><li>Open this page in <b>Google Chrome</b> (not inside WhatsApp or Facebook; tap <b>⋮ → Open in Chrome</b> if needed).</li>
+<svg class="dev" viewBox="0 0 220 130" aria-hidden="true"><rect x="78" y="2" width="64" height="126" rx="12" fill="#2a3550"/><rect x="83" y="12" width="54" height="106" rx="5" fill="#1B2A4A"/><image href="icons/osembo-192.png" x="90" y="40" width="40" height="40"/><rect x="98" y="88" width="24" height="5" rx="2.5" fill="#B8892B"/><rect x="100" y="6" width="20" height="3" rx="1.5" fill="#1B2A4A"/></svg>
+<h2>Install on Android</h2><p class="sub">For phones and tablets using Chrome</p>
+<button class="go" data-install><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>Install Osembo</button>
+<div class="ok" data-done>✅ Installed! Find <b>Osembo</b> on your home screen.<a href="app.html">Open the app now →</a></div>
+<div class="trust"><span>✓ Free</span><span>✓ No sign-up</span><span>✓ Works offline</span></div>
+<details><summary>Button not working? Try these quick steps</summary><ol>
+<li>Open this page in <b>Google Chrome</b>.</li>
 <li>Tap the <b>⋮ menu</b> at the top right.</li>
-<li>Tap <b>Install app</b> (or <b>Add to Home screen</b>), then tap <b>Install</b>.</li>
-<li>Open <b>Osembo</b> from your home screen like any other app.</li></ol>
-<p class="note">iPhone: open this page in Safari, tap the Share button, then <b>Add to Home Screen</b>.</p></section>
+<li>Tap <b>Install app</b> (or <b>Add to Home screen</b>), then tap <b>Install</b>.</li></ol>
+<p style="font-size:14px;color:var(--mu);margin:4px 0 0">iPhone: open in Safari, tap <b>Share</b>, then <b>Add to Home Screen</b>.</p></details></section>
 
-<a class="open" href="app.html">Already have it? Open the app in the browser →</a>
-</div>
-<footer>Once installed, the app updates itself whenever you are online.</footer>
+<a class="open" href="app.html">Already installed? <b>Open the app</b></a>
+</main>
+<footer>The app updates itself whenever you are online.</footer>
 <script>
 if(matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: window-controls-overlay)").matches||navigator.standalone)location.replace("app.html");
 if("serviceWorker" in navigator&&location.protocol!=="file:")addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
-const tabs=[...document.querySelectorAll("[role=tab]")];
-function show(n){tabs.forEach(b=>{const on=b.dataset.t===n;b.setAttribute("aria-selected",on);document.getElementById("p-"+b.dataset.t).classList.toggle("on",on)});try{history.replaceState(null,"","#"+n)}catch(e){}}
+const ua=navigator.userAgent,$=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];
+const tabs=all("[role=tab]"),bar=$(".tabs");
+function show(n){bar.dataset.a=n;tabs.forEach(b=>{const on=b.dataset.t===n;b.setAttribute("aria-selected",on);$("#p-"+b.dataset.t).classList.toggle("on",on)});try{history.replaceState(null,"","#"+n)}catch(e){}}
 tabs.forEach(b=>b.addEventListener("click",()=>show(b.dataset.t)));
-const h=location.hash.slice(1);show(h==="android"||h==="windows"?h:/Android/i.test(navigator.userAgent)?"android":"windows");
+const h=location.hash.slice(1);show(h==="android"||h==="windows"?h:/Android/i.test(ua)?"android":"windows");
+/* opened inside WhatsApp / Facebook etc: cannot install, so send the person to Chrome */
+if(/FBAN|FBAV|Instagram|WhatsApp|Snapchat|TikTok|Line\/|; wv\)/i.test(ua)){const a=$("#inapp");a.style.display="block";
+ const u=location.host+location.pathname+location.search;
+ $("#chrome").href=/Android/i.test(ua)?"intent://"+u+"#Intent;scheme=https;package=com.android.chrome;end":location.href}
+const ios=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
 let dp=null;
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();dp=e});
-addEventListener("appinstalled",()=>{dp=null;document.querySelectorAll("[data-install]").forEach(b=>b.style.display="none");document.querySelectorAll("[data-done]").forEach(d=>d.style.display="block")});
-document.querySelectorAll("[data-install]").forEach(b=>b.addEventListener("click",async()=>{
- if(dp){dp.prompt();try{await dp.userChoice}catch(e){}dp=null;return}
- const p=b.closest(".panel"),o=p.querySelector("ol");alert("Your browser did not offer the install window. Please follow the steps below the button.");o.scrollIntoView({behavior:"smooth",block:"center"})}));
+function done(){dp=null;all("[data-install]").forEach(b=>b.style.display="none");all(".trust").forEach(b=>b.style.display="none");all("[data-done]").forEach(d=>d.style.display="block")}
+addEventListener("appinstalled",done);
+all("[data-install]").forEach(b=>b.addEventListener("click",async()=>{
+ if(dp){const p=dp;dp=null;p.prompt();try{const c=await p.userChoice;if(c&&c.outcome==="accepted")done()}catch(e){}return}
+ const d=b.closest(".panel").querySelector("details");d.open=true;d.classList.remove("flash");void d.offsetWidth;d.classList.add("flash");d.scrollIntoView({behavior:"smooth",block:"center"})}));
+if(ios){all("[data-install]").forEach(b=>b.style.display="none");all("details").forEach(d=>d.open=true);show("android")}
 </script></body></html>
