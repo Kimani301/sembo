@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "schools": {
+      "$sid": {
+        ".read": "$sid.length >= 20",
+        ".write": "$sid.length >= 20",
+        "units": {
+          ".indexOn": ["t"],
+          "$u": {
+            ".validate": "newData.hasChild('t') && newData.hasChild('v') && newData.child('v').isString() && newData.child('v').val().length < 1500000"
+          }
+        }
+      }
+    }
+  }
+}
