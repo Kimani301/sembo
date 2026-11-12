@@ -1,5 +1,5 @@
 /* Osembo service worker: works offline once opened. Bump VERSION on each release. */
-const VERSION = "osembo-v3";
+const VERSION = "osembo-v4";
 const SHELL = ["./", "./index.html", "./app.html", "./manifest.webmanifest",
   "./icons/icon.svg", "./icons/icon-192.png", "./icons/icon-512.png",
   "./icons/icon-maskable-192.png", "./icons/icon-maskable-512.png",
