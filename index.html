@@ -5,17 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Osembo – School management that works offline</title>
 <meta name="description" content="Osembo is a school management app for marks, report cards, fees, attendance, timetables, books and a parents portal. Install it on Windows or Android.">
-<meta name="theme-color" content="#14243D">
+<meta name="theme-color" content="#8F1D2C">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2214%22%20fill=%22%2314243D%22/%3E%3Ccircle%20cx=%2232%22%20cy=%2232%22%20r=%2224%22%20fill=%22%23FFF7F0%22%20stroke=%22%23C6A15B%22%20stroke-width=%223%22/%3E%3Ctext%20x=%2232%22%20y=%2242%22%20text-anchor=%22middle%22%20font-family=%22Georgia,serif%22%20font-size=%2232%22%20font-weight=%22bold%22%20fill=%22%2314243D%22%3EO%3C/text%3E%3C/svg%3E">
+<script>window.__bip=null;addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__bip=e;dispatchEvent(new Event("osembo-bip"))});addEventListener("appinstalled",function(){window.__bip=null;dispatchEvent(new Event("osembo-installed"))});</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2214%22%20fill=%22%238F1D2C%22/%3E%3Ccircle%20cx=%2232%22%20cy=%2232%22%20r=%2224%22%20fill=%22%23FFF7F0%22%20stroke=%22%23C69A55%22%20stroke-width=%223%22/%3E%3Ctext%20x=%2232%22%20y=%2242%22%20text-anchor=%22middle%22%20font-family=%22Georgia,serif%22%20font-size=%2232%22%20font-weight=%22bold%22%20fill=%22%238F1D2C%22%3EO%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#14243D; --navy2:#1C3358; --gold:#C6A15B; --gold-d:#8A6D2F;
-  --ivory:#FFF7F0; --paper:#FFFFFF; --ink:#1B2433; --mute:#5B6678; --line:#E7DFD3;
+  --red:#8F1D2C; --red2:#A8293A; --deep:#641421; --gold:#C69A55; --gold-d:#8A6420;
+  --ivory:#F7F4F0; --paper:#FFFFFF; --ink:#1B2433; --mute:#5B6678; --line:#E8DCDD;
   --ok:#2F7D57;
   --serif:"Newsreader",Georgia,"Times New Roman",serif;
   --sans:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -29,7 +30,7 @@ a{color:inherit}
 h1,h2,h3{font-family:var(--serif);line-height:1.15;letter-spacing:-.01em}
 
 /* top bar */
-.bar{position:sticky;top:0;z-index:20;background:rgba(20,36,61,.96);backdrop-filter:blur(8px);color:#fff;padding-top:env(safe-area-inset-top,0)}
+.bar{position:sticky;top:0;z-index:20;background:rgba(100,20,33,.97);backdrop-filter:blur(8px);color:#fff;padding-top:env(safe-area-inset-top,0)}
 .bar .wrap{display:flex;align-items:center;gap:18px;height:60px}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:21px;text-decoration:none}
 .brand svg{width:32px;height:32px}
@@ -41,27 +42,27 @@ h1,h2,h3{font-family:var(--serif);line-height:1.15;letter-spacing:-.01em}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;cursor:pointer;font:600 17px var(--sans);padding:14px 26px;border-radius:12px;text-decoration:none;transition:transform .15s,background .15s}
 .btn:active{transform:translateY(1px)}
-.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.gold{background:var(--gold);color:var(--red)}
 .btn.gold:hover{background:#D5B16D}
 .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
 .btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
-.btn.navy{background:var(--navy);color:#fff}
-.btn.navy:hover{background:var(--navy2)}
+.btn.navy{background:var(--red);color:#fff}
+.btn.navy:hover{background:var(--red2)}
 
 /* hero */
-.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.hero{background:linear-gradient(118deg,#641421 0%,#8F1D2C 56%,#A8293A 100%);color:#fff;position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--gold)}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:64px;padding-bottom:84px}
 .hero h1{font-size:clamp(38px,5.6vw,66px);font-weight:700}
-.hero p.lead{margin-top:20px;font-size:19px;max-width:34em;color:#D6DDEA}
+.hero p.lead{margin-top:20px;font-size:19px;max-width:34em;color:#F6DEE0}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.hero .note{margin-top:16px;font-size:14.5px;color:#AEB9CC}
+.hero .note{margin-top:16px;font-size:14.5px;color:#E8C6CA}
 .hero .note b{color:var(--gold);font-weight:600}
 
 /* phone mock showing a real kind of screen: a report card */
-.phone{justify-self:center;width:290px;background:#0B1527;border-radius:38px;padding:11px;box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 0 2px #2A3B5C}
+.phone{justify-self:center;width:290px;background:#2A0A10;border-radius:38px;padding:11px;box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 0 2px #6B1B27}
 .screen{background:var(--ivory);color:var(--ink);border-radius:28px;overflow:hidden;min-height:540px}
-.s-head{background:var(--navy2);color:#fff;padding:18px 16px 14px}
+.s-head{background:var(--red2);color:#fff;padding:18px 16px 14px}
 .s-head small{color:var(--gold);font-weight:600;font-size:12px}
 .s-head h4{font-family:var(--serif);font-size:20px;margin-top:2px}
 .s-body{padding:14px}
@@ -73,7 +74,7 @@ h1,h2,h3{font-family:var(--serif);line-height:1.15;letter-spacing:-.01em}
 .r span:nth-child(2){text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 .lv{justify-self:end;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:#EAF3EE;color:var(--ok)}
 .lv.me{background:#FBF1DC;color:var(--gold-d)}
-.tot{display:flex;justify-content:space-between;margin-top:12px;padding:12px 14px;background:var(--navy);color:#fff;border-radius:14px;font-size:14px}
+.tot{display:flex;justify-content:space-between;margin-top:12px;padding:12px 14px;background:var(--red);color:#fff;border-radius:14px;font-size:14px}
 .tot b{color:var(--gold);font-family:var(--serif);font-size:19px}
 .chips{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
 .chips i{font-style:normal;font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);background:#fff;color:var(--mute)}
@@ -82,14 +83,14 @@ h1,h2,h3{font-family:var(--serif);line-height:1.15;letter-spacing:-.01em}
 /* sections */
 section{padding:84px 0}
 .head{max-width:40em;margin-bottom:40px}
-.head h2{font-size:clamp(30px,4vw,44px);font-weight:700;color:var(--navy)}
+.head h2{font-size:clamp(30px,4vw,44px);font-weight:700;color:var(--red)}
 .head p{margin-top:12px;color:var(--mute);font-size:18px}
 
 /* what it does: three statements, no cards */
-.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--navy)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--red)}
 .three div{padding:26px 28px 6px 0}
 .three div+div{padding-left:28px;border-left:1px solid var(--line)}
-.three h3{font-size:24px;color:var(--navy)}
+.three h3{font-size:24px;color:var(--red)}
 .three p{margin-top:8px;color:var(--mute)}
 @media(max-width:760px){.three{grid-template-columns:1fr}.three div,.three div+div{padding:20px 0;border-left:0;border-top:1px solid var(--line)}.three div:first-child{border-top:0}}
 
@@ -97,11 +98,11 @@ section{padding:84px 0}
 .who-wrap{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .roles{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
 .role{border:1px solid var(--line);border-radius:18px;padding:26px 26px 22px;background:var(--ivory)}
-.role.admin{background:var(--navy);color:#fff;border-color:var(--navy)}
+.role.admin{background:var(--deep);color:#fff;border-color:var(--red)}
 .role.admin li::before{background:var(--gold)}
 .role.admin h3,.role.admin .sub{color:#fff}
 .role.admin .sub{opacity:.75}
-.role h3{font-size:26px;color:var(--navy)}
+.role h3{font-size:26px;color:var(--red)}
 .role .sub{font-size:15px;color:var(--mute);margin-top:2px}
 .role ul{list-style:none;margin-top:16px;display:grid;gap:9px}
 .role li{position:relative;padding-left:22px;font-size:16px}
@@ -110,44 +111,44 @@ section{padding:84px 0}
 
 /* works anywhere strip */
 .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
-.strip h3{font-size:21px;color:var(--navy)}
+.strip h3{font-size:21px;color:var(--red)}
 .strip p{margin-top:6px;color:var(--mute);font-size:16px}
-.strip .ic{width:44px;height:44px;border-radius:12px;background:var(--navy);display:grid;place-items:center;margin-bottom:12px}
+.strip .ic{width:44px;height:44px;border-radius:12px;background:var(--red);display:grid;place-items:center;margin-bottom:12px}
 .strip svg{width:23px;height:23px;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:900px){.strip{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.strip{grid-template-columns:1fr}}
 
 /* install */
-.install{background:var(--navy);color:#fff}
+.install{background:var(--red);color:#fff}
 .install .head h2{color:#fff}
-.install .head p{color:#B9C4D8}
+.install .head p{color:#EBCDD1}
 .tabs{display:inline-flex;background:rgba(255,255,255,.08);border-radius:14px;padding:5px;gap:4px;margin-bottom:26px}
-.tabs button{border:0;background:transparent;color:#CBD5E6;font:600 16px var(--sans);padding:11px 24px;border-radius:10px;cursor:pointer}
-.tabs button[aria-selected=true]{background:var(--gold);color:var(--navy)}
+.tabs button{border:0;background:transparent;color:#F0D5D8;font:600 16px var(--sans);padding:11px 24px;border-radius:10px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--gold);color:var(--red)}
 .panel{display:none;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
 .panel.on{display:grid}
 .panel h3{font-size:28px}
-.panel .intro{margin-top:8px;color:#B9C4D8}
+.panel .intro{margin-top:8px;color:#EBCDD1}
 .steps{list-style:none;counter-reset:s;display:grid;gap:14px}
 .steps li{counter-increment:s;position:relative;padding:16px 18px 16px 62px;background:rgba(255,255,255,.06);border-radius:14px}
-.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:700;display:grid;place-items:center}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--red);font-weight:700;display:grid;place-items:center}
 .steps b{display:block;color:#fff}
-.steps span{color:#B9C4D8;font-size:15.5px}
+.steps span{color:#EBCDD1;font-size:15.5px}
 .inst-btn{margin-top:22px}
-.hint{margin-top:12px;font-size:14.5px;color:#AEB9CC;min-height:1.4em}
+.hint{margin-top:12px;font-size:14.5px;color:#E8C6CA;min-height:1.4em}
 @media(max-width:820px){.panel.on{grid-template-columns:1fr}}
 
 /* faq */
 details{border-top:1px solid var(--line);padding:18px 0}
 details:last-of-type{border-bottom:1px solid var(--line)}
-summary{cursor:pointer;font-family:var(--serif);font-size:21px;font-weight:700;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary{cursor:pointer;font-family:var(--serif);font-size:21px;font-weight:700;color:var(--red);list-style:none;display:flex;justify-content:space-between;gap:16px}
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";font-family:var(--sans);font-weight:500;color:var(--gold-d);font-size:26px;line-height:1}
 details[open] summary::after{content:"–"}
 details p{margin-top:10px;color:var(--mute);max-width:46em}
 .faq{max-width:780px}
 
-footer{background:var(--navy);color:#AEB9CC;padding:34px 0 calc(34px + env(safe-area-inset-bottom,0));font-size:15px}
+footer{background:var(--red);color:#E8C6CA;padding:34px 0 calc(34px + env(safe-area-inset-bottom,0));font-size:15px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
 footer a{color:var(--gold);font-weight:600}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
@@ -158,7 +159,7 @@ footer a{color:var(--gold);font-weight:600}
 <header class="bar">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Osembo home">
-      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#14243D" stroke="#C6A15B" stroke-width="2"/><circle cx="32" cy="32" r="23" fill="#FFF7F0" stroke="#C6A15B" stroke-width="3"/><text x="32" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="bold" fill="#14243D">O</text></svg>
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#8F1D2C" stroke="#C69A55" stroke-width="2"/><circle cx="32" cy="32" r="23" fill="#FFF7F0" stroke="#C69A55" stroke-width="3"/><text x="32" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="bold" fill="#8F1D2C">O</text></svg>
       Osembo
     </a>
     <nav aria-label="Page sections">
@@ -321,7 +322,7 @@ footer a{color:var(--gold);font-weight:600}
       <div>
         <h3>On a Windows laptop or desktop</h3>
         <p class="intro">Use Chrome or Microsoft Edge. Osembo installs like a normal program, with its own icon and window.</p>
-        <button class="btn gold inst-btn" data-install>Install on Windows</button>
+        <button class="btn gold inst-btn" data-install="windows">Install on Windows</button>
         <p class="hint" data-hint></p>
       </div>
       <ol class="steps">
@@ -336,7 +337,7 @@ footer a{color:var(--gold);font-weight:600}
       <div>
         <h3>On an Android phone or tablet</h3>
         <p class="intro">Use Chrome. The Osembo icon is added to your home screen, no Play Store needed.</p>
-        <button class="btn gold inst-btn" data-install>Install on Android</button>
+        <button class="btn gold inst-btn" data-install="android">Install on Android</button>
         <p class="hint" data-hint></p>
       </div>
       <ol class="steps">
@@ -396,34 +397,54 @@ footer a{color:var(--gold);font-weight:600}
   if(/android/i.test(navigator.userAgent))pick(document.getElementById('tab-and'));
 })();
 
-/* the install prompt only fires on a page that links the manifest and has a service worker */
-if('serviceWorker' in navigator&&location.protocol!=='file:'){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
+/* service worker: needed so the browser offers one-click install */
+if('serviceWorker' in navigator&&location.protocol!=='file:'){navigator.serviceWorker.register('sw.js').catch(function(){})}
 
-/* install button */
+/* install buttons */
 (function(){
-  var deferred=null;
   var btns=[].slice.call(document.querySelectorAll('[data-install]'));
   var hints=[].slice.call(document.querySelectorAll('[data-hint]'));
+  var ua=navigator.userAgent||'';
+  var isIOS=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var inApp=/FBAN|FBAV|Instagram|WhatsApp|Line\/|MicroMessenger|; wv\)|TikTok/i.test(ua);
+  var isFx=/Firefox|FxiOS/.test(ua), isSafariDesk=/Safari/.test(ua)&&!/Chrome|Chromium|Edg|CriOS|OPR/.test(ua)&&!isIOS;
+  var standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  var installed=false,busy=false;
   function say(t){hints.forEach(function(h){h.textContent=t})}
-  var standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
-  if(standalone){say('Osembo is already installed on this device.')}
-  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e});
-  window.addEventListener('appinstalled',function(){deferred=null;say('Installed. Open Osembo from your Start menu or home screen.')});
+  function label(t){btns.forEach(function(b){b.textContent=t.replace('{d}',b.dataset.install==='android'?'Android':'Windows')})}
+  function ready(){return !!window.__bip}
+  function mark(){
+    if(installed||standalone){btns.forEach(function(b){b.textContent='Open Osembo';b.dataset.open='1'});say('Osembo is installed on this device.');return}
+    label(ready()?'Install on {d}':'Install on {d}');
+  }
+  function fallback(){
+    if(isIOS)return say('On iPhone or iPad: tap the Share button in Safari, then Add to Home Screen.');
+    if(inApp)return say('This page is open inside another app. Open it in Chrome (menu, then Open in browser) and tap Install again.');
+    if(isFx||isSafariDesk)return say('This browser cannot install apps. Open this page in Chrome or Edge, then tap Install.');
+    say('If Osembo is already installed on this device, open it from the Start menu or home screen. If not, wait a few seconds and tap Install again, or use the install icon in the address bar (or the browser menu, Install app).');
+  }
+  function doPrompt(){
+    var e=window.__bip;window.__bip=null;
+    e.prompt();
+    e.userChoice.then(function(r){
+      if(r.outcome==='accepted'){installed=true;say('Installing Osembo…');}
+      else{say('Install cancelled. Tap Install again whenever you are ready.');}
+    }).catch(function(){say('Could not start the install. Tap Install again.');});
+  }
   btns.forEach(function(b){
     b.addEventListener('click',function(){
-      if(deferred){
-        deferred.prompt();
-        deferred.userChoice.then(function(r){
-          say(r.outcome==='accepted'?'Installing…':'Install cancelled. You can try again anytime.');
-          deferred=null;
-        });
-      }else if(standalone){
-        say('Osembo is already installed on this device.');
-      }else{
-        say('Your browser did not offer one-click install. Use the browser menu and choose Install app or Add to Home screen.');
-      }
+      if(b.dataset.open){location.href='app.html';return}
+      if(ready()){doPrompt();return}
+      if(busy)return;
+      if(isIOS||inApp||isFx||isSafariDesk){fallback();return}
+      busy=true;say('Getting ready…');
+      var t=setTimeout(function(){busy=false;removeEventListener('osembo-bip',on);fallback()},3500);
+      function on(){clearTimeout(t);busy=false;removeEventListener('osembo-bip',on);doPrompt()}
+      addEventListener('osembo-bip',on);
     });
   });
+  addEventListener('osembo-installed',function(){installed=true;mark();say('Installed. Open Osembo from your Start menu or home screen.')});
+  mark();
 })();
 </script>
 </body>

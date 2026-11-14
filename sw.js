@@ -1,26 +1,27 @@
-/* Osembo service worker: works offline once opened. Bump VERSION on each release. */
-const VERSION = "osembo-v4";
-const SHELL = ["./", "./index.html", "./app.html", "./manifest.webmanifest",
-  "./icons/icon.svg", "./icons/icon-192.png", "./icons/icon-512.png",
-  "./icons/icon-maskable-192.png", "./icons/icon-maskable-512.png",
-  "./icons/apple-touch-icon.png", "./icons/favicon-32.png", "./icons/favicon.ico"];
+/* Osembo service worker: makes the app installable and lets it open with no internet.
+   Change the version number below whenever you upload a new app.html so phones pick it up. */
+const VERSION = "osembo-v3";
+const CORE = ["./", "./index.html", "./app.html", "./manifest.webmanifest",
+  "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-maskable-512.png", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
-  e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(VERSION).then(c => Promise.all(CORE.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
 });
 self.addEventListener("activate", e => {
-  e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== VERSION).map(x => caches.delete(x))))
-    .then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VERSION).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 self.addEventListener("fetch", e => {
   const r = e.request;
   if (r.method !== "GET") return;
-  const u = new URL(r.url);
-  if (u.origin !== location.origin) return;           // never touch Firebase sync or WhatsApp links
-  if (r.mode === "navigate") {                         // pages: network first, cached copy when offline
-    e.respondWith(fetch(r).then(res => { const c = res.clone(); caches.open(VERSION).then(x => x.put(r, c)); return res; })
-      .catch(() => caches.match(r).then(m => m || caches.match("./app.html"))));
+  const url = new URL(r.url);
+  if (url.origin !== location.origin) return;            // Firebase, fonts and the AI go straight to the network
+  if (r.mode === "navigate") {                           // pages: newest first, saved copy when offline
+    e.respondWith(fetch(r).then(res => { const cp = res.clone(); caches.open(VERSION).then(c => c.put(r, cp)); return res; })
+      .catch(() => caches.match(r).then(m => m || caches.match(url.pathname.endsWith("index.html") ? "./index.html" : "./app.html"))));
     return;
   }
-  e.respondWith(caches.match(r).then(m => m || fetch(r).then(res => { const c = res.clone(); caches.open(VERSION).then(x => x.put(r, c)); return res; })));
+  e.respondWith(caches.match(r).then(m => {              // files: saved copy now, refresh in the background
+    const net = fetch(r).then(res => { if (res.ok) { const cp = res.clone(); caches.open(VERSION).then(c => c.put(r, cp)); } return res; }).catch(() => m);
+    return m || net;
+  }));
 });

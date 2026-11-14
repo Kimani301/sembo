@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Osembo Comprehensive School</title>
-<meta name="theme-color" content="#8F1D2C"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png"><link rel="icon" href="icons/favicon.ico" sizes="any"><link rel="icon" type="image/svg+xml" href="icons/icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Osembo">
+<meta name="theme-color" content="#8F1D2C"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2214%22%20fill=%22%238F1D2C%22/%3E%3Ccircle%20cx=%2232%22%20cy=%2232%22%20r=%2224%22%20fill=%22%23FFF7F0%22%20stroke=%22%23C69A55%22%20stroke-width=%223%22/%3E%3Ctext%20x=%2232%22%20y=%2242%22%20text-anchor=%22middle%22%20font-family=%22Georgia,serif%22%20font-size=%2232%22%20font-weight=%22bold%22%20fill=%22%238F1D2C%22%3EO%3C/text%3E%3C/svg%3E"><link rel="apple-touch-icon" href="icons/apple-touch-icon.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Osembo">
 <style>
 :root{--on:#E3B94F;--lk:#1B2A4A;--bg:#F6F1E4;--card:#FFFDF8;--tx:#1F2A37;--mut:#6B6559;--pri:#1B2A4A;--acc:#B8892B;--line:#E3DAC4;--ok:#15803D;--okb:#DCFCE7;--no:#B91C1C;--nob:#FEE2E2;--pa:#A16207;--pab:#FEF3C7;--sf:Georgia,"Times New Roman",serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
@@ -503,9 +503,12 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px #C6A15B18}
 #toast{border-radius:12px;box-shadow:0 8px 24px #101d3230}
 /* Larger screens: turn the existing drawer into a permanent navigation rail. */
 @media(min-width:1000px){
-  .has-side{min-height:100vh}
+  .side{transform:none!important;left:0;width:258px;padding:22px 15px;box-shadow:5px 0 24px #14243d0a}
+  .side.open{box-shadow:5px 0 24px #14243d0a}
+  .scrim{display:none!important}
+  .has-side{margin-left:258px;min-height:100vh}
   .has-side .hd{padding-left:28px}
-  .side{width:290px;padding:22px 15px}
+  .has-side .hd .mnu{display:none!important}
   .has-side .tabs{top:72px;justify-content:flex-start;padding-left:22px}
   .has-side .tabs button{flex:0 0 auto;min-width:112px;padding:12px 20px!important}
   .has-side .wrap{max-width:1500px;padding:28px clamp(24px,3vw,48px) 100px}
@@ -550,19 +553,6 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px #C6A15B18}
   .card,.led,.adsec{box-shadow:none!important;break-inside:avoid}
 }
 
-
-/* ---- v4 neatness: menu button, drawer, top 3 ---- */
-.hd .mnu{display:flex!important}
-.hd .mnu svg{display:block}
-.sidehd{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
-.sidehd h5{margin:4px 6px 10px!important;flex:1}
-.sidex{flex:none;width:38px;height:38px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--tx);font-size:16px;cursor:pointer}
-.sidex:hover{background:#F3F0E8}
-.side{box-shadow:none}.side.open{box-shadow:8px 0 40px rgba(14,26,46,.35)}
-.t3h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.t3h h3{margin:0}
-.t3 .ix{font-size:22px;width:34px;text-align:center}
-@media(max-width:600px){.t3h .btn{width:100%}}
 </style>
 
 <style id="crimson-editorial-theme">
@@ -716,6 +706,52 @@ hr{border-color:#E8DCDD!important}
   color:#8F1D2C!important;border-color:#D2AD68!important;
 }
 </style>
+<style id="ai-assistant-css">
+/* ===== AI Assistant ===== */
+.ai-note{font-size:13.5px;color:var(--mut);margin:-6px 0 14px}
+.ai-err{border-left:4px solid var(--no);background:var(--nob);color:#5b1515}
+.ai-warn{border-left:4px solid var(--pa);background:var(--pab);color:#4a3508}
+.ai-ok{border-left:4px solid var(--ok);background:var(--okb);color:#0f3d24}
+.ai-row{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+@media(max-width:520px){.ai-row{grid-template-columns:1fr}}
+.ai-ck{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;margin:0 0 8px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);font-size:15px;color:var(--tx);cursor:pointer}
+.ai-ck input{width:auto;min-height:0;margin:3px 0 0;flex:none;accent-color:var(--pri)}
+.ai-ck.on{border-color:var(--acc);background:#FBF4E2}
+.ai-acts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.ai-spin{display:inline-block;width:16px;height:16px;border:3px solid var(--line);border-top-color:var(--acc);border-radius:50%;vertical-align:-3px;margin-right:8px;animation:aispin .8s linear infinite}
+@keyframes aispin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.ai-spin{animation:none}}
+.ai-steps{display:flex;gap:6px;margin:0 0 12px;font-size:13px;color:var(--mut);flex-wrap:wrap}
+.ai-steps b{color:var(--pri)}
+.ai-steps span{padding:4px 10px;border-radius:99px;border:1px solid var(--line);background:var(--card)}
+.ai-steps span.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.ai-steps span.on b{color:#fff}
+.ai-lib{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.ai-lib:first-of-type{border-top:0}
+.ai-lib .t{font-weight:700;color:var(--tx)}
+.ai-ans{margin:6px 0 0;padding:6px 10px;background:var(--okb);border-radius:8px;font-size:14px;color:#0f3d24}
+
+/* the printed / on-screen paper */
+.aipaper{font-family:Georgia,"Times New Roman",serif;color:#111;background:#fff;line-height:1.5;font-size:15px}
+.aipaper h4{font-size:16px;margin:18px 0 4px;color:#111}
+.aipaper p{margin:6px 0}
+.aipaper ul{margin:6px 0 6px 20px}
+.aipaper .aih{text-align:center;border-bottom:2px solid #111;padding-bottom:8px;margin-bottom:10px}
+.aipaper .aih b{font-size:20px}
+.aipaper .aim{font-size:14px;margin-top:2px}
+.aipaper .ainame{margin:10px 0 6px;font-size:14px}
+.aipaper ol.aiins{margin:6px 0 4px 20px;font-size:14px}
+.aipaper .aiq{display:grid;grid-template-columns:30px 1fr auto;gap:6px;margin:12px 0;break-inside:avoid;page-break-inside:avoid}
+.aipaper .aimk{font-size:13.5px;white-space:nowrap}
+.aipaper .aio{margin:2px 0 0 4px}
+.aipaper .ailn{margin-top:6px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 24px,#777 24px,#777 25px)}
+.aipaper table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+.aipaper td,.aipaper th{border:1px solid #444;padding:6px 8px;text-align:left;vertical-align:top}
+.aipaper th{background:#eee}
+.aipaper .aisec{font-weight:700;margin-top:16px;border-bottom:1px solid #999}
+.aipaper.screen{border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:10px}
+@media print{.aipaper{font-size:12.5pt}body.prc #pa .aipaper{padding:0}}
+</style>
 
 </head><body>
 <div id="app"></div><div id="modal"></div><div id="toast"></div><div id="pa"></div><div id="ft">developed by key_money</div>
@@ -868,14 +904,12 @@ function swap(id){const target=U(id);if(!target||target.suspended)return T("This
 
 /* ---------- main ---------- */
 const ICON='<svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8z"/></svg>';
-const tg=()=>{const s=$(".side"),o=s.classList.toggle("open");$(".scrim").classList.toggle("show",o);document.querySelectorAll(".mnu[aria-expanded]").forEach(b=>b.setAttribute("aria-expanded",o))};
-const closeSide=()=>{const s=document.querySelector(".side");if(s&&s.classList.contains("open"))tg()};
-addEventListener("keydown",e=>{if(e.key==="Escape")closeSide()});
+const tg=()=>{$(".side").classList.toggle("open");$(".scrim").classList.toggle("show")};
 const si=(k,l,i)=>`<button class="si ${grpTop(ui.tab)===k?"on":""}" onclick="go('${k}')"><span>${i}</span>${l}</button>`;
 const GRP={academics:["academics","marks","rank"],tt:["tt","rx"],adm:["adm","place","rights","log","erase"]},grpTop=t=>{for(const k in GRP)if(GRP[k].includes(t))return k;return t};
-const TI={tt:"\uD83D\uDDD3\uFE0F",home:"🏠",classes:"🏫",academics:"🎓",marks:"📝",rank:"🏆",fees:"💰",coll:"💵",scl:"📋",ann:"📢"},tab=(k,l)=>`<button class="${grpTop(ui.tab)===k?"on":""}" onclick="go('${k}')"><span class="ti">${TI[k]||""}</span><span>${l}</span></button>`;
+const TI={tt:"\uD83D\uDDD3\uFE0F",home:"🏠",classes:"🏫",academics:"🎓",marks:"📝",rank:"🏆",fees:"💰",coll:"💵",scl:"🏫",ann:"📢"},tab=(k,l)=>`<button class="${grpTop(ui.tab)===k?"on":""}" onclick="go('${k}')"><span class="ti">${TI[k]||""}</span><span>${l}</span></button>`;
 const HOUSE='<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z"/></svg>';
-function go(k){cm();closeSide();if(k==="coll")ui.ocId=null;if(k==="scl")ui.scc=null;if(ui.tab!==k)ui.c2=null;ui.tab=k;ui.q="";ui.hq="";ui.cq="";ui.ctq="";if(k==="classes"&&seeAll())ui.cp=null;if(k==="class"&&seeAll()){ui.grade=null;ui.cls=null}R();window.scrollTo(0,0)}
+function go(k){cm();if(k==="coll")ui.ocId=null;if(k==="scl")ui.scc=null;if(ui.tab!==k)ui.c2=null;ui.tab=k;ui.q="";ui.hq="";ui.cq="";ui.ctq="";if(k==="classes"&&seeAll())ui.cp=null;if(k==="class"&&seeAll()){ui.grade=null;ui.cls=null}R();window.scrollTo(0,0)}
 function home(){go("home")}
 function grpBar(){const g=grpTop(ui.tab);if(g===ui.tab&&!GRP[g])return"";const ad=adm(),own=!!me()&&me().role==="admin";let it=[];
   if(g==="academics")it=[["academics","Class results"],["marks","Enter marks"],...(ad?[["rank","Rank a list"]]:[])];
@@ -883,11 +917,11 @@ function grpBar(){const g=grpTop(ui.tab);if(g===ui.tab&&!GRP[g])return"";const a
   else if(g==="adm"&&ad)it=[["adm","Settings"],["place","Place students"],...(own?[["rights","Teacher rights"]]:[]),["log","Activity log"]];
   if(it.length<2)return"";
   return `<div class="seg" style="grid-template-columns:${it.length<=3?"repeat("+it.length+",minmax(0,1fr))":"repeat(auto-fit,minmax(112px,1fr))"}">${it.map(x=>`<button class="${ui.tab===x[0]?"on":""}" onclick="go('${x[0]}')">${x[1]}</button>`).join("")}</div>`}
-function vMain(){const u=me(),ad=adm(u),vw=isVw();if(vw){if(!["home","classes","attendance","class","fees","academics","marks","teachers","prof","leaders","sync","tt","rx","books","ann"].includes(ui.tab)&&!ctOk(ui.tab))ui.tab="home"}else if(!ad){ui.cls=u.cls||null;ui.grade=u.cls?u.cls.split(" ")[0]:null;if(!["home","classes","attendance","class","fees","academics","marks","prof","leaders","sms","sync","tt","rx","books","ann"].includes(ui.tab)&&!ctOk(ui.tab))ui.tab="home"}
-  const who=NOLOGIN?`<select onchange="handleWho(this.value)" style="width:auto;margin:0;padding:7px">${(ui.kmOwner?opts():opts().replace('value="'+ui.sess+'"','value="'+ui.sess+'" selected'))}</select>`:"";
-  return `<div class="has-side"><div class="hd"><div style="display:flex;align-items:center;gap:10px">${ui.tab!=="home"?'<button class="hm mnu" onclick="history.back()" aria-label="Back" style="font-size:26px;line-height:1">‹</button>':""}<button class="hm mnu" onclick="tg()" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div class="logo" onclick="home()" style="cursor:pointer"><div class="mono">O</div><div><div class="ttl">Osembo Comprehensive School</div><div style="font-size:12px;opacity:.9">${u.role==="admin"?"Administrator":ad?"Teacher · full access":u.cls?"Class teacher, "+u.cls:"Teacher · view only"}</div></div></div></div><div style="display:flex;gap:8px;align-items:center"><button class="hm" onclick="openSearch()" aria-label="Search students">${SRCH}</button></div></div>
+function vMain(){const u=me(),ad=adm(u),vw=isVw();if(vw){if(!["home","classes","attendance","class","fees","academics","marks","teachers","prof","leaders","sync","tt","rx","books","ann","ai"].includes(ui.tab)&&!ctOk(ui.tab))ui.tab="home"}else if(!ad){ui.cls=u.cls||null;ui.grade=u.cls?u.cls.split(" ")[0]:null;if(!["home","classes","attendance","class","fees","academics","marks","prof","leaders","sms","sync","tt","rx","books","ann","ai"].includes(ui.tab)&&!ctOk(ui.tab))ui.tab="home"}
+  const who=NOLOGIN?`<select onchange="handleWho(this.value)" style="width:auto;margin:0;padding:7px">${(ui.kmOwner?opts():opts().replace('value="'+ui.sess+'"','value="'+ui.sess+'" selected'))}</select>`:`<button class="btn g sm" onclick="logout()">Log out</button>`;
+  return `<div class="has-side"><div class="hd"><div style="display:flex;align-items:center;gap:10px">${ui.tab!=="home"?'<button class="hm mnu" onclick="history.back()" aria-label="Back" style="font-size:26px;line-height:1">‹</button>':""}<button class="hm mnu" onclick="tg()" aria-label="Menu" style="font-size:22px">☰</button><div class="logo" onclick="home()" style="cursor:pointer"><div class="mono">O</div><div><div class="ttl">Osembo Comprehensive School</div><div style="font-size:12px;opacity:.9">${u.role==="admin"?"Administrator":ad?"Teacher · full access":u.cls?"Class teacher, "+u.cls:"Teacher · view only"}</div></div></div></div><div style="display:flex;gap:8px;align-items:center"><button class="hm" onclick="openSearch()" aria-label="Search students">${SRCH}</button></div></div>
 <div class="tabs">${tab("home","Home")+tab("classes",ad||vw?"Classes":"My Class")+tab("academics","Results")+tab("fees","Fees")+ctBar()}</div>
-<div class="wrap">${pwBanner()}${fsBanner()}${vNotes()}${grpBar()}${ui.tab==="home"?vHome():ctOk(ui.tab)?vCT():ui.tab==="class"?vClassTab():ui.tab==="attendance"?vAttendance():ui.tab==="fees"?vFees():ui.tab==="academics"?vAcad():ui.tab==="marks"?vMarks():ui.tab==="rank"?vRank():ui.tab==="classes"?vClasses():ui.tab==="place"&&ad?vPlace():ui.tab==="rights"&&u.role==="admin"?vRights():ui.tab==="adm"&&ad?vAdm():ui.tab==="teachers"&&(ad||vw)?vTeachers():ui.tab==="log"&&ad?vLog():ui.tab==="prof"?vProf():ui.tab==="leaders"?vLeaders():ui.tab==="sms"?vSms():ui.tab==="sync"?vSyncF():ui.tab==="tt"?vTT():ui.tab==="rx"?vRX():ui.tab==="books"?vBooks():ui.tab==="ann"?vAnn():ui.tab==="coll"&&isOwnerAdm()?vColl():ui.tab==="erase"&&ad?vErase():vHome()}</div>${ui.tab==="classes"&&ui.cp&&canEdit(ui.cp)?`<button class="fab" onclick="addSt('${ui.cp}')" aria-label="Add student">+</button>`:""}</div><div class="scrim" onclick="tg()"></div><div class="side" role="navigation" aria-label="Menu"><div class="sidehd"><h5>Osembo Comprehensive School</h5><button class="sidex" type="button" onclick="tg()" aria-label="Close menu">✕</button></div><div class="m">Signed in as</div>${who}${si("attendance","Register","✅")+si("tt",ad?"Timetable":"My timetable","🗓️")+si("class","Remedial","🧾")+(ad||vw?si("teachers","Teachers","👩‍🏫"):"")+(ad?"":si("prof","My profile","🪪"))+si("leaders","Student leaders","🎖️")+si("books","Books","📚")+si("ann","Announcements","📢")+(isOwnerAdm()?si("coll","Other money","💵"):"")+si("sync","Sync devices","🔄")+(ad?si("sms","Broadcast SMS","✉️"):"")}${ad?si("adm","Admin","⚙️"):""}<div class="m">Account</div><button class="si" onclick="pwM()"><span>🔑</span>Change password</button><button class="si" onclick="logout()"><span>↩</span>Log out</button></div>${vPhoneGate()}`}
+<div class="wrap">${pwBanner()}${fsBanner()}${vNotes()}${grpBar()}${ui.tab==="home"?vHome():ctOk(ui.tab)?vCT():ui.tab==="class"?vClassTab():ui.tab==="attendance"?vAttendance():ui.tab==="fees"?vFees():ui.tab==="academics"?vAcad():ui.tab==="marks"?vMarks():ui.tab==="rank"?vRank():ui.tab==="classes"?vClasses():ui.tab==="place"&&ad?vPlace():ui.tab==="rights"&&u.role==="admin"?vRights():ui.tab==="adm"&&ad?vAdm():ui.tab==="teachers"&&(ad||vw)?vTeachers():ui.tab==="log"&&ad?vLog():ui.tab==="prof"?vProf():ui.tab==="leaders"?vLeaders():ui.tab==="sms"?vSms():ui.tab==="sync"?vSyncF():ui.tab==="tt"?vTT():ui.tab==="rx"?vRX():ui.tab==="books"?vBooks():ui.tab==="ann"?vAnn():ui.tab==="ai"?vAI():ui.tab==="coll"&&isOwnerAdm()?vColl():ui.tab==="erase"&&ad?vErase():vHome()}</div>${ui.tab==="classes"&&ui.cp&&canEdit(ui.cp)?`<button class="fab" onclick="addSt('${ui.cp}')" aria-label="Add student">+</button>`:""}</div><div class="scrim" onclick="tg()"></div><div class="side"><h5>Osembo Comprehensive School</h5><div class="m">Signed in as</div>${who}${si("attendance","Register","✓")+si("tt",ad?"Timetable":"My timetable","🗓️")+si("class","Remedial","💰")+(ad||vw?si("teachers","Teachers","👩‍🏫"):"")+(ad?"":si("prof","My profile","🪪"))+si("leaders","Student leaders","🎖️")+si("books","Books","📚")+si("ann","Announcements","📢")+si("ai","AI Assistant","✨")+(isOwnerAdm()?si("coll","Other money","💵"):"")+si("sync","Sync devices","🔄")+(ad?si("sms","Broadcast SMS","✉️"):"")}${ad?si("adm","Admin","⚙️"):""}<div class="m">Account</div><button class="si" onclick="pwM()"><span>🔑</span>Change password</button><button class="si" onclick="logout()"><span>↩</span>Log out</button></div>${vPhoneGate()}`}
 function remChips(){return `<div class="chips sc"><button class="chip ${!ui.cls?"on":""}" onclick="setC(null)">All classes</button>${CL.map(c=>`<button class="chip ${ui.cls===c?"on":""}" onclick="setC('${c}')">${c}</button>`).join("")}</div>`}
 function vClassTab(){const ad=seeAll();return `<h2 class="sec">Remedial</h2>`+(ad?remChips():"")+(ad&&!ui.cls?vRemAll():vView())}
 function recentReceipts(){const u=me(),R=(S.receipts||[]).filter(r=>seeAll()||r.class===u.cls).slice(-5).reverse();if(!R.length)return"";
@@ -1187,7 +1221,6 @@ function vAcad(){const u=me(),ad=seeAll();ui.ac=ad?(ui.ac||CL[0]):u.cls;ui.ay=ui
   row=o=>{const p=o.n&&ad?done.findIndex(x=>x.m===o.m)+1:"–";return `<div class="lr" onclick="det('${o.s.id}')"><span class="ix">${p}</span><div style="flex:1;min-width:0"><b>${esc(o.s.name)}</b><div class="m">Adm. ${esc(o.s.adm||"—")}${o.n?" · Total "+rtot(o.r)+"/"+MAXT+" · "+o.n+"/"+SUBJ.length+" subjects":" · No results yet"}</div></div>${o.n?`<div style="text-align:right"><b>${r1(o.m)}%</b><div><span class="pill ${gk(gr(o.m))}">${gr(o.m)}</span></div></div>`:""}</div>`};
   return `<div class="pghd"><h2 class="sec">Class results</h2><div class="m">${esc(c)} · ${esc(e)} · Term ${t}, ${y}</div></div>${examBar()}
 <div class="card" style="border-top:3px solid var(--acc)"><div class="st"><div><b>${done.length?r1(cmean)+"%":"–"}</b><span>Class mean</span></div><div><b>${done.length}/${rows.length}</b><span>Results in</span></div>${ad?`<div><b>${done.length?esc(done[0].s.name.split(" ")[0]):"–"}</b><span>Top student</span></div>`:""}</div></div>
-${(()=>{const T3=rankRows(c,y,t,e).slice(0,3),md=["🥇","🥈","🥉"];return `<div class="card t3"><div class="t3h"><h3>🥇 Top 3 in ${esc(c)}</h3><button class="btn s sm" onclick="top3M()">Top 3 in every class</button></div>`+(T3.length?`<div class="led one">`+T3.map((o,i)=>`<div class="lr" onclick="det('${o.s.id}')"><span class="ix">${md[i]}</span><div style="flex:1;min-width:0"><b>${esc(o.s.name)}</b><div class="m">Adm. ${esc(o.s.adm||"—")} · Total ${rtot(o.r)}/${MAXT}</div></div><div style="text-align:right"><b>${r1(o.m)}%</b><div><span class="pill ${gk(gr(o.m))}">${gr(o.m)}</span></div></div></div>`).join("")+`</div>`:`<div class="m">No ${esc(e)} results for this class yet.</div>`)+`</div>`})()}
 ${ad?bestCard(c):""}${(()=>{const b=[];if(canMarks(c)&&(can||isVw()))b.push(`<button class="btn" onclick="go('marks')">📝 Enter marks</button>`);if(ad&&can||isVw()){b.push(`<button class="btn s" onclick="insM()">🏆 Rank &amp; insights</button>`)}if(ad&&can){b.push(`<button class="btn s" onclick="printAllRC(ui.ac)">🖨 Print report cards</button>`,`<button class="btn g" onclick="ui.bc=ui.ac;bcM()">📲 Send to parents</button>`,`<button class="btn s" onclick="pubExam(ui.ac)">📤 Publish to parents</button>`)}return b.length?`<div class="card"><h3>Actions</h3><div class="bgrid">${b.join("")}</div></div>`:""})()}
 <div class="card"><h3>Downloads</h3><div class="bgrid"><button class="btn" onclick="dlRes('${c}')">⬇ ${esc(c)} results (PDF)</button><button class="btn s" onclick="dlResCsv('${c}')">⬇ ${esc(c)} (CSV)</button>${ad?`<button class="btn s" onclick="dlRes('')">⬇ All classes (PDF)</button>`:""}<button class="btn s" onclick="top3M()">🥇 Top 3 per class</button>${adm()?`<button class="btn s" onclick="go('place')">📋 Place students</button>`:""}</div><div class="m" style="margin-top:10px">Each class gets its own PDF (for example 7Athi). Downloads use the year, term and exam selected above.</div></div>
 ${sa.length?`<div class="card"><h3>Subject averages</h3><div class="sg">${sa.map(x=>`<div><div style="display:flex;justify-content:space-between"><span>${esc(x[0])}</span><b>${r1(x[1])}</b></div><div class="bar" style="margin:4px 0 12px;--c:${COL[c]}"><i style="width:${x[1]}%"></i></div></div>`).join("")}</div></div>`:""}
@@ -1983,7 +2016,7 @@ const RESP=["Volleyball","Football","Handball","Basketball","Rugby","Music","Chr
 function subjOf(u){return SUBJ.map(x=>({n:x[1],c:CL.filter(c=>tOf(x[0],c)&&tk(tOf(x[0],c))===tk(u.name))})).filter(o=>o.c.length)}
 function profCard(u){const S2=subjOf(u);return `<div class="card" style="border-top:4px solid var(--acc)"><div style="font:700 22px var(--sf)">${esc(u.name)}</div><div class="m">${u.phone?esc(u.phone):"No phone saved"}</div><div style="margin:10px 0 4px"><span class="pill ${u.cls?"":"pa"}">${u.cls?"Class teacher · "+esc(u.cls):"Not a class teacher"}</span></div><div class="m" style="margin-top:10px"><b>Subjects taught</b></div>${S2.length?S2.map(o=>`<div>${esc(o.n)} <span class="m">· ${o.c.join(", ")}</span></div>`).join(""):`<div class="m">None assigned yet</div>`}<div class="m" style="margin-top:10px"><b>In charge of</b></div>${(u.resp||[]).length?`<div class="chips">${u.resp.map(r=>`<span class="pill">${esc(r)}</span>`).join("")}</div>`:`<div class="m">Nothing assigned</div>`}</div>`}
 function vProf(){const u=me();if(adm(u))return vTeachers();return `<h2 class="sec">My profile</h2>${profCard(u)}<div class="m">Only the admin can change these details.</div>${u.cls?vSms().replace('<h2 class="sec">Broadcast SMS</h2>','<h2 class="sec" style="margin-top:22px">✉️ Message parents of '+esc(u.cls)+'</h2>'):""}`}
-function vHomeT(u){const A=(S.announcements||[]).filter(a=>!a.cls).slice(-5).reverse(),S2=subjOf(u);return `<div class="card" style="border-top:4px solid var(--acc)"><h3>Welcome, ${esc(u.name)}</h3><div class="m">${S2.length?"You teach: "+S2.map(o=>o.n+" ("+o.c.join(", ")+")").join("; "):"No subjects assigned yet. Ask the admin to assign you."}</div>${S2.length&&u.marks!==false?`<button class="btn sm" style="margin-top:10px" onclick="go('marks')">Enter marks</button>`:""}${u.cls?`<button class="btn g sm" style="margin-top:10px;margin-left:6px" onclick="go('prof')">✉️ Message parents</button>`:""}</div></div>`}
+function vHomeT(u){const A=(S.announcements||[]).filter(a=>!a.cls).slice(-5).reverse(),S2=subjOf(u);return `<div class="card" style="border-top:4px solid var(--acc)"><h3>Welcome, ${esc(u.name)}</h3><div class="m">${S2.length?"You teach: "+S2.map(o=>o.n+" ("+o.c.join(", ")+")").join("; "):"No subjects assigned yet. Ask the admin to assign you."}</div>${S2.length&&u.marks!==false?`<button class="btn sm" style="margin-top:10px" onclick="go('marks')">Enter marks</button>`:""}${u.cls?`<button class="btn g sm" style="margin-top:10px;margin-left:6px" onclick="go('prof')">✉️ Message parents</button>`:""}<button class="btn s sm" style="margin-top:10px;margin-left:6px" onclick="go('ai')">✨ AI Assistant</button></div></div>`}
 function vTeachers(){if(!seeAll())return"";const ad=isAd(),pa=me().role==="admin",T2=S.users.filter(u=>u.role==="teacher");
   return `<h2 class="sec">Teachers</h2>${ad?`<div class="card"><h3>Add a teacher</h3><label>Full name</label><input id="tn1"><label>Phone (optional)</label><input id="tp1" inputmode="tel" placeholder="07XX XXX XXX">${pa?`<label>Password (leave empty to create one)</label><input id="tpw1" autocomplete="off">`:""}<button class="btn" onclick="addTeacher()">Add teacher</button><p class="m">A teacher does not need a class. Open their profile to make them a class teacher and set responsibilities. Subjects are assigned under Timetable, Who teaches what. ${pa?"A password is created automatically. It is shown to you once the teacher is added, so you can share it.":"The admin sets the teacher’s password."}</p></div>`:""}<h3>All teachers (${T2.length})</h3>`+
   T2.map(u=>{const S2=subjOf(u);return `<div class="card row" style="--c:${COL[u.cls]||"var(--acc)"};flex-wrap:wrap"><div style="flex:1;min-width:150px"><b>${esc(u.name)}</b> <span class="m">${u.cls?"Class teacher · "+u.cls:"Subject teacher"}</span><div class="m">${S2.length?esc(S2.map(o=>o.n).join(", ")):"No subjects yet"}${(u.resp||[]).length?" · "+esc(u.resp.join(", ")):""}</div><div class="m">${pa?"🔑 Password: <b>"+(u.pass?esc(u.pass):u.ph?"set by the teacher (hidden)":"not set")+"</b>":hasPw(u)?"Active":"No password yet"}${u.phone?" · "+esc(u.phone):""}</div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn s sm" onclick="profM('${u.id}')">${ad?"Profile":"View profile"}</button>${ad?`${pa?`<button class="btn s sm" onclick="pwTM('${u.id}')">🔑 Password</button>`:""}<button class="btn s sm" style="color:var(--no)" onclick="rmTeacher('${u.id}')">Remove</button>`:""}</div></div>`}).join("")}
@@ -2266,12 +2299,12 @@ function secSetPw(){if(!isOwnerAdm())return T("Only the admin can do this");cons
 function secResetPw(){if(!isOwnerAdm())return T("Only the admin can do this");const u=S.users.find(x=>x.role==="secretary");if(!u)return;
   pwIssue(u,"kthuo");u.own=0;LOG("Secretary password reset");save();R();T("Secretary password is now kthuo")}
 function vSecMain(){const T4=["fees","coll","scl","ann"];if(!T4.includes(ui.tab))ui.tab="fees";
-  return `<div class="has-side"><div class="hd"><div style="display:flex;align-items:center;gap:10px">${ui.tab!=="home"?'<button class="hm mnu" onclick="history.back()" aria-label="Back" style="font-size:26px;line-height:1">‹</button>':""}<button class="hm mnu" onclick="tg()" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div class="logo"><div class="mono">O</div><div><div class="ttl">Osembo Comprehensive School</div><div style="font-size:12px;opacity:.9">Secretary</div></div></div></div><div style="display:flex;gap:8px;align-items:center"><button class="btn g sm" onclick="logout()">Log out</button></div></div>
+  return `<div class="has-side"><div class="hd"><div style="display:flex;align-items:center;gap:10px">${ui.tab!=="home"?'<button class="hm mnu" onclick="history.back()" aria-label="Back" style="font-size:26px;line-height:1">‹</button>':""}<button class="hm mnu" onclick="tg()" aria-label="Menu" style="font-size:22px">☰</button><div class="logo"><div class="mono">O</div><div><div class="ttl">Osembo Comprehensive School</div><div style="font-size:12px;opacity:.9">Secretary</div></div></div></div><div style="display:flex;gap:8px;align-items:center"><button class="btn g sm" onclick="logout()">Log out</button></div></div>
 <div class="tabs">${tab("fees","Fees")+tab("coll","Other money")+tab("scl","Class lists")+tab("ann","Announcements")}</div>
-<div class="wrap">${ui.tab==="fees"?vFees():ui.tab==="coll"?vColl():ui.tab==="scl"?vSecClasses():vAnn()}</div></div><div class="scrim" onclick="tg()"></div><div class="side" role="navigation" aria-label="Menu"><div class="sidehd"><h5>Osembo Comprehensive School</h5><button class="sidex" type="button" onclick="tg()" aria-label="Close menu">✕</button></div><div class="m">Signed in as Secretary</div><div class="m">Account</div><button class="si" onclick="pwM()"><span>🔑</span>Change password</button><button class="si" onclick="logout()"><span>↩</span>Log out</button></div>`}
+<div class="wrap">${ui.tab==="fees"?vFees():ui.tab==="coll"?vColl():ui.tab==="scl"?vSecClasses():vAnn()}</div></div><div class="scrim" onclick="tg()"></div><div class="side"><h5>Osembo Comprehensive School</h5><div class="m">Signed in as Secretary</div>${si("fees","Fees","💰")+si("coll","Other money","💵")+si("scl","Class lists","🏫")+si("ann","Announcements","📢")}<div class="m">Account</div><button class="si" onclick="pwM()"><span>🔑</span>Change password</button><button class="si" onclick="logout()"><span>↩</span>Log out</button></div>`}
 /* ----- class lists (read only) and empty class list downloads ----- */
 function vSecClasses(){if(ui.scc&&CL.includes(ui.scc))return vSecCP(ui.scc);
-  return `<h2 class="sec">📋 Class lists</h2><div class="m" style="margin-bottom:10px">Tap a class to see its students. You can download an empty class list (names with blank columns) to print or fill in.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn s sm" onclick="blankList('')">⬇ All classes, empty lists (Excel)</button></div><div class="cgrid">`+CL.map(c=>`<button class="pick" style="--c:${COL[c]}" onclick="ui.scc='${c}';ui.cq='';R()"><div class="av">${ICON}</div><div style="min-width:0"><h4>${c}</h4><div class="m">Class teacher: <b>${esc(clsT(c).name)}</b></div><div class="m">${inCls(c).length} students</div></div><span class="go">›</span></button>`).join("")+`</div>`}
+  return `<h2 class="sec">🏫 Class lists</h2><div class="m" style="margin-bottom:10px">Tap a class to see its students. You can download an empty class list (names with blank columns) to print or fill in.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="btn s sm" onclick="blankList('')">⬇ All classes, empty lists (Excel)</button></div><div class="cgrid">`+CL.map(c=>`<button class="pick" style="--c:${COL[c]}" onclick="ui.scc='${c}';ui.cq='';R()"><div class="av">${ICON}</div><div style="min-width:0"><h4>${c}</h4><div class="m">Class teacher: <b>${esc(clsT(c).name)}</b></div><div class="m">${inCls(c).length} students</div></div><span class="go">›</span></button>`).join("")+`</div>`}
 function secList(c){const q=(ui.cq||"").trim().toLowerCase(),A=inCls(c),L=A.filter(s=>!q||s.name.toLowerCase().includes(q)||String(s.adm||"").toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name));
   if(!L.length)return `<div class="card m">${A.length?"No student matches.":"No students in this class yet."}</div>`;
   return `<div class="m" style="margin-bottom:6px">${L.length} students</div><div class="led">`+L.map((s,i)=>`<div class="lr" style="cursor:default"><span class="ix">${i+1}</span><div style="flex:1;min-width:0"><b>${esc(s.name)}</b><div class="m">Adm. ${esc(s.adm||"—")} · ${esc(s.parent||"No parent")}${s.phone?" · "+esc(s.phone):""}</div></div></div>`).join("")+`</div>`}
@@ -3218,26 +3251,199 @@ window.addEventListener("popstate",e=>{if(!nav.on)return;const s=e.state||{},mo=
   if(JSON.stringify(v)===nSig()){history.back();return}
   ui.tab=v.tab;ui.cls=v.cls;ui.grade=v.grade;ui.cp=v.cp;ui.q="";nav.skip=1;try{R()}finally{nav.skip=0}nav.sig=nSig()});
 (async()=>{await dbBoot();load();try{let n=0;S.users.forEach(u=>{if(u.role==="teacher"&&!hasPw(u)){u.pass=pw6();n++}});if(n)save()}catch(e){}try{let x=sessionStorage.getItem("os_sess"),u=x&&U(x);if(!u){x=localStorage.getItem("os_keep");u=x&&U(x);if(u&&(u.role!=="teacher"||adm(u))){u=null;localStorage.removeItem("os_keep")}}if(u&&(u.role==="admin"||u.role==="teacher"||u.role==="secretary")&&hasPw(u)&&!u.suspended){ui.sess=x;ui.week=S.week;pwFill();if(u.role==="teacher"&&!adm(u))ui.cls=u.cls}}catch(e){}R();navInit();setInterval(purgePub,36e5);})();
-</script><style>
-#osInst{position:fixed;left:14px;bottom:max(14px,env(safe-area-inset-bottom));z-index:9998;display:none;align-items:center;gap:8px;padding:10px 14px 10px 10px;border:0;border-radius:999px;background:#8F1D2C;color:#fff;font:600 14px system-ui,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.3);cursor:pointer}
-#osInst img{width:26px;height:26px;border-radius:7px}
-#osInst.show{display:flex}
-#osIosTip{position:fixed;inset:0;z-index:9999;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.45)}
-#osIosTip.show{display:flex}
-#osIosTip div{background:#fff;color:#5A0E1A;max-width:420px;width:100%;margin:12px;padding:18px;border-radius:16px;font:15px/1.5 system-ui,sans-serif}
-#osIosTip button{margin-top:12px;width:100%;padding:11px;border:0;border-radius:10px;background:#8F1D2C;color:#fff;font:600 15px system-ui,sans-serif}
-@media print{#osInst{display:none!important}}
-</style>
-<button id="osInst" type="button" aria-label="Install the Osembo app"><img src="icons/icon-192.png" alt="">Install app</button>
-<div id="osIosTip" role="dialog" aria-modal="true"><div><b>Install on iPhone or iPad</b><br>Tap the <b>Share</b> button in Safari, then choose <b>Add to Home Screen</b>.<button type="button" id="osIosOk">Got it</button></div></div>
-<script>(function(){var b=document.getElementById("osInst"),t=document.getElementById("osIosTip"),dp=null;
-var done=function(){return matchMedia("(display-mode: standalone)").matches||navigator.standalone===true};
-var ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
-if(done())return;
-addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;b.classList.add("show")});
-addEventListener("appinstalled",function(){dp=null;b.classList.remove("show")});
-if(ios&&!done())b.classList.add("show");
-b.onclick=function(){if(dp){dp.prompt();dp.userChoice.finally(function(){dp=null;b.classList.remove("show")})}else if(ios){t.classList.add("show")}};
-document.getElementById("osIosOk").onclick=function(){t.classList.remove("show")};
-})()</script>
-<script>if("serviceWorker" in navigator&&location.protocol!=="file:")addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script></body></html>
+</script><script id="ai-assistant">
+/* ===== AI ASSISTANT: notes, questions and exams for teachers (Firebase AI Logic + Gemini) =====
+   Only the grade, subject and topic words are sent to the AI. No student names, marks or fees ever leave the app this way. */
+const AI_SDK="12.4.0",AI_MODEL="gemini-3.5-flash-lite";
+var aiLib=null;
+const aiSYS="You are a teaching assistant for a Kenyan Junior School that follows the Competency Based Curriculum (CBC, Grades 7 to 9, KICD). Write clear, accurate, age-appropriate material for the learners' grade, in simple English, using Kenyan names, places, money (KSh) and everyday examples where they fit. If the subject is Kiswahili, write everything in Kiswahili. Never invent facts. Keep Religious Education respectful and neutral between faiths. When asked for JSON, reply with valid JSON only: no text before or after it and no code fences.";
+const aiOk=()=>{const u=me();return !!u&&(u.role==="admin"||u.role==="teacher")};
+const aiAdmin=()=>{const u=me();return !!u&&u.role==="admin"};
+const aiGrades=()=>[...new Set(CL.map(gradeOf))].filter(Boolean).sort((a,b)=>parseInt(a)-parseInt(b));
+const aiSubs=()=>SUBJ.map(x=>x[1]);
+const aiCfg=()=>S.aiCfg||{};
+const aiReady=()=>{const c=aiCfg();return !!(c.apiKey&&c.appId&&c.projectId)};
+function aiSt(){if(!ui.ai){const u=me(),g=aiGrades();ui.ai={tool:"notes",grade:(u&&u.cls?gradeOf(u.cls):g[0])||"7",subj:aiSubs()[0]||"",topic:"",detail:"standard",qn:10,qtype:"mixed",diff:"mixed",ans:true,revq:true,exName:"End of term exam",marks:50,mins:60,types:{mcq:true,short:true,struct:true,essay:false},step:1,topics:[],picked:{},busy:"",out:null,err:"",ex:null,view:"paper",cfgTest:""}}return ui.ai}
+const aiGL=g=>"Grade "+g;
+
+/* ---------- talking to the AI ---------- */
+async function aiModel(json){
+  const c=aiCfg();if(!aiReady())throw new Error("NOCFG");
+  if(navigator.onLine===false)throw new Error("OFFLINE");
+  if(!aiLib){const b="https://www.gstatic.com/firebasejs/"+AI_SDK+"/";aiLib=Promise.all([import(b+"firebase-app.js"),import(b+"firebase-ai.js")]).catch(()=>{aiLib=null;throw new Error("LIB")})}
+  const [A,B]=await aiLib;
+  const key=[c.apiKey,c.appId,c.projectId].join("|");let h=0;for(let i=0;i<key.length;i++)h=(h*31+key.charCodeAt(i))|0;
+  const nm="osembo-ai-"+(h>>>0).toString(36);
+  let app=A.getApps().find(a=>a.name===nm);
+  if(!app)app=A.initializeApp({apiKey:c.apiKey,authDomain:c.authDomain||c.projectId+".firebaseapp.com",projectId:c.projectId,storageBucket:c.storageBucket||undefined,messagingSenderId:c.messagingSenderId||undefined,appId:c.appId},nm);
+  const ai=B.getAI(app,{backend:new B.GoogleAIBackend()});
+  return B.getGenerativeModel(ai,{model:c.model||AI_MODEL,systemInstruction:aiSYS,generationConfig:{temperature:.6,responseMimeType:json?"application/json":"text/plain"}});
+}
+async function aiAsk(prompt,json){
+  const m=await aiModel(json);
+  const r=await Promise.race([m.generateContent(prompt),new Promise((_,no)=>setTimeout(()=>no(new Error("TIMEOUT")),90000))]);
+  return r.response.text();
+}
+function aiJson(t){t=String(t||"");const a=t.search(/[\[{]/),e=Math.max(t.lastIndexOf("}"),t.lastIndexOf("]"));if(a<0||e<a)throw new Error("BADJSON");try{return JSON.parse(t.slice(a,e+1))}catch(x){throw new Error("BADJSON")}}
+function aiErr(e){const m=String(e&&e.message||e);
+  if(m==="NOCFG")return "The AI is not set up yet. Ask the admin to set it up in AI Assistant, Setup.";
+  if(m==="OFFLINE")return "The AI needs internet. Connect to the internet and try again.";
+  if(m==="LIB")return "Could not load the AI. Check your internet and try again.";
+  if(m==="TIMEOUT")return "The AI took too long to answer. Try again.";
+  if(m==="BADJSON")return "The AI's answer could not be read. Tap the button again to retry.";
+  if(/429|quota|rate.?limit|RESOURCE_EXHAUSTED|too many/i.test(m))return "The AI is busy right now (free limit reached). Wait a minute, then try again.";
+  if(/API_KEY|API key|key not valid/i.test(m))return "The AI key is not valid. The admin should paste the Firebase web app settings again in Setup.";
+  if(/not enabled|has not been used|disabled|AI Logic|PERMISSION_DENIED|403/i.test(m))return "Firebase AI Logic is not switched on for this project. The admin should turn it on in the Firebase console (Build, AI Logic, Get started, Gemini Developer API).";
+  if(/not found|404|model/i.test(m))return "The AI model name was not accepted. The admin can change it in Setup.";
+  return "The AI could not finish. "+m.slice(0,160)}
+async function aiRun(label,fn){const s=aiSt();if(s.busy)return;s.busy=label;s.err="";aiR();try{await fn()}catch(e){s.err=aiErr(e)}s.busy="";aiR()}
+
+/* ---------- small helpers ---------- */
+const aiNum=(v,d,lo,hi)=>{v=parseInt(v,10);if(!(v>=lo))v=d;return Math.min(v,hi)};
+function aiMd(t){const L=esc(t).split("\n");let o="",ul=0;const cl=()=>{if(ul){o+="</ul>";ul=0}},inl=s=>s.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[\s(])\*(?!\s)([^*]+?)\*/g,"$1<i>$2</i>");
+  for(let l of L){l=l.trim();if(!l){cl();continue}let m;
+    if(m=l.match(/^#{1,6}\s+(.*)/)){cl();o+="<h4>"+inl(m[1])+"</h4>"}
+    else if(m=l.match(/^[-*•]\s+(.*)/)){if(!ul){o+="<ul>";ul=1}o+="<li>"+inl(m[1])+"</li>"}
+    else{cl();o+="<p>"+inl(l)+"</p>"}}
+  cl();return o}
+const aiQNorm=q=>{if(!q||typeof q!=="object"||!String(q.q||"").trim())return null;const o=Array.isArray(q.options)?q.options.map(x=>String(x).replace(/^\s*[A-Da-d][.)]\s+/,"")).filter(Boolean).slice(0,6):[];
+  return{type:String(q.type||(o.length?"mcq":"short")),q:String(q.q).trim(),options:o,answer:String(q.answer==null?"":q.answer).trim(),scheme:String(q.scheme||"").trim(),marks:aiNum(q.marks,1,1,40)}};
+const aiLet=i=>String.fromCharCode(65+i);
+function aiSum(ex){let n=0;(ex.sections||[]).forEach(s=>s.questions.forEach(q=>n+=q.marks));return n}
+
+/* ---------- what the paper, notes and questions look like ---------- */
+function aiQHtml(list,withAns){return list.map((q,i)=>`<div class="aiq"><span>${i+1}.</span><div>${esc(q.q)}${q.options.map((o,j)=>`<div class="aio">${aiLet(j)}. ${esc(o)}</div>`).join("")}${withAns&&q.answer?`<div class="ai-ans"><b>Answer:</b> ${esc(q.answer)}</div>`:""}${!withAns&&!q.options.length?`<div class="ailn" style="height:${Math.min(4,q.marks+1)*25}px"></div>`:""}</div><span class="aimk">${q.marks?"("+q.marks+" mark"+(q.marks>1?"s":"")+")":""}</span></div>`).join("")}
+function aiHead(title,meta){return `<div class="aih"><b>Osembo Comprehensive School</b><div>${esc(title)}</div><div class="aim">${meta.map(esc).join(" · ")}</div></div>`}
+function aiPaper(ex){let n=0;const m=ex.meta,tot=aiSum(ex);
+  let h=`<div class="aipaper">${aiHead(ex.title||m.name,[aiGL(m.grade),m.subj,"Time: "+m.mins+" minutes","Total marks: "+tot])}<div class="ainame">Name: ______________________ &nbsp; Adm No: __________ &nbsp; Class: ________</div>`;
+  if(ex.instructions&&ex.instructions.length)h+=`<div class="aisec">Instructions</div><ol class="aiins">${ex.instructions.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`;
+  ex.sections.forEach(sc=>{const sm=sc.questions.reduce((a,q)=>a+q.marks,0);h+=`<div class="aisec">${esc(sc.name)} (${sm} marks)</div>${sc.note?`<p><i>${esc(sc.note)}</i></p>`:""}`;
+    sc.questions.forEach(q=>{n++;h+=`<div class="aiq"><span>${n}.</span><div>${esc(q.q)}${q.options.map((o,j)=>`<div class="aio">${aiLet(j)}. ${esc(o)}</div>`).join("")}${q.options.length?"":`<div class="ailn" style="height:${Math.min(5,q.marks+1)*25}px"></div>`}</div><span class="aimk">(${q.marks} mark${q.marks>1?"s":""})</span></div>`})});
+  return h+`<p style="text-align:center;margin-top:18px"><b>END OF PAPER</b></p></div>`}
+function aiScheme(ex){let n=0;const m=ex.meta;
+  let h=`<div class="aipaper">${aiHead("Marking scheme: "+(ex.title||m.name),[aiGL(m.grade),m.subj,"Total marks: "+aiSum(ex)])}<table><tr><th style="width:36px">No.</th><th>Answer and marking points</th><th style="width:50px">Marks</th></tr>`;
+  ex.sections.forEach(sc=>{h+=`<tr><td colspan="3"><b>${esc(sc.name)}</b></td></tr>`;sc.questions.forEach(q=>{n++;h+=`<tr><td>${n}</td><td>${esc(q.answer)}${q.scheme?`<div style="margin-top:3px;color:#333">${esc(q.scheme)}</div>`:""}</td><td>${q.marks}</td></tr>`})});
+  return h+"</table></div>"}
+function aiNotesDoc(o){return `<div class="aipaper">${aiHead(o.topic,[aiGL(o.grade),o.subj,"Notes"])}${aiMd(o.text)}</div>`}
+function aiQDoc(o,withAns){return `<div class="aipaper">${aiHead("Questions: "+o.topic,[aiGL(o.grade),o.subj])}${aiQHtml(o.list,withAns)}</div>`}
+function aiPlain(kind){const s=aiSt();
+  if(kind==="notes"&&s.out)return s.out.topic+"\n"+aiGL(s.out.grade)+" · "+s.out.subj+"\n\n"+s.out.text;
+  if(kind==="questions"&&s.out)return "Questions: "+s.out.topic+"\n\n"+s.out.list.map((q,i)=>(i+1)+". "+q.q+"\n"+q.options.map((o,j)=>"   "+aiLet(j)+". "+o).join("\n")+(s.ans&&q.answer?"\n   Answer: "+q.answer:"")).join("\n\n");
+  if(kind==="exam"&&s.ex){let n=0,t=s.ex.title+"\n"+aiGL(s.ex.meta.grade)+" · "+s.ex.meta.subj+" · "+s.ex.meta.mins+" minutes · "+aiSum(s.ex)+" marks\n";
+    s.ex.sections.forEach(sc=>{t+="\n"+sc.name+"\n";sc.questions.forEach(q=>{n++;t+="\n"+n+". "+q.q+" ("+q.marks+")\n"+q.options.map((o,j)=>"   "+aiLet(j)+". "+o).join("\n")+(q.options.length?"\n":"")})});
+    n=0;t+="\n\nMARKING SCHEME\n";s.ex.sections.forEach(sc=>sc.questions.forEach(q=>{n++;t+="\n"+n+". "+q.answer+(q.scheme?" - "+q.scheme:"")+" ["+q.marks+"]"}));return t}
+  return ""}
+
+/* ---------- actions on a finished result ---------- */
+function aiCur(kind){const s=aiSt();return kind==="exam"?s.ex:s.out}
+function aiHtmlFor(kind,part){const s=aiSt();
+  if(kind==="notes")return aiNotesDoc(s.out);
+  if(kind==="questions")return aiQDoc(s.out,s.ans);
+  return part==="scheme"?aiScheme(s.ex):aiPaper(s.ex)}
+function aiPrint(kind,part){if(!aiCur(kind))return;printRC(aiHtmlFor(kind,part))}
+function aiWord(kind,part){if(!aiCur(kind))return;const s=aiSt(),nm=kind==="exam"?(s.ex.meta.subj+"-G"+s.ex.meta.grade+(part==="scheme"?"-marking-scheme":"-exam")):kind==="notes"?"notes-"+s.out.topic:"questions-"+s.out.topic;
+  dl(nm.replace(/[^\w\-]+/g,"_").slice(0,60)+".doc",'<html><head><meta charset="utf-8"><style>body{font-family:Georgia,serif;font-size:12pt}table{border-collapse:collapse;width:100%}td,th{border:1px solid #444;padding:5px;vertical-align:top}.aih{text-align:center;border-bottom:2px solid #000}.aisec{font-weight:bold;margin-top:14px;border-bottom:1px solid #999}.aiq{margin:10px 0}.ailn{border-bottom:1px solid #777;height:22px}</style></head><body>'+aiHtmlFor(kind,part).replace(/<div class="aiq"><span>(\d+)\.<\/span>/g,'<div class="aiq"><b>$1.</b> ')+"</body></html>","application/msword")}
+function aiCopy(kind){const t=aiPlain(kind);if(!t)return;try{navigator.clipboard.writeText(t).then(()=>T("Copied"),()=>T("Could not copy"))}catch(e){T("Could not copy")}}
+function aiSave(kind){const s=aiSt(),u=me(),d=aiCur(kind);if(!d||!u)return;S.aiDocs=S.aiDocs||[];
+  if(S.aiDocs.length>=150)return T("The library is full. Delete some saved items first.");
+  const data=kind==="exam"?{ex:s.ex}:s.out,title=kind==="exam"?(s.ex.title||s.ex.meta.name):s.out.topic,g=kind==="exam"?s.ex.meta.grade:s.out.grade,sj=kind==="exam"?s.ex.meta.subj:s.out.subj;
+  if(JSON.stringify(data).length>180000)return T("This item is too large to save");
+  S.aiDocs.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),kind,title,grade:g,subj:sj,by:u.id,byName:u.name,t:Date.now(),data});
+  LOG("Saved AI "+kind+": "+title);save();T("Saved to the library");aiR()}
+function aiOpen(id){const d=(S.aiDocs||[]).find(x=>x.id===id);if(!d)return;const s=aiSt();s.err="";
+  if(d.kind==="exam"){s.tool="exam";s.ex=d.data.ex;s.step=4;s.view="paper"}else{s.tool=d.kind;s.out=d.data;s.grade=d.data.grade;s.subj=d.data.subj;s.topic=d.data.topic}
+  aiR();window.scrollTo(0,0)}
+function aiDel(id){const d=(S.aiDocs||[]).find(x=>x.id===id),u=me();if(!d||!u||!(u.role==="admin"||d.by===u.id))return;if(!confirm("Delete \""+d.title+"\" from the library?"))return;
+  S.aiDocs=S.aiDocs.filter(x=>x.id!==id);LOG("Deleted AI "+d.kind+": "+d.title);save();aiR()}
+
+/* ---------- generating ---------- */
+function aiNotes(){const s=aiSt(),g=s.grade,sj=s.subj,tp=s.topic.trim(),dt=s.detail,rq=s.revq;if(!tp)return T("Type a topic first");
+  const len=dt==="short"?"about one page":dt==="detailed"?"detailed, about three pages":"about two pages";
+  aiRun("notes",async()=>{const t=await aiAsk(`Write teaching notes for ${aiGL(g)} learners.\nSubject: ${sj}\nTopic: ${tp}\n\nLength: ${len}.\nUse these headings, each written as a line starting with "## ": Learning outcomes, Key words, Notes, Examples, Summary${rq?", Revision questions (5 questions, with answers after them)":""}.\nUse "- " for bullet points and **bold** for key words. Plain text only, no tables.`,false);
+    if(!String(t).trim())throw new Error("BADJSON");s.out={kind:"notes",grade:g,subj:sj,topic:tp,text:String(t).trim()}})}
+const AI_QT={mixed:"a mix of multiple choice (4 options each), short answer and structured questions",mcq:"multiple choice questions only, each with exactly 4 options",short:"short answer questions only",struct:"structured questions only (each with parts a, b, c written inside the question text)",essay:"essay or long answer questions only"};
+function aiQuestions(){const s=aiSt(),g=s.grade,sj=s.subj,tp=s.topic.trim(),n=aiNum(s.qn,10,1,30),ty=s.qtype,df=s.diff;if(!tp)return T("Type a topic first");
+  aiRun("questions",async()=>{const t=await aiAsk(`Write ${n} practice questions for ${aiGL(g)} learners.\nSubject: ${sj}\nTopic: ${tp}\nQuestion style: ${AI_QT[ty]}.\nDifficulty: ${df==="mixed"?"a mix of easy, medium and harder questions":df}.\nInclude the correct answer for every question.\n\nReply with JSON only in this shape:\n{"questions":[{"type":"mcq or short or structured or essay","q":"question text","options":["option text","option text","option text","option text"],"answer":"the correct answer (for multiple choice start with the letter, like B. text)","marks":1}]}\nLeave "options" empty for questions that are not multiple choice. Do not put letters in front of the options.`,true);
+    const j=aiJson(t),L=(Array.isArray(j)?j:j.questions||[]).map(aiQNorm).filter(Boolean);if(!L.length)throw new Error("BADJSON");s.out={kind:"questions",grade:g,subj:sj,topic:tp,list:L}})}
+function aiTopics(){const s=aiSt(),g=s.grade,sj=s.subj;
+  aiRun("topics",async()=>{const t=await aiAsk(`List the main topics (strands and sub-strands) that ${aiGL(g)} learners study in ${sj} under the Kenyan Competency Based Curriculum, in the order they are usually taught.\nGive between 8 and 14 short topic names.\nReply with JSON only: {"topics":["topic name","topic name"]}`,true);
+    const j=aiJson(t),L=(Array.isArray(j)?j:j.topics||[]).map(x=>String(x).trim()).filter(Boolean).slice(0,16);if(L.length<2)throw new Error("BADJSON");
+    s.topics=L;s.picked={};s.step=2;s.ex=null})}
+const AI_ET={mcq:"Multiple choice (each question has 4 options and is worth 1 mark)",short:"Short answer questions (1 to 3 marks each)",struct:"Structured questions with parts a, b, c written inside the question text (4 to 8 marks each)",essay:"Essay or long answer questions (8 to 12 marks each)"};
+function aiExam(){const s=aiSt(),g=s.grade,sj=s.subj,mk=aiNum(s.marks,50,10,200),mn=aiNum(s.mins,60,15,240),nm=(s.exName||"Exam").trim(),df=s.diff,types=Object.keys(AI_ET).filter(k=>s.types[k]),tp=s.topics.filter((_,i)=>s.picked[i]);
+  if(!tp.length)return T("Pick at least one topic first");if(!types.length)return T("Pick at least one question type");
+  aiRun("exam",async()=>{const t=await aiAsk(`Set an exam paper for ${aiGL(g)} learners.\nSubject: ${sj}\nExam name: ${nm}\nTime allowed: ${mn} minutes\nTotal marks: exactly ${mk}\nOnly use these topics, and spread the questions evenly across all of them:\n${tp.map(x=>"- "+x).join("\n")}\n\nQuestion types to include (one section for each):\n${types.map(k=>"- "+AI_ET[k]).join("\n")}\nDifficulty: ${df==="mixed"?"a balanced mix of easy, medium and harder questions":df}. Include some application questions that use real situations.\nThe marks of all questions together MUST add up to exactly ${mk}. Do not repeat questions. Write a full marking scheme for every question.\n\nReply with JSON only in this shape:\n{"title":"${nm}","instructions":["short instruction","short instruction"],"sections":[{"name":"Section A: Multiple choice","note":"short note for the learner","questions":[{"q":"question text","options":["option text","option text","option text","option text"],"marks":1,"answer":"correct answer (for multiple choice start with the letter, like B. text)","scheme":"marking points with marks, e.g. 1 mark for naming X; 1 mark for explaining Y"}]}]}\nLeave "options" empty for questions that are not multiple choice. Do not put letters in front of the options and do not number the questions.`,true);
+    const j=aiJson(t),secs=(j.sections||[]).map(sc=>({name:String(sc.name||"Section").trim(),note:String(sc.note||"").trim(),questions:(sc.questions||[]).map(aiQNorm).filter(Boolean)})).filter(sc=>sc.questions.length);if(!secs.length)throw new Error("BADJSON");
+    s.ex={title:String(j.title||nm),instructions:(Array.isArray(j.instructions)?j.instructions:[]).map(x=>String(x)).slice(0,8),sections:secs,meta:{grade:g,subj:sj,name:nm,marks:mk,mins:mn,topics:tp}};s.step=4;s.view="paper"})}
+
+/* ---------- setup (admin) ---------- */
+function aiParseCfg(t){const o={};String(t||"").replace(/["']?(apiKey|authDomain|projectId|storageBucket|messagingSenderId|appId)["']?\s*:\s*["']([^"']+)["']/g,(_,k,v)=>{o[k]=v});return o}
+function aiSaveCfg(){if(!aiAdmin())return;const t=($("#aiCfgTxt")||{}).value||"",m=(($("#aiModelIn")||{}).value||"").trim(),o=aiParseCfg(t),old=aiCfg();
+  if(!o.projectId){const mm=/\/\/([a-z0-9-]+?)-default-rtdb/i.exec((typeof SYNC_DEFAULT!=="undefined"&&SYNC_DEFAULT.url)||"");if(mm)o.projectId=mm[1]}
+  const c=Object.assign({},old,t.trim()?o:{});c.model=m||AI_MODEL;
+  if(!(c.apiKey&&c.appId&&c.projectId))return T("Paste the Firebase web app settings first (they must include apiKey and appId)");
+  S.aiCfg=c;aiLib=null;LOG("AI settings saved");save();aiSt().cfgTest="";T("AI settings saved");aiR()}
+function aiTest(){aiRun("test",async()=>{const t=await aiAsk("Reply with the single word OK.",false);aiSt().cfgTest="The AI answered: "+String(t).trim().slice(0,40)})}
+
+/* ---------- the screen ---------- */
+function aiR(){const r=$("#aiRoot");if(r&&ui.tab==="ai")r.innerHTML=aiBody()}
+function aiSet(k,v,re){const s=aiSt();s[k]=v;if(re){if(k==="grade"||k==="subj"){if(s.tool==="exam"){s.step=1;s.topics=[];s.picked={};s.ex=null}}aiR()}}
+function aiTool(t){const s=aiSt();s.tool=t;s.err="";aiR()}
+function aiTy(k,v){aiSt().types[k]=v}
+function aiPick(i,v){const s=aiSt();s.picked[i]=!!v;aiPickUp()}
+function aiPickAll(v){const s=aiSt();s.topics.forEach((_,i)=>s.picked[i]=v);aiR()}
+function aiPickUp(){const s=aiSt(),n=s.topics.filter((_,i)=>s.picked[i]).length,e=$("#aiPickN"),b=$("#aiNext");if(e)e.textContent=n+" topic"+(n===1?"":"s")+" chosen";if(b)b.disabled=!n;document.querySelectorAll(".ai-ck[data-i]").forEach(l=>l.classList.toggle("on",!!s.picked[l.dataset.i]))}
+function aiOwn(){const s=aiSt(),e=$("#aiOwn"),v=e?e.value.trim():"";if(!v)return;s.topics.push(v);s.picked[s.topics.length-1]=true;aiR()}
+function aiStep(n){aiSt().step=n;aiR();window.scrollTo(0,0)}
+const aiOpt=(arr,v)=>arr.map(x=>`<option value="${esc(x[0])}"${String(x[0])===String(v)?" selected":""}>${esc(x[1])}</option>`).join("");
+function aiGS(s,re){return `<div class="ai-row"><div><label>Grade</label><select onchange="aiSet('grade',this.value,1)">${aiOpt(aiGrades().map(g=>[g,aiGL(g)]),s.grade)}</select></div><div><label>Subject</label><select onchange="aiSet('subj',this.value,1)">${aiOpt(aiSubs().map(x=>[x,x]),s.subj)}</select></div></div>`}
+function aiBusy(s){return s.busy?`<div class="card"><span class="ai-spin"></span>${s.busy==="topics"?"Finding the topics…":s.busy==="test"?"Testing…":"Writing… this can take up to a minute."}</div>`:""}
+function aiActs(kind,exam){const s=aiSt(),sv=kind==="exam"?1:1;
+  return `<div class="ai-acts">${exam?`<button class="btn sm" onclick="aiPrint('exam','${s.view}')">🖨 Print ${s.view==="scheme"?"scheme":"paper"}</button><button class="btn s sm" onclick="aiWord('exam','${s.view}')">⬇ Word</button>`:`<button class="btn sm" onclick="aiPrint('${kind}')">🖨 Print</button><button class="btn s sm" onclick="aiWord('${kind}')">⬇ Word</button>`}<button class="btn s sm" onclick="aiCopy('${kind}')">Copy</button><button class="btn g sm" onclick="aiSave('${kind}')">Save to library</button></div>`}
+function aiBody(){const s=aiSt(),u=me();
+  if(!aiOk())return `<h2 class="sec">✨ AI Assistant</h2><div class="card"><div class="m">The AI Assistant is for teachers and the admin.</div></div>`;
+  const tabs=[["notes","Notes"],["questions","Questions"],["exam","Exam"],["saved","Saved"]];if(aiAdmin())tabs.push(["setup","Setup"]);
+  let h=`<h2 class="sec">✨ AI Assistant</h2><p class="ai-note">It writes drafts. Always read them before you use them. Needs internet. Only the grade, subject and topic are sent: never student names or marks.</p>
+  <div class="seg" style="grid-template-columns:repeat(${tabs.length},minmax(0,1fr))">${tabs.map(t=>`<button class="${s.tool===t[0]?"on":""}" onclick="aiTool('${t[0]}')">${t[1]}</button>`).join("")}</div>`;
+  if(s.err)h+=`<div class="card ai-err">${esc(s.err)}</div>`;
+  if(!aiReady()&&s.tool!=="setup"&&s.tool!=="saved"){
+    return h+`<div class="card ai-warn"><h3>The AI is not set up yet</h3><div class="m" style="color:inherit">${aiAdmin()?"Add the Firebase settings once and every teacher can use it.":"Ask the admin to set it up."}</div>${aiAdmin()?`<button class="btn sm" style="margin-top:10px" onclick="aiTool('setup')">Set up the AI</button>`:""}</div>`}
+  h+=aiBusy(s);
+  if(s.tool==="notes"){
+    h+=`<div class="card">${aiGS(s)}<label>Topic</label><input value="${esc(s.topic)}" oninput="aiSet('topic',this.value)" placeholder="e.g. Photosynthesis" maxlength="120"><div class="ai-row"><div><label>Length</label><select onchange="aiSet('detail',this.value)">${aiOpt([["short","Short (1 page)"],["standard","Standard (2 pages)"],["detailed","Detailed (3 pages)"]],s.detail)}</select></div><div><label>Revision questions</label><select onchange="aiSet('revq',this.value==='1')">${aiOpt([["1","Add 5 with answers"],["0","No questions"]],s.revq?"1":"0")}</select></div></div><button class="btn" ${s.busy?"disabled":""} onclick="aiNotes()">Write notes</button></div>`;
+    if(s.out&&s.out.kind==="notes")h+=aiActs("notes")+`<div class="aipaper screen">${aiNotesDoc(s.out).replace(/^<div class="aipaper">|<\/div>$/g,"")}</div>`}
+  else if(s.tool==="questions"){
+    h+=`<div class="card">${aiGS(s)}<label>Topic</label><input value="${esc(s.topic)}" oninput="aiSet('topic',this.value)" placeholder="e.g. Fractions and decimals" maxlength="120"><div class="ai-row"><div><label>How many questions</label><input type="number" min="1" max="30" value="${s.qn}" oninput="aiSet('qn',this.value)"></div><div><label>Type</label><select onchange="aiSet('qtype',this.value)">${aiOpt([["mixed","Mixed"],["mcq","Multiple choice"],["short","Short answer"],["struct","Structured"],["essay","Essay"]],s.qtype)}</select></div></div><label>Difficulty</label><select onchange="aiSet('diff',this.value)">${aiOpt([["mixed","Mixed"],["easy","Easy"],["medium","Medium"],["hard","Hard"]],s.diff)}</select><button class="btn" ${s.busy?"disabled":""} onclick="aiQuestions()">Write questions</button></div>`;
+    if(s.out&&s.out.kind==="questions")h+=`<label class="ai-ck ${s.ans?"on":""}"><input type="checkbox" ${s.ans?"checked":""} onchange="aiSet('ans',this.checked,1)"> Show answers (also used when printing)</label>`+aiActs("questions")+`<div class="aipaper screen">${aiQDoc(s.out,s.ans).replace(/^<div class="aipaper">|<\/div>$/g,"")}</div>`}
+  else if(s.tool==="exam"){
+    const st=["Class and subject","Topics","Settings","Exam"];
+    h+=`<div class="ai-steps">${st.map((x,i)=>`<span class="${s.step===i+1?"on":""}">${i+1}. ${x}</span>`).join("")}</div>`;
+    if(s.step===1){
+      h+=`<div class="card"><h3>Which exam?</h3>${aiGS(s)}<label>Exam name</label><input value="${esc(s.exName)}" oninput="aiSet('exName',this.value)" maxlength="80"><div class="m" style="margin-bottom:10px">Next, the AI lists the topics for this class and subject so you can choose which ones the exam covers.</div><button class="btn" ${s.busy?"disabled":""} onclick="aiTopics()">Show topics to choose from</button></div>`}
+    else if(s.step===2){
+      const n=s.topics.filter((_,i)=>s.picked[i]).length;
+      h+=`<div class="card"><h3>Pick the topics to examine</h3><div class="m" style="margin-bottom:10px">${esc(aiGL(s.grade))} · ${esc(s.subj)}. The exam will use only the topics you tick.</div>${s.topics.map((t,i)=>`<label class="ai-ck ${s.picked[i]?"on":""}" data-i="${i}"><input type="checkbox" ${s.picked[i]?"checked":""} onchange="aiPick(${i},this.checked)"> <span>${esc(t)}</span></label>`).join("")}<div class="ai-acts"><button class="btn s sm" onclick="aiPickAll(true)">Select all</button><button class="btn s sm" onclick="aiPickAll(false)">Clear</button></div><label>Add a topic of your own</label><div style="display:flex;gap:8px"><input id="aiOwn" placeholder="Type a topic" maxlength="100" style="margin-bottom:0"><button class="btn s sm" style="margin:4px 0" onclick="aiOwn()">Add</button></div><div class="m" id="aiPickN" style="margin:12px 0 8px">${n} topic${n===1?"":"s"} chosen</div><div class="ai-acts"><button class="btn s sm" onclick="aiStep(1)">‹ Back</button><button class="btn sm" id="aiNext" ${n?"":"disabled"} onclick="aiStep(3)">Next: exam settings</button></div></div>`}
+    else if(s.step===3){
+      const tp=s.topics.filter((_,i)=>s.picked[i]);
+      h+=`<div class="card"><h3>Exam settings</h3><div class="m" style="margin-bottom:10px">Topics: ${tp.map(esc).join(", ")}</div><div class="ai-row"><div><label>Total marks</label><input type="number" min="10" max="200" value="${s.marks}" oninput="aiSet('marks',this.value)"></div><div><label>Time (minutes)</label><input type="number" min="15" max="240" value="${s.mins}" oninput="aiSet('mins',this.value)"></div></div><label>Question types</label>${Object.keys(AI_ET).map(k=>`<label class="ai-ck ${s.types[k]?"on":""}"><input type="checkbox" ${s.types[k]?"checked":""} onchange="aiTy('${k}',this.checked);this.parentNode.classList.toggle('on',this.checked)"> <span>${{mcq:"Multiple choice",short:"Short answer",struct:"Structured",essay:"Essay"}[k]}</span></label>`).join("")}<label style="display:block;margin-top:6px">Difficulty</label><select onchange="aiSet('diff',this.value)">${aiOpt([["mixed","Mixed"],["easy","Easy"],["medium","Medium"],["hard","Hard"]],s.diff)}</select><div class="ai-acts"><button class="btn s sm" onclick="aiStep(2)">‹ Back</button><button class="btn sm" ${s.busy?"disabled":""} onclick="aiExam()">Create the exam</button></div></div>`}
+    else if(s.ex){
+      const tot=aiSum(s.ex),want=s.ex.meta.marks;
+      h+=tot===want?`<div class="card ai-ok">Marks add up to ${tot}, as asked.</div>`:`<div class="card ai-warn">The marks add up to ${tot}, not ${want}. The paper uses ${tot}. Tap Create again for a closer match, or edit the printed copy.</div>`;
+      h+=`<div class="seg" style="grid-template-columns:1fr 1fr"><button class="${s.view==="paper"?"on":""}" onclick="aiSet('view','paper',1)">Exam paper</button><button class="${s.view==="scheme"?"on":""}" onclick="aiSet('view','scheme',1)">Marking scheme</button></div>`+aiActs("exam",1)+`<div class="aipaper screen">${(s.view==="scheme"?aiScheme(s.ex):aiPaper(s.ex)).replace(/^<div class="aipaper">|<\/div>$/g,"")}</div><div class="ai-acts"><button class="btn s sm" onclick="aiStep(3)">‹ Change settings and create again</button><button class="btn s sm" onclick="aiStep(1)">Start a new exam</button></div>`}
+    else h+=`<div class="card"><div class="m">No exam yet.</div><button class="btn sm" onclick="aiStep(1)">Start</button></div>`}
+  else if(s.tool==="saved"){
+    const L=(S.aiDocs||[]).slice().sort((a,b)=>b.t-a.t),ic={notes:"📝",questions:"❓",exam:"📄"};
+    h+=`<div class="card"><h3>Saved by the school</h3>${L.length?L.map(d=>`<div class="ai-lib"><div><div class="t">${ic[d.kind]||""} ${esc(d.title)}</div><div class="m">${esc(aiGL(d.grade))} · ${esc(d.subj)} · ${esc(d.byName||"")} · ${new Date(d.t).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}</div></div><div style="display:flex;gap:6px;flex:none"><button class="btn sm" onclick="aiOpen('${d.id}')">Open</button>${u.role==="admin"||d.by===u.id?`<button class="btn s sm" onclick="aiDel('${d.id}')" aria-label="Delete">🗑</button>`:""}</div></div>`).join(""):`<div class="m">Nothing saved yet. Notes, questions and exams you save appear here for every teacher.</div>`}</div>`}
+  else if(s.tool==="setup"&&aiAdmin()){
+    const c=aiCfg();
+    h+=`<div class="card"><h3>Set up the AI (once)</h3><div class="m" style="margin-bottom:8px">1. In the Firebase console open your project, then Build, AI Logic, Get started, and choose the Gemini Developer API.<br>2. Open Project settings, scroll to Your apps, pick the web app, and copy the firebaseConfig block.<br>3. Paste it below and save. It is shared to every device automatically.</div>
+    <div class="m">Status: <b>${aiReady()?"ready ("+esc(c.projectId)+")":"not set up"}</b></div>
+    <textarea id="aiCfgTxt" rows="7" placeholder='const firebaseConfig = {&#10;  apiKey: "...",&#10;  authDomain: "...",&#10;  projectId: "...",&#10;  appId: "..."&#10;};' spellcheck="false" autocapitalize="off"></textarea>
+    <label style="display:block;margin-top:12px">AI model name</label><input id="aiModelIn" value="${esc(c.model||AI_MODEL)}" autocapitalize="off" spellcheck="false">
+    <div class="ai-acts"><button class="btn sm" onclick="aiSaveCfg()">Save settings</button><button class="btn s sm" ${aiReady()&&!s.busy?"":"disabled"} onclick="aiTest()">Test the AI</button></div>
+    ${s.cfgTest?`<div class="card ai-ok">${esc(s.cfgTest)}</div>`:""}
+    <div class="m">Tip: in Google Cloud, restrict this API key to your website address, and turn on Firebase App Check, so only your app can use it.</div></div>`}
+  return h}
+function vAI(){return `<div id="aiRoot">${aiBody()}</div>`}
+
+</script><script>if("serviceWorker" in navigator&&location.protocol!=="file:")addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script></body></html>

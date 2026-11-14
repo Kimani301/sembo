@@ -1,23 +1,19 @@
 {
+  "id": "./",
   "name": "Osembo Comprehensive School",
   "short_name": "Osembo",
-  "description": "Marks, fees, remedial, register and timetable for Osembo Comprehensive School.",
-  "id": "./app.html",
+  "description": "School management: marks, report cards, fees, attendance, timetables and books.",
   "start_url": "./app.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#8F1D2C",
+  "background_color": "#F7F4F0",
   "theme_color": "#8F1D2C",
+  "lang": "en",
   "categories": ["education", "productivity"],
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
-    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
-    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
-  ],
-  "shortcuts": [
-    { "name": "Open app", "url": "./app.html", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
