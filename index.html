@@ -2,155 +2,428 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Osembo Comprehensive School app</title>
-<meta name="description" content="Install the Osembo app on your phone or laptop: marks, fees, remedial, register and timetable in one place.">
-<meta name="theme-color" content="#8F1D2C">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Osembo – School management that works offline</title>
+<meta name="description" content="Osembo is a school management app for marks, report cards, fees, attendance, timetables, books and a parents portal. Install it on Windows or Android.">
+<meta name="theme-color" content="#14243D">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
-<link rel="icon" href="icons/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Osembo">
-<meta property="og:title" content="Osembo Comprehensive School app">
-<meta property="og:description" content="Marks, fees, remedial, register and timetable. Install it on your phone or laptop.">
-<meta property="og:image" content="icons/icon-512.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2214%22%20fill=%22%2314243D%22/%3E%3Ccircle%20cx=%2232%22%20cy=%2232%22%20r=%2224%22%20fill=%22%23FFF7F0%22%20stroke=%22%23C6A15B%22%20stroke-width=%223%22/%3E%3Ctext%20x=%2232%22%20y=%2242%22%20text-anchor=%22middle%22%20font-family=%22Georgia,serif%22%20font-size=%2232%22%20font-weight=%22bold%22%20fill=%22%2314243D%22%3EO%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#A62335;--navy2:#5A0E1A;--gold:#C6A15B;--gold2:#E4C27A;--ivory:#FFF7F0;--ink:#1B2433;--mut:#5C6677;--line:#E3DACB;--bg:#FCF8F3;
---serif:Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-@media (prefers-color-scheme:dark){:root{--ink:#EDE6DA;--mut:#A9B0BD;--line:#4A2A30;--bg:#1E0A10}}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font:17px/1.6 var(--sans);color:var(--ink);background:var(--bg);padding-bottom:env(safe-area-inset-bottom)}
+:root{
+  --navy:#14243D; --navy2:#1C3358; --gold:#C6A15B; --gold-d:#8A6D2F;
+  --ivory:#FFF7F0; --paper:#FFFFFF; --ink:#1B2433; --mute:#5B6678; --line:#E7DFD3;
+  --ok:#2F7D57;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-.hero{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;padding:calc(48px + env(safe-area-inset-top)) 22px 56px}
-.in{max-width:920px;margin:0 auto}
-.brand{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
-.brand img{width:112px;height:112px;border-radius:26px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-h1{font:700 clamp(30px,6vw,48px)/1.1 var(--serif);margin:0 0 10px;letter-spacing:-.01em}
-.lead{margin:0;max-width:34em;color:#D6DCE8;font-size:18px}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{appearance:none;border:0;border-radius:12px;padding:14px 22px;font:700 16px var(--sans);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;min-height:48px}
-.btn.p{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#4A0C16}
-.btn.s{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
-.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--gold2);outline-offset:3px}
-.btn[hidden]{display:none}
-.note{margin:14px 0 0;color:#B9C2D3;font-size:14px;min-height:1.4em}
-main{max-width:964px;margin:0 auto;padding:12px 22px 40px}
-section{padding:36px 0;border-bottom:1px solid var(--line)}
-section:last-of-type{border-bottom:0}
-h2{font:700 26px/1.2 var(--serif);margin:0 0 6px}
-.sub{margin:0 0 20px;color:var(--mut)}
-.dev{display:grid;grid-template-columns:150px 1fr;gap:6px 24px;padding:18px 0;border-top:1px solid var(--line)}
-.dev:first-of-type{border-top:0}
-.dev h3{margin:0;font:700 18px var(--serif)}
-.dev .tag[hidden]{display:none}
-.dev .tag{display:inline-block;margin-top:6px;font-size:13px;font-weight:700;color:#4A0C16;background:var(--gold2);padding:2px 10px;border-radius:99px}
-@media (prefers-color-scheme:dark){.dev .tag{color:#4A0C16}}
-.dev ol{margin:0;padding-left:20px}
-.dev li{margin:2px 0}
-.dev.me{background:rgba(198,161,91,.12);margin:0 -14px;padding:18px 14px;border-radius:12px;border-top-color:transparent}
-.feat{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 36px}
-.feat li{padding:14px 0;border-top:1px solid var(--line)}
-.feat b{display:block;font-family:var(--serif);font-size:18px}
-.feat span{color:var(--mut);font-size:15px}
-details{border-top:1px solid var(--line);padding:14px 0}
-summary{cursor:pointer;font-weight:700}
-details p{margin:8px 0 0;color:var(--mut)}
-footer{max-width:964px;margin:0 auto;padding:8px 22px 48px;color:var(--mut);font-size:14px}
-@media (max-width:620px){.dev{grid-template-columns:1fr}.brand img{width:88px;height:88px;border-radius:21px}.btn{width:100%;justify-content:center}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;letter-spacing:-.01em}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:rgba(20,36,61,.96);backdrop-filter:blur(8px);color:#fff;padding-top:env(safe-area-inset-top,0)}
+.bar .wrap{display:flex;align-items:center;gap:18px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:21px;text-decoration:none}
+.brand svg{width:32px;height:32px}
+.bar nav{margin-left:auto;display:flex;gap:22px;font-size:15px;font-weight:500}
+.bar nav a{text-decoration:none;opacity:.85}
+.bar nav a:hover{opacity:1;color:var(--gold)}
+.bar .btn{padding:8px 16px;font-size:15px}
+@media(max-width:760px){.bar nav{display:none}.bar .btn{margin-left:auto}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;cursor:pointer;font:600 17px var(--sans);padding:14px 26px;border-radius:12px;text-decoration:none;transition:transform .15s,background .15s}
+.btn:active{transform:translateY(1px)}
+.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.gold:hover{background:#D5B16D}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn.navy{background:var(--navy);color:#fff}
+.btn.navy:hover{background:var(--navy2)}
+
+/* hero */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--gold)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:64px;padding-bottom:84px}
+.hero h1{font-size:clamp(38px,5.6vw,66px);font-weight:700}
+.hero p.lead{margin-top:20px;font-size:19px;max-width:34em;color:#D6DDEA}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero .note{margin-top:16px;font-size:14.5px;color:#AEB9CC}
+.hero .note b{color:var(--gold);font-weight:600}
+
+/* phone mock showing a real kind of screen: a report card */
+.phone{justify-self:center;width:290px;background:#0B1527;border-radius:38px;padding:11px;box-shadow:0 30px 60px rgba(0,0,0,.45),0 0 0 2px #2A3B5C}
+.screen{background:var(--ivory);color:var(--ink);border-radius:28px;overflow:hidden;min-height:540px}
+.s-head{background:var(--navy2);color:#fff;padding:18px 16px 14px}
+.s-head small{color:var(--gold);font-weight:600;font-size:12px}
+.s-head h4{font-family:var(--serif);font-size:20px;margin-top:2px}
+.s-body{padding:14px}
+.who{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--mute)}
+.who b{color:var(--ink);font-size:15px}
+.rows{margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.r{display:grid;grid-template-columns:1fr 38px 44px;gap:6px;padding:9px 12px;font-size:14px;border-top:1px solid var(--line);align-items:center}
+.r:first-child{border-top:0}
+.r span:nth-child(2){text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.lv{justify-self:end;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:#EAF3EE;color:var(--ok)}
+.lv.me{background:#FBF1DC;color:var(--gold-d)}
+.tot{display:flex;justify-content:space-between;margin-top:12px;padding:12px 14px;background:var(--navy);color:#fff;border-radius:14px;font-size:14px}
+.tot b{color:var(--gold);font-family:var(--serif);font-size:19px}
+.chips{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.chips i{font-style:normal;font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);background:#fff;color:var(--mute)}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-top:44px;padding-bottom:64px}.phone{width:270px}}
+
+/* sections */
+section{padding:84px 0}
+.head{max-width:40em;margin-bottom:40px}
+.head h2{font-size:clamp(30px,4vw,44px);font-weight:700;color:var(--navy)}
+.head p{margin-top:12px;color:var(--mute);font-size:18px}
+
+/* what it does: three statements, no cards */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--navy)}
+.three div{padding:26px 28px 6px 0}
+.three div+div{padding-left:28px;border-left:1px solid var(--line)}
+.three h3{font-size:24px;color:var(--navy)}
+.three p{margin-top:8px;color:var(--mute)}
+@media(max-width:760px){.three{grid-template-columns:1fr}.three div,.three div+div{padding:20px 0;border-left:0;border-top:1px solid var(--line)}.three div:first-child{border-top:0}}
+
+/* features by who uses them */
+.who-wrap{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.role{border:1px solid var(--line);border-radius:18px;padding:26px 26px 22px;background:var(--ivory)}
+.role.admin{background:var(--navy);color:#fff;border-color:var(--navy)}
+.role.admin li::before{background:var(--gold)}
+.role.admin h3,.role.admin .sub{color:#fff}
+.role.admin .sub{opacity:.75}
+.role h3{font-size:26px;color:var(--navy)}
+.role .sub{font-size:15px;color:var(--mute);margin-top:2px}
+.role ul{list-style:none;margin-top:16px;display:grid;gap:9px}
+.role li{position:relative;padding-left:22px;font-size:16px}
+.role li::before{content:"";position:absolute;left:2px;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--gold-d);transform:rotate(45deg)}
+@media(max-width:760px){.roles{grid-template-columns:1fr}}
+
+/* works anywhere strip */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.strip h3{font-size:21px;color:var(--navy)}
+.strip p{margin-top:6px;color:var(--mute);font-size:16px}
+.strip .ic{width:44px;height:44px;border-radius:12px;background:var(--navy);display:grid;place-items:center;margin-bottom:12px}
+.strip svg{width:23px;height:23px;stroke:var(--gold);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:900px){.strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.strip{grid-template-columns:1fr}}
+
+/* install */
+.install{background:var(--navy);color:#fff}
+.install .head h2{color:#fff}
+.install .head p{color:#B9C4D8}
+.tabs{display:inline-flex;background:rgba(255,255,255,.08);border-radius:14px;padding:5px;gap:4px;margin-bottom:26px}
+.tabs button{border:0;background:transparent;color:#CBD5E6;font:600 16px var(--sans);padding:11px 24px;border-radius:10px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--gold);color:var(--navy)}
+.panel{display:none;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
+.panel.on{display:grid}
+.panel h3{font-size:28px}
+.panel .intro{margin-top:8px;color:#B9C4D8}
+.steps{list-style:none;counter-reset:s;display:grid;gap:14px}
+.steps li{counter-increment:s;position:relative;padding:16px 18px 16px 62px;background:rgba(255,255,255,.06);border-radius:14px}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:700;display:grid;place-items:center}
+.steps b{display:block;color:#fff}
+.steps span{color:#B9C4D8;font-size:15.5px}
+.inst-btn{margin-top:22px}
+.hint{margin-top:12px;font-size:14.5px;color:#AEB9CC;min-height:1.4em}
+@media(max-width:820px){.panel.on{grid-template-columns:1fr}}
+
+/* faq */
+details{border-top:1px solid var(--line);padding:18px 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-family:var(--serif);font-size:21px;font-weight:700;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--sans);font-weight:500;color:var(--gold-d);font-size:26px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--mute);max-width:46em}
+.faq{max-width:780px}
+
+footer{background:var(--navy);color:#AEB9CC;padding:34px 0 calc(34px + env(safe-area-inset-bottom,0));font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+footer a{color:var(--gold);font-weight:600}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 </style>
 </head>
 <body>
-<header class="hero">
-  <div class="in">
-    <div class="brand">
-      <img src="icons/icon-512.png" alt="Osembo app icon: an open book under a rising sun" width="112" height="112">
-      <div>
-        <h1>Osembo Comprehensive School</h1>
-        <p class="lead">Marks, fees, remedial, register and timetable in one app. Install it once and open it from your desktop or home screen, even without internet.</p>
-      </div>
-    </div>
-    <div class="cta">
-      <button class="btn p" id="installBtn" type="button"><span aria-hidden="true">⬇</span> Install app</button>
-      <a class="btn s" href="app.html">Open in browser</a>
-    </div>
-    <p class="note" id="installNote" role="status"></p>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Osembo home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#14243D" stroke="#C6A15B" stroke-width="2"/><circle cx="32" cy="32" r="23" fill="#FFF7F0" stroke="#C6A15B" stroke-width="3"/><text x="32" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="bold" fill="#14243D">O</text></svg>
+      Osembo
+    </a>
+    <nav aria-label="Page sections">
+      <a href="#about">What it does</a>
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <a class="btn gold" href="#install">Install app</a>
   </div>
 </header>
 
-<main>
-  <section id="install">
-    <h2>Install on your device</h2>
-    <p class="sub">Free. No app store needed. Your device is highlighted below.</p>
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Run your whole school from one app.</h1>
+      <p class="lead">Osembo handles marks, report cards, school fees, attendance, timetables and textbooks for Osembo Comprehensive School. It keeps working with no internet, and teachers' updates appear on every device once they reconnect.</p>
+      <div class="cta">
+        <a class="btn gold" href="#install">Install on your device</a>
+        <a class="btn ghost" href="app.html">Open in browser</a>
+      </div>
+      <p class="note"><b>Free to install.</b> No app store needed. Works on Windows laptops and Android phones.</p>
+    </div>
 
-    <div class="dev" id="d-win">
-      <div><h3>Windows laptop</h3><span class="tag" hidden>Your device</span></div>
-      <ol>
-        <li>Open this page in <b>Chrome</b> or <b>Edge</b>.</li>
-        <li>Press <b>Install app</b> above. If you do not see it, click the install icon at the right end of the address bar.</li>
-        <li>Confirm. Osembo now appears in the Start menu and on the taskbar.</li>
+    <div class="phone" role="img" aria-label="Preview of an Osembo student report card on a phone">
+      <div class="screen">
+        <div class="s-head"><small>End of term report</small><h4>Learner report card</h4></div>
+        <div class="s-body">
+          <div class="who"><b>Example Student</b><span>Grade 9 · Adm OS1001</span></div>
+          <div class="rows">
+            <div class="r"><span>Mathematics</span><span>82</span><span class="lv">ME1</span></div>
+            <div class="r"><span>English</span><span>76</span><span class="lv">ME2</span></div>
+            <div class="r"><span>Kiswahili</span><span>91</span><span class="lv">EE1</span></div>
+            <div class="r"><span>Integrated Science</span><span>68</span><span class="lv me">ME2</span></div>
+            <div class="r"><span>Social Studies</span><span>73</span><span class="lv">ME2</span></div>
+          </div>
+          <div class="tot"><span>Class position</span><b>4 of 52</b></div>
+          <div class="chips"><i>Marks</i><i>Fees</i><i>Books</i><i>Timetable</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="head">
+      <h2>One place for the paperwork that eats your week</h2>
+      <p>Teachers, the secretary and the head teacher each sign in and see only what they need. Parents get their own simple view of their child.</p>
+    </div>
+    <div class="three">
+      <div><h3>Marks and report cards</h3><p>Enter marks per subject, rank a class or a whole list, and print report cards. Upload a whole term's results from a spreadsheet and preview them before saving.</p></div>
+      <div><h3>Fees and collections</h3><p>Record school fees, remedial payments and other money the school collects. See who has paid and who still owes, class by class.</p></div>
+      <div><h3>Daily school life</h3><p>Take attendance, share the timetable, issue textbooks to learners, and post announcements everyone can read.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="who-wrap">
+  <div class="wrap">
+    <div class="head">
+      <h2>What each person can do</h2>
+      <p>Every account has its own sign-in and its own set of tools.</p>
+    </div>
+    <div class="roles">
+      <article class="role admin">
+        <h3>Head teacher / Admin</h3>
+        <p class="sub">Full control of the school</p>
+        <ul>
+          <li>Add teachers; the app creates their login password</li>
+          <li>Assign subjects and classes to each teacher</li>
+          <li>Upload students, marks and book lists from one spreadsheet</li>
+          <li>Set remedial lessons as morning or evening, with times</li>
+          <li>Give a teacher full rights, or view-only access to every class</li>
+          <li>Promote classes at year end, with a confirmation first</li>
+          <li>Read the activity log and download or restore backups</li>
+        </ul>
+      </article>
+      <article class="role">
+        <h3>Teachers</h3>
+        <p class="sub">Class teachers and subject teachers</p>
+        <ul>
+          <li>Enter marks for the subjects you teach</li>
+          <li>Take attendance and see your own timetable</li>
+          <li>Record fees and remedial payments for your own class</li>
+          <li>Issue books and tick returned or not returned</li>
+          <li>Message a parent on WhatsApp or SMS from a student's page</li>
+          <li>View other classes and teachers without changing them</li>
+        </ul>
+      </article>
+      <article class="role">
+        <h3>Secretary</h3>
+        <p class="sub">The school office</p>
+        <ul>
+          <li>Record school fees for every student</li>
+          <li>Collect other money, with names and amounts you set</li>
+          <li>Open every class list and download blank class lists</li>
+          <li>Post announcements to the whole school</li>
+          <li>Set your own password</li>
+        </ul>
+      </article>
+      <article class="role">
+        <h3>Parents</h3>
+        <p class="sub">A simple window into their child's progress</p>
+        <ul>
+          <li>Sign in with the child's name and admission number</li>
+          <li>See the latest marks and report card</li>
+          <li>Check the fees balance and books the child has borrowed</li>
+          <li>Read school announcements</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <h2>Built for classrooms with patchy internet</h2>
+    </div>
+    <div class="strip">
+      <div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><path d="M12 20h.01"/><path d="M3 3l18 18"/></svg></div>
+        <h3>Works offline</h3>
+        <p>Open it, enter marks and record fees with no signal. Nothing is lost.</p>
+      </div>
+      <div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></svg></div>
+        <h3>Syncs on its own</h3>
+        <p>When a device is back online, its changes reach every other teacher's phone.</p>
+      </div>
+      <div>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3>Easy on phones</h3>
+        <p>Big tables switch to card view on small screens, so a fee register stays readable.</p>
+      </div>
+      <div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Protected</h3>
+        <p>Passwords are never stored as plain text, bulk actions ask you to confirm, and backups are one tap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install" class="install">
+  <div class="wrap">
+    <div class="head">
+      <h2>Install Osembo</h2>
+      <p>It takes about a minute. Pick your device.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Choose your device">
+      <button role="tab" id="tab-win" aria-selected="true" aria-controls="p-win">Windows</button>
+      <button role="tab" id="tab-and" aria-selected="false" aria-controls="p-and" tabindex="-1">Android</button>
+    </div>
+
+    <div class="panel on" id="p-win" role="tabpanel" aria-labelledby="tab-win">
+      <div>
+        <h3>On a Windows laptop or desktop</h3>
+        <p class="intro">Use Chrome or Microsoft Edge. Osembo installs like a normal program, with its own icon and window.</p>
+        <button class="btn gold inst-btn" data-install>Install on Windows</button>
+        <p class="hint" data-hint></p>
+      </div>
+      <ol class="steps">
+        <li><b>Open this page in Chrome or Edge</b><span>Use the same link your school shared.</span></li>
+        <li><b>Click Install on Windows</b><span>Or click the install icon at the right end of the address bar.</span></li>
+        <li><b>Confirm the prompt</b><span>Choose Install. Osembo opens in its own window.</span></li>
+        <li><b>Find it again anytime</b><span>Look in the Start menu or on your desktop. Pin it to the taskbar if you like.</span></li>
       </ol>
     </div>
-    <div class="dev" id="d-and">
-      <div><h3>Android phone</h3><span class="tag" hidden>Your device</span></div>
-      <ol>
-        <li>Open this page in <b>Chrome</b>.</li>
-        <li>Press <b>Install app</b> above, or tap the menu (⋮) then <b>Install app</b>.</li>
-        <li>Confirm. The Osembo icon is added to your home screen.</li>
+
+    <div class="panel" id="p-and" role="tabpanel" aria-labelledby="tab-and">
+      <div>
+        <h3>On an Android phone or tablet</h3>
+        <p class="intro">Use Chrome. The Osembo icon is added to your home screen, no Play Store needed.</p>
+        <button class="btn gold inst-btn" data-install>Install on Android</button>
+        <p class="hint" data-hint></p>
+      </div>
+      <ol class="steps">
+        <li><b>Open this page in Chrome</b><span>Use the same link your school shared.</span></li>
+        <li><b>Tap Install on Android</b><span>If nothing appears, tap the three dots at the top right and choose Install app.</span></li>
+        <li><b>Tap Install to confirm</b><span>Wait a few seconds while it is added.</span></li>
+        <li><b>Open Osembo from your home screen</b><span>Sign in once while online. After that it also works offline.</span></li>
       </ol>
     </div>
-    <div class="dev" id="d-ios">
-      <div><h3>iPhone or iPad</h3><span class="tag" hidden>Your device</span></div>
-      <ol>
-        <li>Open this page in <b>Safari</b>.</li>
-        <li>Tap the <b>Share</b> button.</li>
-        <li>Choose <b>Add to Home Screen</b>, then <b>Add</b>.</li>
-      </ol>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="head"><h2>Questions</h2></div>
+    <div class="faq">
+      <details><summary>Do I need internet to use Osembo?</summary><p>Only for the first sign-in and to sync. After that you can enter marks, take attendance and record fees offline. Changes upload when your device reconnects.</p></details>
+      <details><summary>Will other teachers see my changes?</summary><p>Yes. Once your device has synced, your updates show on the other teachers' phones and laptops.</p></details>
+      <details><summary>How does a parent sign in?</summary><p>With the child's names as they appear in the school records plus the admission number. The school office can confirm the exact spelling.</p></details>
+      <details><summary>What if I forget my password?</summary><p>Ask the head teacher to reset it. Secretaries can also set their own password after signing in.</p></details>
+      <details><summary>Can I back up the school's data?</summary><p>Yes. The admin can download a backup at any time, and Osembo reminds you when it is time for a fresh one.</p></details>
+      <details><summary>The Install button does nothing. What now?</summary><p>Make sure you are using Chrome or Edge, not a search app's built-in browser. You can also open the browser menu and choose Install app or Add to Home screen.</p></details>
     </div>
-  </section>
-
-  <section>
-    <h2>What is inside</h2>
-    <p class="sub">Everything the school office and teachers use each day.</p>
-    <ul class="feat">
-      <li><b>Marks and results</b><span>Enter marks, rank classes, print report cards.</span></li>
-      <li><b>Fees and other money</b><span>Track payments, balances and receipts.</span></li>
-      <li><b>Remedial</b><span>Weekly collections, defaulters and class totals.</span></li>
-      <li><b>Register</b><span>Daily class attendance.</span></li>
-      <li><b>Timetables</b><span>School, personal and remedial timetables.</span></li>
-      <li><b>Parents portal</b><span>Parents see fees, attendance and report cards.</span></li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Questions</h2>
-    <details><summary>Does it work without internet?</summary><p>Yes. After the first visit the app opens offline. Changes sync when you are back online.</p></details>
-    <details><summary>I do not see the Install button.</summary><p>Use Chrome or Edge on Windows and Android, or Safari on iPhone. If the app is already installed, the button is hidden.</p></details>
-    <details><summary>How do I get updates?</summary><p>Open the app while online. It updates itself and shows the newest version the next time you open it.</p></details>
-  </section>
+  </div>
+</section>
 </main>
-<footer>Osembo Comprehensive School · developed by key_money</footer>
+
+<footer>
+  <div class="wrap">
+    <span>Osembo Comprehensive School</span>
+    <a href="app.html">Open Osembo in your browser</a>
+  </div>
+</footer>
 
 <script>
+/* tabs */
 (function(){
-  var btn=document.getElementById("installBtn"),note=document.getElementById("installNote"),dp=null;
-  var ua=navigator.userAgent,ios=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1),
-      and=/android/i.test(ua),win=/windows/i.test(ua)||(!ios&&!and);
-  var mine=document.getElementById(ios?"d-ios":and?"d-and":"d-win");
-  if(mine){mine.classList.add("me");mine.querySelector(".tag").hidden=false}
-  var standalone=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
-  if(standalone){btn.hidden=true;note.textContent="Osembo is installed on this device."}
-  addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;note.textContent=""});
-  addEventListener("appinstalled",function(){dp=null;btn.hidden=true;note.textContent="Installed. Open Osembo from your Start menu or home screen."});
-  btn.addEventListener("click",function(){
-    if(dp){dp.prompt();dp.userChoice.then(function(r){note.textContent=r.outcome==="accepted"?"Installing…":"No problem. You can install any time.";dp=null});return}
-    note.textContent=ios?"On iPhone: tap Share, then Add to Home Screen.":"Use the install icon in the address bar, or the browser menu, then Install app.";
-    document.getElementById("install").scrollIntoView({behavior:"smooth"});
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function pick(t){
+    tabs.forEach(function(b){
+      var on=b===t;
+      b.setAttribute('aria-selected',on);
+      b.tabIndex=on?0:-1;
+      document.getElementById(b.getAttribute('aria-controls')).classList.toggle('on',on);
+    });
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){pick(b)});
+    b.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];
+        pick(n);n.focus();
+      }
+    });
   });
-  if("serviceWorker" in navigator&&location.protocol!=="file:")addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+  // open the tab that matches the visitor's device
+  if(/android/i.test(navigator.userAgent))pick(document.getElementById('tab-and'));
+})();
+
+/* the install prompt only fires on a page that links the manifest and has a service worker */
+if('serviceWorker' in navigator&&location.protocol!=='file:'){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
+
+/* install button */
+(function(){
+  var deferred=null;
+  var btns=[].slice.call(document.querySelectorAll('[data-install]'));
+  var hints=[].slice.call(document.querySelectorAll('[data-hint]'));
+  function say(t){hints.forEach(function(h){h.textContent=t})}
+  var standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  if(standalone){say('Osembo is already installed on this device.')}
+  window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferred=e});
+  window.addEventListener('appinstalled',function(){deferred=null;say('Installed. Open Osembo from your Start menu or home screen.')});
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      if(deferred){
+        deferred.prompt();
+        deferred.userChoice.then(function(r){
+          say(r.outcome==='accepted'?'Installing…':'Install cancelled. You can try again anytime.');
+          deferred=null;
+        });
+      }else if(standalone){
+        say('Osembo is already installed on this device.');
+      }else{
+        say('Your browser did not offer one-click install. Use the browser menu and choose Install app or Add to Home screen.');
+      }
+    });
+  });
 })();
 </script>
 </body>
