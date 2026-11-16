@@ -1,6 +1,6 @@
 /* Osembo service worker: always fetches the newest app when online, keeps an offline copy.
    Change the number below every time you upload a new version of the app. */
-const CACHE = "osembo-v13";
+const CACHE = "osembo-v14";
 
 self.addEventListener("install", e => {
   self.skipWaiting();

@@ -34,7 +34,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .btn-line{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
 .btn-line:hover{background:rgba(255,255,255,.16)}
 .btn svg{width:22px;height:22px;flex:none}
-.navbtn{padding:9px 16px;font-size:14px;border-radius:10px}
+.btn-big{padding:17px 30px;font-size:18px;border-radius:16px}
 /* hero */
 .hero{background:radial-gradient(1200px 500px at 80% -10%,#C4222E 0,transparent 60%),linear-gradient(160deg,var(--navy),#3A060C);color:#fff;padding:56px 0 70px;position:relative;overflow:hidden}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -132,7 +132,7 @@ footer h4{margin:0 0 14px;color:#fff;font:700 17px var(--sf);padding-bottom:8px;
 .pbar{height:9px;background:#F1D5D2;border-radius:9px;overflow:hidden;margin-bottom:18px}
 .pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--navy),#E0525C);border-radius:9px;transition:width .25s linear}
 .pbox .btn{width:100%;margin-top:8px}
-.pbox .btn-red{background:var(--navy);color:#fff}
+.pbox .btn-red{background:var(--navy);color:#fff}.pbox .steps-t{background:#FFF6F3;border:1px solid #F1D5D2;border-radius:12px;padding:10px 12px;font-size:14.5px;color:var(--tx);text-align:left;margin:0 0 14px}
 .pbox .btn-ghost{background:#fff;color:var(--navy);border:1.5px solid #F1D5D2}
 .pbox [hidden]{display:none!important}
 .pdone .ring .fgc{stroke:#15803D}.pdone .pnum{color:#15803D}
@@ -199,8 +199,7 @@ footer{padding:44px 0 24px}
 
 <nav><div class="wrap">
   <a class="brand" href="#top"><img src="icons/icon-192.png" alt="">Osembo</a>
-  <div class="links"><a class="l" href="#about">About</a><a class="l" href="#why">Why Osembo</a><a class="l" href="#features">Features</a><a class="l" href="#faq">FAQ</a>
-  <button class="btn btn-gold navbtn" data-install>⬇ Install</button></div>
+  <div class="links"><a class="l" href="#about">About</a><a class="l" href="#why">Why Osembo</a><a class="l" href="#features">Features</a><a class="l" href="#faq">FAQ</a></div>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
@@ -208,11 +207,8 @@ footer{padding:44px 0 24px}
     <span class="tag">🎓 Built for Kenyan schools</span>
     <h1>Run your whole school from <span>one smart app</span></h1>
     <p class="lead">Osembo handles fees, marks, attendance, timetables, books and parent messages, so teachers teach and parents stay informed. Free to install and fast on any phone or computer.</p>
-    <div class="cta">
-      <button class="btn btn-gold" data-install="android"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.5l1.7-3a.4.4 0 00-.7-.4l-1.7 3A10 10 0 0012 8.1a10 10 0 00-4.9 1l-1.7-3a.4.4 0 00-.7.4l1.7 3A9.4 9.4 0 002 17h20a9.4 9.4 0 00-4.4-7.5zM7.5 14.6a1 1 0 110-2 1 1 0 010 2zm9 0a1 1 0 110-2 1 1 0 010 2z"/></svg>Install on Android</button>
-      <button class="btn btn-line" data-install="windows"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5l7.5-1v7H3zm8.5-1.2L21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zm8.5 0H21V21l-9.5-1.3z"/></svg>Install on Windows</button>
-    </div>
-    <p class="note" id="installNote">One tap install. No app store, no downloads to hunt for.</p>
+    <div class="cta"><button class="btn btn-gold btn-big" data-install><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 011 1v8.6l2.8-2.8a1 1 0 011.4 1.4l-4.5 4.5a1 1 0 01-1.4 0L6.8 11.2a1 1 0 011.4-1.4L11 12.6V4a1 1 0 011-1zM5 19h14a1 1 0 010 2H5a1 1 0 010-2z"/></svg><span class="ilabel">Install App</span></button></div>
+    <p class="note" id="installNote">Free · works on Android phones and Windows computers · no app store</p>
     <div class="trust"><span><b>✓</b> Works offline</span><span><b>✓</b> Auto-updates</span><span><b>✓</b> Secure logins</span></div>
   </div>
   <div class="phone" aria-hidden="true"><div class="screen">
@@ -282,10 +278,7 @@ footer{padding:44px 0 24px}
     <img src="icons/icon-192.png" alt="" width="84" height="84" style="border-radius:22px;margin-bottom:12px;box-shadow:0 8px 24px rgba(0,0,0,.4)">
     <h2>Get Osembo now</h2>
     <p>Install the app on your phone or computer. It is free and ready in seconds.</p>
-    <div class="cta">
-      <button class="btn btn-gold" data-install="android">⬇ Install on Android</button>
-      <button class="btn btn-line" data-install="windows">⬇ Install on Windows</button>
-    </div>
+    <div class="cta"><button class="btn btn-gold btn-big" data-install><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a1 1 0 011 1v8.6l2.8-2.8a1 1 0 011.4 1.4l-4.5 4.5a1 1 0 01-1.4 0L6.8 11.2a1 1 0 011.4-1.4L11 12.6V4a1 1 0 011-1zM5 19h14a1 1 0 010 2H5a1 1 0 010-2z"/></svg><span class="ilabel">Install App</span></button></div>
     <p style="margin-top:16px;font-size:14px"><a href="app.html" style="color:#fff;font-weight:700;text-decoration:underline">Or open Osembo in your browser →</a></p>
   </div>
 </div></section>
@@ -316,6 +309,7 @@ footer{padding:44px 0 24px}
   <div class="ring"><svg viewBox="0 0 120 120"><circle class="bgc" cx="60" cy="60" r="52"/><circle class="fgc" id="pfg" cx="60" cy="60" r="52"/></svg><div class="pnum"><span><span id="pnum">0</span><small>%</small></span></div></div>
   <h3 id="ptitle">Installing Osembo</h3><p id="pmsg">Starting…</p>
   <div class="pbar"><i id="pbar"></i></div>
+  <button class="btn btn-red" id="pfinish" hidden>Finish install</button>
   <a class="btn btn-red" id="popen" href="app.html" hidden>Open Osembo</a>
   <button class="btn btn-ghost" id="pclose" hidden>Close</button>
 </div></div>
@@ -327,88 +321,130 @@ var standalone=matchMedia("(display-mode: standalone)").matches||matchMedia("(di
 /* Installed app opens straight into Osembo */
 if(standalone){location.replace("app.html");return}
 var ua=navigator.userAgent,isAndroid=/Android/i.test(ua),isIOS=/iPhone|iPad|iPod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1),isWin=/Windows/i.test(ua);
-var dp=window.__dp,installed=false;
 var $=function(s){return document.querySelector(s)};
+var dp=window.__dp,installed=false,S=null,DEMO=!!window.__DEMO;
+var ASSETS=[["app.html",760815],["manifest.webmanifest",722],["icons/icon-192.png",13681],["icons/icon-512.png",37488],["icons/apple-touch-icon.png",12373]];
+
+/* register the service worker straight away (needed for install) */
+if("serviceWorker" in navigator&&location.protocol!=="file:")navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(function(){});
+
+/* label the single install button for this device */
+var lab=isIOS?"Install on iPhone":isAndroid?"Install on Android":isWin?"Install on Windows":"Install App";
+document.querySelectorAll(".ilabel").forEach(function(e){e.textContent=lab});
+
 function toast(t){var e=$("#toast");e.textContent=t;e.classList.add("on");setTimeout(function(){e.classList.remove("on")},2800)}
 function modal(t,h){$("#mTitle").textContent=t;$("#mBody").innerHTML=h;$("#modal").classList.add("on")}
 $("#mClose").onclick=function(){$("#modal").classList.remove("on")};
 $("#modal").onclick=function(e){if(e.target.id==="modal")$("#modal").classList.remove("on")};
 
-/* ===== install progress (real file download + install event) ===== */
-var ASSETS=[["app.html",760815],["manifest.webmanifest",722],["icons/icon-192.png",13681],["icons/icon-512.png",37488],["icons/apple-touch-icon.png",12373]],DEMO=!!window.__DEMO,pr={on:0};
-function setP(v){var r=$("#pfg");$("#pnum").textContent=v;r.style.strokeDashoffset=326.7*(1-v/100);$("#pbar").style.width=v+"%";
-  $("#pmsg").textContent=v<5?"Starting…":v<85?"Downloading app files…":v<100?"Finishing installation…":"All done"}
-function finishP(soft){
-  if(pr.done)return;pr.done=1;clearInterval(pr.tick);pr.target=100;
-  var t=setInterval(function(){pr.shown=Math.min(100,pr.shown+1.5);setP(Math.floor(pr.shown));
-    if(pr.shown>=100){clearInterval(t);$("#pbox").classList.add("pdone");$("#ptitle").textContent="Installed ✓";
-      $("#pmsg").textContent=soft?"Osembo is ready. Look for the Osembo icon on your home screen or desktop.":(isAndroid||isIOS?"Osembo is now on your home screen.":"Osembo is now on your desktop and Start menu.");
-      $("#popen").hidden=false;$("#pclose").hidden=false}},40);
+function manualSteps(){
+  if(isIOS)return "Open this page in <b>Safari</b>, tap the <b>Share</b> button, then choose <b>Add to Home Screen</b>.";
+  if(isAndroid)return "Open the browser menu <b>⋮</b> (top right) and tap <b>Install app</b> (or <b>Add to Home screen</b>). Use <b>Chrome</b>.";
+  return "Click the <b>install icon</b> at the right end of the address bar (or open the menu ⋮ and choose <b>Install Osembo</b>). Use <b>Chrome</b> or <b>Edge</b>.";
 }
+
+/* ---------- progress dialog ---------- */
+function ui(){return{num:$("#pnum"),ring:$("#pfg"),bar:$("#pbar"),title:$("#ptitle"),msg:$("#pmsg"),box:$("#pbox")}}
+function paint(v,msg){var u=ui();u.num.textContent=v;u.ring.style.strokeDashoffset=326.7*(1-v/100);u.bar.style.width=v+"%";if(msg!=null)u.msg.innerHTML=msg}
+function buttons(o){$("#pfinish").hidden=!o.finish;$("#popen").hidden=!o.open;$("#pclose").hidden=!o.close}
+function closeP(){if(S){clearInterval(S.tick);S.dead=1}S=null;$("#prog").classList.remove("on")}
+$("#pclose").onclick=closeP;
+
+function openInstallPrompt(me){
+  var p=dp;if(!p||me.prompted)return false;
+  dp=null;window.__dp=null;me.prompted=1;
+  try{p.prompt()}catch(e){me.prompted=0;return false}
+  p.userChoice.then(function(c){
+    if(S!==me)return;
+    if(c&&c.outcome==="accepted"){me.acc=1}
+    else{closeP();toast("Install cancelled")}
+  }).catch(function(){});
+  return true;
+}
+
+function finish(me,soft){
+  if(me.done||S!==me)return;me.done=1;clearInterval(me.tick);
+  var t=setInterval(function(){
+    me.shown=Math.min(100,me.shown+1.5);paint(Math.floor(me.shown));
+    if(me.shown>=100){clearInterval(t);var u=ui();u.box.classList.add("pdone");u.title.textContent="Installed ✓";
+      u.msg.textContent=soft?"Osembo is ready. Look for the Osembo icon on your home screen or desktop.":(isAndroid||isIOS?"Osembo is now on your home screen.":"Osembo is now on your desktop and Start menu.");
+      buttons({open:1,close:1})}
+  },40);
+}
+
+function showManual(me){
+  me.done=1;me.manual=1;clearInterval(me.tick);
+  var u=ui();u.box.classList.add("pdone");paint(100);u.title.textContent="App downloaded ✓";
+  u.msg.innerHTML='<span class="steps-t" style="display:block">'+manualSteps()+'</span>';
+  buttons({finish:!!dp,close:1});
+  if(dp)$("#pfinish").textContent="Install now";
+}
+window.__onDp=function(){dp=window.__dp;$("#installNote").textContent="Ready to install";if(S&&S.manual&&dp){buttons({finish:1,close:1});$("#pfinish").textContent="Install now"}};
+$("#pfinish").onclick=function(){
+  if(!S||!dp)return;var me=S;
+  me.done=0;me.manual=0;me.dl=1;me.shown=94;me.target=94;$("#pbox").classList.remove("pdone");$("#ptitle").textContent="Installing Osembo";buttons({});
+  me.tick=setInterval(function(){tick(me)},60);
+  openInstallPrompt(me);
+};
+
+function tick(me){
+  if(S!==me||me.done)return;
+  if(me.shown<me.target)me.shown=Math.min(me.target,me.shown+Math.min(1,Math.max(.4,(me.target-me.shown)*.12)));
+  else if(me.dl&&me.acc&&!me.inst&&me.shown<98)me.shown+=.05;   /* slow creep while the browser finishes installing */
+  var v=Math.min(99,Math.floor(me.shown)),msg;
+  if(!me.dl)msg=v<3?"Starting…":"Downloading app files…";
+  else if(me.prompted&&!me.acc&&!me.inst)msg="Tap <b>Install</b> in the popup to finish";
+  else msg="Finishing installation…";
+  paint(v,msg);
+  if(me.dl&&me.shown>=me.target){
+    if(me.inst){finish(me,false);return}
+    if(me.acc){if(!me.timer)me.timer=setTimeout(function(){if(S===me&&!me.done)finish(me,true)},25000);return}
+    if(me.prompted)return;                 /* waiting for the person to answer the popup */
+    showManual(me);                        /* no install popup available: show the one last step */
+  }
+}
+
 function startProgress(){
-  if(pr.on)return;pr={on:1,shown:0,target:0,dl:0,inst:0,done:0};
-  $("#pbox").classList.remove("pdone");$("#ptitle").textContent="Installing Osembo";$("#popen").hidden=true;$("#pclose").hidden=true;
-  $("#prog").classList.add("on");setP(0);
-  /* smooth counter: moves toward the real progress one number at a time */
-  pr.tick=setInterval(function(){
-    if(pr.done)return;
-    if(pr.shown<pr.target)pr.shown=Math.min(pr.target,pr.shown+Math.min(1,Math.max(.4,(pr.target-pr.shown)*.12)));
-    else if(pr.dl&&!pr.inst&&pr.shown<98)pr.shown+=.05;   /* slow creep while the browser finishes installing */
-    setP(Math.min(99,Math.floor(pr.shown)));
-    if(pr.dl&&pr.inst&&pr.shown>=pr.target)finishP();
-  },60);
+  var me=S={shown:0,target:0,dl:0,inst:0,acc:0,prompted:0,done:0};
+  var u=ui();u.box.classList.remove("pdone");u.title.textContent="Installing Osembo";buttons({});$("#prog").classList.add("on");paint(0,"Starting…");
+  me.tick=setInterval(function(){tick(me)},60);
   var total=0,loaded=0;ASSETS.forEach(function(a){total+=a[1]});
-  function dlDone(){pr.dl=1;pr.target=Math.max(pr.target,94);
-    setTimeout(function(){if(!pr.done)finishP(true)},25000);   /* if the browser never reports, finish gracefully */
-    if(pr.inst)pr.target=100}
-  if(DEMO||!("caches" in window)||location.protocol==="file:"){
-    var d=0,iv=setInterval(function(){d+=1.6+Math.random()*2.4;pr.target=Math.min(88,d);if(d>=88){clearInterval(iv);dlDone();setTimeout(function(){pr.inst=1;pr.target=100},1800)}},90);return}
-  caches.open("osembo-v13").then(function(cache){
+  function dlDone(){if(S!==me)return;me.dl=1;me.target=me.prompted||me.acc?94:100}
+  if(DEMO){me.prompted=1;me.acc=1;var d=0,iv=setInterval(function(){d+=1.6+Math.random()*2.4;me.target=Math.min(88,d);if(d>=88){clearInterval(iv);dlDone();setTimeout(function(){me.inst=1;me.target=100},1800)}},90);return me}
+  if(!("caches" in window)||location.protocol==="file:"){dlDone();return me}
+  caches.open("osembo-v14").then(function(cache){
     var chain=Promise.resolve();
     ASSETS.forEach(function(a){chain=chain.then(function(){
+      if(S!==me)return;
       return fetch(a[0],{cache:"reload"}).then(function(res){
-        if(!res.ok||!res.body){loaded+=a[1];pr.target=Math.min(88,loaded/total*88);return}
+        if(!res.ok||!res.body){loaded+=a[1];me.target=Math.min(88,loaded/total*88);return}
         var rd=res.clone().body.getReader();
         var put=cache.put(a[0],res).catch(function(){});
-        function pump(){return rd.read().then(function(x){if(x.done)return;loaded+=x.value.length;pr.target=Math.min(88,Math.max(pr.target,loaded/total*88));return pump()})}
-        return Promise.all([pump(),put])}).catch(function(){loaded+=a[1];pr.target=Math.min(88,loaded/total*88)})})});
+        function pump(){return rd.read().then(function(x){if(x.done)return;loaded+=x.value.length;me.target=Math.min(88,Math.max(me.target,loaded/total*88));return pump()})}
+        return Promise.all([pump(),put])}).catch(function(){loaded+=a[1];me.target=Math.min(88,loaded/total*88)})})});
     return chain}).catch(function(){}).then(dlDone);
+  return me;
 }
-$("#pclose").onclick=function(){$("#prog").classList.remove("on");pr.on=0};
-window.__onInstalled=function(){installed=true;dp=null;if(pr.on&&!pr.done){pr.inst=1}else if(!pr.on){toast("Osembo installed ✓")}
-  $("#installNote").innerHTML='Installed. <a href="app.html" style="color:#FFD5A5;font-weight:700;text-decoration:underline">Open Osembo</a>'};
-window.__onDp=function(){dp=window.__dp;$("#installNote").textContent="Ready. Tap Install and confirm."};if(dp)window.__onDp();
-addEventListener("appinstalled",function(){window.__onInstalled()});
 
-function copyLink(){var u=location.href.split("#")[0];if(navigator.clipboard)navigator.clipboard.writeText(u).then(function(){toast("Link copied")},function(){toast(u)});else toast(u)}
-window.__copy=copyLink;
+addEventListener("appinstalled",function(){
+  installed=true;dp=null;
+  if(S&&!S.done&&!S.manual){S.inst=1;S.acc=1;S.target=100;S.dl=S.dl}else if(S&&S.manual){finish(S,false)}else toast("Osembo installed ✓");
+  $("#installNote").innerHTML='Installed. <a href="app.html" style="color:#FFD5A5;font-weight:700;text-decoration:underline">Open Osembo</a>';
+});
 
-function install(target){
-  var wrongPhone=target==="windows"&&(isAndroid||isIOS),wrongPc=target==="android"&&!isAndroid&&!isIOS;
-  if(wrongPhone||wrongPc){
-    var other=target==="windows"?"a Windows computer (Chrome or Edge)":"an Android phone (Chrome)";
-    modal("Open this page on "+other,'<p>Installing adds Osembo to the device you are using now. To install on '+other+', open this same link there.</p><button class="btn btn-gold" onclick="__copy()">Copy page link</button>');
-    return;
-  }
+/* ---------- the one install action ---------- */
+function install(){
   if(installed){modal("Already installed","<p>Osembo is already on this device. Open it from your home screen or desktop.</p>");return}
-  if(!dp&&!isIOS&&"serviceWorker" in navigator&&!window.__waited){
-    /* the browser needs a moment after the first visit: wait up to 3 seconds for it */
-    window.__waited=1;toast("Preparing install…");var n=0,t=setInterval(function(){n++;if(dp||n>=15){clearInterval(t);window.__waited=0;install(target)}},200);return;
-  }
-  if(dp){var p=dp;dp=null;window.__dp=null;p.prompt();p.userChoice.then(function(c){if(c&&c.outcome==="accepted")startProgress();else toast("Install cancelled")});return}
-  if(isIOS){modal("Install on iPhone / iPad",'<ol><li>Open this page in <b>Safari</b>.</li><li>Tap the <b>Share</b> button.</li><li>Choose <b>Add to Home Screen</b>, then <b>Add</b>.</li></ol>');return}
-  if(isAndroid){modal("Install on Android",'<ol><li>Use <b>Google Chrome</b>.</li><li>Tap the <b>⋮ menu</b> (top right).</li><li>Tap <b>Install app</b> (or Add to Home screen).</li></ol><p>If you do not see it, wait a few seconds and tap Install again.</p>');return}
-  modal("Install on Windows",'<ol><li>Use <b>Chrome</b> or <b>Edge</b>.</li><li>Click the <b>install icon</b> at the right end of the address bar.</li><li>Click <b>Install</b>.</li></ol><p>If you do not see it, wait a few seconds and click Install again.</p>');
+  if(S&&!S.done){$("#prog").classList.add("on");return}
+  var me=startProgress();                       /* the download starts immediately */
+  if(!DEMO&&dp)openInstallPrompt(me);           /* and the browser's install popup opens at the same time */
 }
-document.querySelectorAll("[data-install]").forEach(function(b){b.addEventListener("click",function(){
-  var t=b.getAttribute("data-install")||(isAndroid||isIOS?"android":"windows");install(t)})});
-
-/* register service worker (needed for install) */
-if("serviceWorker" in navigator&&location.protocol!=="file:")addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(function(){})});
+document.querySelectorAll("[data-install]").forEach(function(b){b.addEventListener("click",install)});
 
 /* scroll reveal */
 var io="IntersectionObserver" in window?new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.12}):null;
 document.querySelectorAll(".reveal").forEach(function(el){io?io.observe(el):el.classList.add("in")});
+if(dp)window.__onDp();
 })();
 </script>
 </body></html>
