@@ -1,10 +1,13 @@
 /* Osembo service worker: always fetches the newest app when online, keeps an offline copy.
    Change the number below every time you upload a new version of the app. */
-const CACHE = "osembo-v9";
+const CACHE = "osembo-v11";
 
 self.addEventListener("install", e => {
   self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(c => c.add(new Request("./", { cache: "reload" }))).catch(() => {}));
+  e.waitUntil(caches.open(CACHE).then(c => Promise.all(
+    ["./", "./app.html", "./manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"]
+      .map(u => c.add(new Request(u, { cache: "reload" })).catch(() => {}))
+  )).catch(() => {}));
 });
 
 self.addEventListener("activate", e => {
@@ -28,7 +31,7 @@ self.addEventListener("fetch", e => {
         if (res && res.ok) { const cp = res.clone(); caches.open(CACHE).then(c => c.put(r, cp)).catch(() => {}); }
         return res;
       }).catch(() =>
-        caches.match(r, { ignoreSearch: true }).then(m => m || caches.match("./")).then(m => m || new Response("You are offline and the app is not saved on this phone yet.", { status: 503 }))
+        caches.match(r, { ignoreSearch: true }).then(m => m || caches.match(r.url.indexOf("app.html") > -1 ? "./app.html" : "./")).then(m => m || new Response("You are offline and the app is not saved on this phone yet.", { status: 503 }))
       )
     );
     return;
